@@ -8,9 +8,14 @@
     "test:debug": "NODE_ENV=test mocha \"./app/**/*.test.js\" --inspect-brk --exit"
   },
   "dependencies": {
+    "base64url": "^3.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1"
   }
 }
