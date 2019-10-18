@@ -1,0 +1,16 @@
+{
+  "name": "paris-call-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "NODE_ENV=test mocha \"./app/**/*.test.js\"",
+    "test:debug": "NODE_ENV=test mocha \"./app/**/*.test.js\" --inspect-brk --exit"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "morgan": "~1.9.0"
+  }
+}
