@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var webhookRouter = require('./app/webhook/routes');
 var confirmEmailRouter = require('./app/confirm-email/routes');
+var acceptRouter = require('./app/accept/routes');
 
 var app = express();
 // view engine setup
@@ -18,5 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/webhook', webhookRouter);
 app.use('/confirm-email', confirmEmailRouter);
+app.use('/accept', acceptRouter);
 
 module.exports = app;
