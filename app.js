@@ -1,17 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 
-var webhookRouter = require('./app/webhook/routes');
-var confirmEmailRouter = require('./app/confirm-email/routes');
-var acceptRouter = require('./app/accept/routes');
+const webhookRouter = require('./app/webhook/routes');
+const confirmEmailRouter = require('./app/confirm-email/routes');
+const acceptRouter = require('./app/accept/routes');
 
-var app = express();
+const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(logger('dev'));
+app.use(bodyParser.raw({ type: 'application/json' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

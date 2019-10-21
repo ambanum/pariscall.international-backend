@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
+const crypto = require('crypto');
 
 const { encode } = require('../encoder');
 const { send } = require('../mailer');
@@ -10,10 +11,14 @@ const router = express.Router();
 const mailTemplate = pug.compileFile(path.resolve(__dirname, './mail-template.pug'));
 
 router.post('/', async (req, res, next) => {
-  const { form_response } = req.body;
-  const { token } = form_response;
+  const typeformSignature = req.headers['typeform-signature'];
 
-  // TODO: Check secret from typeform
+  if (!typeformSignature || !isValidTypeformSignature(typeformSignature, req.body)) {
+    return res.sendStatus(403);
+  }
+
+  // Convert body buffer to string and parse it in JSON
+  const { form_response } = JSON.parse(req.body.toString('utf8'));
 
   const data = {
     formResponse: extractDataFromTypeform(form_response),
@@ -79,6 +84,14 @@ function extractDataFromTypeform(typeformObject) {
   });
 
   return result;
+}
+
+function isValidTypeformSignature(signature, payload) {
+  const hash = crypto.createHmac('sha256', process.env.TYPEFORM_KEY)
+    .update(payload)
+    .digest('base64');
+
+  return signature === `sha256=${hash}`;
 }
 
 module.exports = router;
