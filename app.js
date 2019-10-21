@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var webhookRouter = require('./app/webhook/routes');
+var confirmEmailRouter = require('./app/confirm-email/routes');
 
 var app = express();
 // view engine setup
@@ -16,5 +17,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/webhook', webhookRouter);
+app.use('/confirm-email', confirmEmailRouter);
 
 module.exports = app;

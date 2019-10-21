@@ -1,0 +1,22 @@
+p Une nouvelle organisation souhaite rejoindre la liste des signataires :
+
+ul
+  each val, index in data.formResponse
+    li
+      strong #{data.formResponse[index].title}
+      br
+      | #{data.formResponse[index].value}
+  li
+      strong Date et heure d'inscription
+      br
+      | #{new Date(data.date_signed).toLocaleDateString('fr-FR')} à #{new Date(data.date_signed).toLocaleTimeString('fr-FR', {hour: 'numeric', minute: 'numeric'})}
+
+p Cliquez sur le lien suivant pour approuver la signature :
+  br
+  a(href=linkUrl)
+    strong Approuver la signature
+
+p
+  small Le lien ne fonctionne pas ? Copiez le lien suivant dans la barre d’adresse de votre navigateur :
+  br
+  | #{linkUrl}
