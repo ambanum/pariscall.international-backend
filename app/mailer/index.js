@@ -1,4 +1,5 @@
 require('dotenv').config();
+const striptags = require('striptags');
 const mailjet = require('node-mailjet').connect(process.env.MAILJET_APIKEY_PUBLIC, process.env.MAILJET_APIKEY_PRIVATE);
 
 function send(options) {
@@ -16,7 +17,8 @@ function send(options) {
           "Name": options.to.name
         }],
         "Subject": options.subject,
-        "TextPart": options.content,
+        "TextPart": striptags(options.content),
+        "HTMLPart": options.content,
       }]
     });
 
