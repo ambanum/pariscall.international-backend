@@ -1,8 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const sanitize = require('sanitize-filename');
-const changeCase = require('change-case');
-const diacritics = require('diacritics');
 
 const mailer = require('../mailer');
 const encoder = require('../encoder');
@@ -22,16 +19,18 @@ router.get('/', async (req, res, next) => {
       return  res.sendStatus(403);
     }
 
+    const { formResponse: { name, category, state }} = data;
+
     // Sanitize filename
-    const filename = `${diacritics.remove(changeCase.snakeCase(sanitize(data.formResponse.name.value)))}.md`;
+    const filename = `${github.sanitizeName(name.value)}-${github.sanitizeName(category.value)}-${github.sanitizeName(state.value)}.md`;
     const path = `${process.env.REPO_DEST_FOLDER}/${filename}`;
 
     // Generate file content
     const content = `---
-name: ${data.formResponse.name.value}
-category: ${data.formResponse.category.value}
+name: ${name.value}
+category: ${category.value}
 nature:
-nationality: ${data.formResponse.state.value}
+nationality: ${state.value}
 alliance:
 date_signed: ${new Date(data.date_signed).toISOString().slice(0,10)}
 ---
@@ -42,33 +41,35 @@ date_signed: ${new Date(data.date_signed).toISOString().slice(0,10)}
       owner: process.env.REPO_OWNER,
       repo: process.env.REPO_NAME,
       path: path,
-      commitMessage: `Add ${data.formResponse.name.value} supporter`,
+      commitMessage: `Add ${name.value} supporter`,
       content,
     }).then(() => {
       // Send email to requester
-      mailer.send({
+      return mailer.send({
         from: {
           email: process.env.SENDER_EMAIL,
           name: process.env.SENDER_NAME
         },
         to: {
           // TODO use requester name and email
-          // email: data.formResponse.confirm_email.value
+          // email: confirm_email.value
           email: 'lowx512@gmail.com'
         },
         // TODO Add mail content
         subject: 'You are now a supporter of the Paris Call!',
-        content: '',
+        content: 'Test',
       });
-
-      res.render('index', { title: `${data.formResponse.name.value} correctement ajouté à la liste des signataires` });
-    }).catch((error) => {
-      let title = `Une erreur est survenue lors de l'ajout de ${data.formResponse.name.value} à la liste des signataires`;
+    })
+    .then(() => {
+      res.render('index', { title: `${name.value} correctement ajouté à la liste des signataires` });
+    })
+    .catch((error) => {
+      let title = `Une erreur est survenue lors de l'ajout de ${name.value} à la liste des signataires`;
       let message = '';
 
       if (error.status === 422 && error.message.includes('sha')) {
-        title = `Une erreur est survenue lors de l'ajout de ${data.formResponse.name.value} à la liste des signataires`;
-        message = `Il semblerait que ${data.formResponse.name.value} soit déjà signataire de l'appel de Paris.`;
+        title = `Une erreur est survenue lors de l'ajout de ${name.value} à la liste des signataires`;
+        message = `Il semblerait que ${name.value} soit déjà signataire de l'appel de Paris.`;
       }
 
       res.render('error', {
@@ -82,7 +83,7 @@ date_signed: ${new Date(data.date_signed).toISOString().slice(0,10)}
     if (error.message.includes('failed to decrypt')) {
       statusCode = 403;
     }
-
+    console.log(error);
     res.sendStatus(statusCode).render('error', {
       title: `Une erreur est survenue lors de l'ajout d'un signataire à la liste des signataires`,
       error

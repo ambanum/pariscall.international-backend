@@ -99,7 +99,7 @@ describe('GET /accept', function () {
 
     it('creates the file on the right path', function () {
       const arguments = githubStub.getCall(0).args[0];
-      expect(arguments.path).to.equal(`${process.env.REPO_DEST_FOLDER}/lorem_ipsum_dolor.md`);
+      expect(arguments.path).to.equal(`${process.env.REPO_DEST_FOLDER}/lorem_ipsum_dolor-barcelona-lorem_ipsum_dolor.md`);
     });
 
     it('creates the right file content', function () {
