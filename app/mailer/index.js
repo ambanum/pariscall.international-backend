@@ -10,11 +10,11 @@ function send(options) {
       "Messages": [{
         "From": {
           "Email": options.from.email,
-          "Name": options.from.name
+          "Name": options.from.name || ''
         },
         "To": [{
           "Email": options.to.email,
-          "Name": options.to.name
+          "Name": options.to.name || ''
         }],
         "Subject": options.subject,
         "TextPart": striptags(options.content),
