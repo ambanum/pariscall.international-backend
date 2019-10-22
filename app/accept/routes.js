@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
       return  res.sendStatus(403);
     }
 
-    const { formResponse: { name, category, state }} = data;
+    const { formResponse: { name, category, state, confirm_email }} = data;
 
     // Sanitize filename
     const filename = `${github.sanitizeName(name.value)}-${github.sanitizeName(category.value)}-${github.sanitizeName(state.value)}.md`;
@@ -81,7 +81,7 @@ date_signed: ${new Date(data.date_signed).toISOString().slice(0,10)}
     if (error.message.includes('failed to decrypt')) {
       statusCode = 403;
     }
-    console.log(error);
+
     res.sendStatus(statusCode).render('error', {
       title: `Une erreur est survenue lors de l'ajout d'un signataire à la liste des signataires`,
       error
