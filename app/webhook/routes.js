@@ -3,8 +3,8 @@ const express = require('express');
 const path = require('path');
 const pug = require('pug');
 
-const { encode } = require('../encoder');
-const { send } = require('../mailer');
+const encoder = require('../encoder');
+const mailer = require('../mailer');
 const typeform = require('./typeform');
 
 const router = express.Router();
@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
   }
 
   // encrypt data
-  const encodedData = encode(data);
+  const encodedData = encoder.encode(data);
 
   const linkUrl = `${req.protocol}://${req.get('host')}/confirm-email?token=${encodedData}`;
   const mailContent = mailTemplate({
@@ -35,22 +35,21 @@ router.post('/', async (req, res, next) => {
   });
 
   // Send email to requester
-  send({
+  mailer.send({
     from: {
       email: process.env.SENDER_EMAIL,
       name: process.env.SENDER_NAME
     },
     to: {
       // TODO use requester name and email
-      email: 'lowx512@gmail.com',
-      name: 'Nicolas Dupont'
+      // email: data.formResponse.confirm_email.value
+      email: 'lowx512@gmail.com'
     },
     subject: 'Verify your email',
     content: mailContent,
   }).then(() => {
     res.sendStatus(200);
   }).catch((error) => {
-    console.log(error);
     res.sendStatus(500);
   });
 });
