@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:11.13.0
+    steps: # a collection of executable commands
+      - checkout
+      - run: 'wget -qO - https://pkgs.cossacklabs.com/gpg | sudo apt-key add - '
+      - run: 'sudo apt-get install apt-transport-https'
+      - run: 'echo "deb https://pkgs.cossacklabs.com/stable/debian stretch main" | \sudo tee /etc/apt/sources.list.d/cossacklabs.list'
+      - run: 'sudo apt-get update'
+      - run: 'sudo apt-get install libthemis-dev'
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: npm test
