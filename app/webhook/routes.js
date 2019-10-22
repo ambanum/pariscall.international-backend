@@ -41,9 +41,7 @@ router.post('/', async (req, res, next) => {
       name: process.env.SENDER_NAME
     },
     to: {
-      // TODO use requester name and email
-      // email: data.formResponse.confirm_email.value
-      email: 'lowx512@gmail.com'
+      email: data.formResponse.confirm_email.value
     },
     subject: 'Verify your email',
     content: mailContent,

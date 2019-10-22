@@ -51,13 +51,11 @@ date_signed: ${new Date(data.date_signed).toISOString().slice(0,10)}
           name: process.env.SENDER_NAME
         },
         to: {
-          // TODO use requester name and email
-          // email: confirm_email.value
-          email: 'lowx512@gmail.com'
+          email: confirm_email.value
         },
         // TODO Add mail content
         subject: 'You are now a supporter of the Paris Call!',
-        content: 'Test',
+        content: 'Nice to have you on board',
       });
     })
     .then(() => {
