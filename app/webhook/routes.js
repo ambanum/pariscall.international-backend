@@ -28,7 +28,7 @@ router.post('/', async (req, res, next) => {
   // encrypt data
   const encodedData = encoder.encode(data);
 
-  const linkUrl = `${req.protocol}://${req.get('host')}/confirm-email?token=${encodedData}`;
+  const linkUrl = `${process.env.PARIS_CALL_API_URL}/confirm-email?token=${encodedData}`;
   const mailContent = mailTemplate({
     linkUrl,
     data,

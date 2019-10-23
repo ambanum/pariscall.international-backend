@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 
     const reEncodedData = encoder.encode(data);
 
-    const linkUrl = `${req.protocol}://${req.get('host')}/accept?token=${reEncodedData}`;
+    const linkUrl = `${process.env.PARIS_CALL_API_URL}/accept?token=${reEncodedData}`;
     const mailContent = mailTemplate({
       linkUrl,
       data,
