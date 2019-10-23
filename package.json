@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./app/server",
     "test": "NODE_ENV=test mocha \"./app/**/*.test.js\"",
-    "test:debug": "NODE_ENV=test mocha \"./app/**/*.test.js\" --inspect-brk --exit"
+    "test:debug": "NODE_ENV=test mocha \"./app/**/*.test.js\" --inspect-brk --exit",
+    "deploy": "./deploy/initiate.sh"
   },
   "dependencies": {
     "@octokit/rest": "^16.33.1",
