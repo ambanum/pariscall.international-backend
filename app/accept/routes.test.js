@@ -38,7 +38,7 @@ const validData = {
       value: 'an_account@example.com'
     }
   },
-  date_signed: new Date().toISOString()
+  date_signed: '2019-10-22T08:04:35.611Z'
 };
 
 
