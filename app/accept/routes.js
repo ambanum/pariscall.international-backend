@@ -1,11 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
+const pug = require('pug');
 
 const mailer = require('../mailer');
 const encoder = require('../encoder');
 const github = require('../github');
 
 const router = express.Router();
+const mailTemplate = pug.compileFile(path.resolve(__dirname, './mail-template.pug'));
 
 router.get('/', async (req, res, next) => {
   try {
@@ -16,10 +19,17 @@ router.get('/', async (req, res, next) => {
 
     const data = encoder.decode(encodedData);
     if (!data.formResponse) {
-      return  res.sendStatus(403);
+      return res.sendStatus(403);
     }
 
-    const { formResponse: { name, category, state, confirm_email }} = data;
+    const {
+      formResponse: {
+        name,
+        category,
+        state,
+        confirm_email
+      }
+    } = data;
 
     // Sanitize filename
     const filename = `${github.sanitizeName(name.value)}-${github.sanitizeName(category.value)}-${github.sanitizeName(state.value)}.md`;
@@ -38,44 +48,49 @@ date_signed: ${new Date(data.date_signed).toISOString().slice(0,10)}
 
     // Create file on github
     github.createFile({
-      owner: process.env.REPO_OWNER,
-      repo: process.env.REPO_NAME,
-      path: path,
-      commitMessage: `Add ${name.value} supporter`,
-      content,
-    }).then(() => {
-      // Send email to requester
-      return mailer.send({
-        from: {
-          email: process.env.SENDER_EMAIL,
-          name: process.env.SENDER_NAME
-        },
-        to: {
-          email: confirm_email.value
-        },
-        // TODO Add mail content
-        subject: 'You are now a supporter of the Paris Call!',
-        content: 'Nice to have you on board',
-      });
-    })
-    .then(() => {
-      res.render('index', { title: `${name.value} correctement ajouté à la liste des signataires` });
-    })
-    .catch((error) => {
-      let title = `Une erreur est survenue lors de l'ajout de ${name.value} à la liste des signataires`;
-      let message = '';
+        owner: process.env.REPO_OWNER,
+        repo: process.env.REPO_NAME,
+        path: path,
+        commitMessage: `Add ${name.value} supporter`,
+        content,
+      }).then(() => {
+        const mailContent = mailTemplate({
+          data,
+        });
 
-      if (error.status === 422 && error.message.includes('sha')) {
-        title = `Une erreur est survenue lors de l'ajout de ${name.value} à la liste des signataires`;
-        message = `Il semblerait que ${name.value} soit déjà signataire de l'appel de Paris.`;
-      }
+        // Send email to requester
+        return mailer.send({
+          from: {
+            email: process.env.SENDER_EMAIL,
+            name: process.env.SENDER_NAME
+          },
+          to: {
+            email: confirm_email.value
+          },
+          subject: 'You are now a supporter of the Paris Call!',
+          content: mailContent
+        });
+      })
+      .then(() => {
+        res.render('index', {
+          title: `${name.value} correctement ajouté à la liste des signataires`
+        });
+      })
+      .catch((error) => {
+        let title = `Une erreur est survenue lors de l'ajout de ${name.value} à la liste des signataires`;
+        let message = '';
 
-      res.render('error', {
-        title,
-        message,
-        error,
+        if (error.status === 422 && error.message.includes('sha')) {
+          title = `Une erreur est survenue lors de l'ajout de ${name.value} à la liste des signataires`;
+          message = `Il semblerait que ${name.value} soit déjà signataire de l'appel de Paris.`;
+        }
+
+        res.render('error', {
+          title,
+          message,
+          error,
+        });
       });
-    });
   } catch (error) {
     let statusCode = 500;
     if (error.message.includes('failed to decrypt')) {
