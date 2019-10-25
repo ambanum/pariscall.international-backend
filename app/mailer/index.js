@@ -25,6 +25,30 @@ function send(options) {
   return request;
 }
 
+function sendAsBot(options) {
+  const augmentedOptions = {
+    from: {
+      email: process.env.BOT_EMAIL,
+      name: process.env.BOT_NAME
+    },
+    ...options
+  }
+  return send(augmentedOptions);
+}
+
+function sendAsAdministrator(options) {
+  const augmentedOptions = {
+    from: {
+      email: process.env.SENDER_EMAIL,
+      name: process.env.SENDER_NAME
+    },
+    ...options
+  }
+  return send(augmentedOptions);
+}
+
 module.exports = {
   send,
+  sendAsBot,
+  sendAsAdministrator
 };

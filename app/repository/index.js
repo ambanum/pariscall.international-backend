@@ -7,12 +7,12 @@ const octokit = require("@octokit/rest")({
   auth: process.env.GITHUB_USER_KEY,
 });
 
-function createFile({ owner, repo, path, commitMessage, content }) {
+function createFile({ path, commitMessage, content }) {
   const base64Content = Buffer.from(content).toString('base64');
 
   return octokit.repos.createOrUpdateFile({
-    owner: owner,
-    repo: repo,
+    owner: process.env.REPO_OWNER,
+    repo: process.env.REPO_NAME,
     path: path,
     message: commitMessage,
     content: base64Content,
@@ -25,5 +25,5 @@ function sanitizeName(filename) {
 
 module.exports = {
   createFile,
-  sanitizeName
+  sanitizeName,
 };
