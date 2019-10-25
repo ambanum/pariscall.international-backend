@@ -19,7 +19,7 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
       mailSubject: 'ParisCall : nouveau signataire',
     });
   } catch (error) {
-    res.redirect(`${config.frontend.website}/confirm/error`);
+    res.redirect(`${config.frontend.website}/en/confirm/error`);
   }
 });
 
@@ -31,7 +31,7 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
       mailSubject: 'ParisCall : nouvel évènement',
     });
   } catch (error) {
-    res.redirect(`${config.frontend.website}/confirm/error`);
+    res.redirect(`${config.frontend.website}/en/confirm/error`);
   }
 });
 
@@ -42,7 +42,7 @@ function handleConfirmEmail(req, res, next, options) {
   const oneWeekAgo = now.setDate(now.getDate() - config.mailer.nbDaysBeforeTokenExpiration);
   const isTokenExpired = new Date(data.date_signed) < oneWeekAgo;
   if (isTokenExpired) {
-    return res.redirect(`${config.frontend.website}/confirm/expired`);
+    return res.redirect(`${config.frontend.website}/en/confirm/expired`);
   }
 
   const reEncodedData = encoder.encode(data);
@@ -55,9 +55,9 @@ function handleConfirmEmail(req, res, next, options) {
     subject: options.mailSubject,
     content: options.mailTemplate({ linkUrl, data }),
   }).then(() => {
-    res.redirect(`${config.frontend.website}/confirm`);
+    res.redirect(`${config.frontend.website}/en/confirm`);
   }).catch(() => {
-    res.redirect(`${config.frontend.website}/confirm/error`);
+    res.redirect(`${config.frontend.website}/en/confirm/error`);
   });
 }
 
