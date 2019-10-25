@@ -56,7 +56,7 @@ describe('GET /confirm-email/supporter', function () {
         .get(`/confirm-email/supporter?token=${invalidToken}`)
         .expect(302)
         .end((err, res) => {
-          expect(res.header.location).to.equal(`${config.frontend.website}/en/confirm/error`);
+          expect(res.header.location).to.equal(`${config.frontend.website}/en/confirm/supporter/error`);
           done(err);
         });
     });
@@ -68,7 +68,7 @@ describe('GET /confirm-email/supporter', function () {
         .get(`/confirm-email/supporter?token=${expiredToken}`)
         .expect(302)
         .end((err, res) => {
-          expect(res.header.location).to.equal(`${config.frontend.website}/en/confirm/expired`);
+          expect(res.header.location).to.equal(`${config.frontend.website}/en/confirm/supporter/expired`);
           done(err);
         });
     });
@@ -96,7 +96,7 @@ describe('GET /confirm-email/supporter', function () {
     });
 
     it('redirects to confirm success page', function () {
-      expect(response.header.location).to.equal(`${config.frontend.website}/en/confirm`);
+      expect(response.header.location).to.equal(`${config.frontend.website}/en/confirm/supporter`);
     });
 
     it('sends an email to APPROBATOR_EMAIL', function () {
