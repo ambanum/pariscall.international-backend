@@ -16,7 +16,7 @@ const confirmEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mai
 router.post('/supporter', async (req, res, next) => {
   handleWebhook(req, res, next, {
     mailTemplate: confirmSupporterEmailTemplate,
-    linkUrl: `${config.frontend.website}/confirm-email/supporter`,
+    linkUrl: `${config.frontend.api}/confirm-email/supporter`,
     mailSubject: 'Verify your email',
   });
 });
@@ -24,7 +24,7 @@ router.post('/supporter', async (req, res, next) => {
 router.post('/event', async (req, res, next) => {
   handleWebhook(req, res, next, {
     mailTemplate: confirmEventEmailTemplate,
-    linkUrl: `${config.frontend.website}/confirm-email/event`,
+    linkUrl: `${config.frontend.api}/confirm-email/event`,
     mailSubject: 'Verify your email',
   });
 });
