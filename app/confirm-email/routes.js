@@ -1,3 +1,5 @@
+require('dotenv').config();
+const config = require('config');
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
@@ -6,54 +8,66 @@ const encoder = require('../encoder');
 const mailer = require('../mailer');
 
 const router = express.Router();
-const mailTemplate = pug.compileFile(path.resolve(__dirname, './mail-template.pug'));
-const NB_DAYS_BEFORE_EXPIRATION = 7;
+const acceptSupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-supporter.pug'));
+const acceptEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-event.pug'));
 
-router.get('/', async (req, res, next) => {
+router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
   try {
-    const encodedData = req.query.token;
-    if (!encodedData) {
-      return res.sendStatus(403);
-    }
-
-    const data = encoder.decode(encodedData);
-    if (!data.formResponse) {
-      return res.sendStatus(403);
-    }
-
-    // Check if link is expired
-    const now = new Date();
-    const oneWeekAgo = now.setDate(now.getDate() - NB_DAYS_BEFORE_EXPIRATION);
-    if (new Date(data.date_signed) < oneWeekAgo) {
-      return res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/expired`);
-    }
-
-    const reEncodedData = encoder.encode(data);
-
-    const linkUrl = `${process.env.PARIS_CALL_API_URL}/accept?token=${reEncodedData}`;
-    const mailContent = mailTemplate({
-      linkUrl,
-      data,
-    });
-
-    mailer.send({
-      from: {
-        email: process.env.BOT_EMAIL,
-        name: process.env.BOT_NAME
-      },
-      to: {
-        email: process.env.APPROBATOR_EMAIL,
-      },
-      subject: `ParisCall: nouveau signataire ${data.formResponse.name.value}`,
-      content: mailContent,
-    }).then(() => {
-      res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm`);
-    }).catch((error) => {
-      res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+    handleConfirmEmail(req, res, next, {
+      mailTemplate: acceptSupporterEmailTemplate,
+      linkUrl: `${config.frontend.api}/accept/supporter`,
+      mailSubject: 'ParisCall : nouveau signataire',
     });
   } catch (error) {
-    res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+    res.redirect(`${config.frontend.website}/confirm/error`);
   }
 });
+
+router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
+  try {
+    handleConfirmEmail(req, res, next, {
+      mailTemplate: acceptEventEmailTemplate,
+      linkUrl: `${config.frontend.api}/accept/event`,
+      mailSubject: 'ParisCall : nouvel évènement',
+    });
+  } catch (error) {
+    res.redirect(`${config.frontend.website}/confirm/error`);
+  }
+});
+
+function handleConfirmEmail(req, res, next, options) {
+  const data = encoder.decode(req.query.token);
+
+  const now = new Date();
+  const oneWeekAgo = now.setDate(now.getDate() - config.mailer.nbDaysBeforeTokenExpiration);
+  const isTokenExpired = new Date(data.date_signed) < oneWeekAgo;
+  if (isTokenExpired) {
+    return res.redirect(`${config.frontend.website}/confirm/expired`);
+  }
+
+  const reEncodedData = encoder.encode(data);
+  const linkUrl = `${options.linkUrl}?token=${reEncodedData}`;
+
+  mailer.sendAsBot({
+    to: {
+      email: config.mailer.approbator.email,
+    },
+    subject: options.mailSubject,
+    content: options.mailTemplate({ linkUrl, data }),
+  }).then(() => {
+    res.redirect(`${config.frontend.website}/confirm`);
+  }).catch(() => {
+    res.redirect(`${config.frontend.website}/confirm/error`);
+  });
+}
+
+function tokenValidationMiddleware(req, res, next) {
+  const encodedData = req.query.token;
+  if (!encodedData) {
+    return res.sendStatus(403);
+  }
+
+  next();
+}
 
 module.exports = router;

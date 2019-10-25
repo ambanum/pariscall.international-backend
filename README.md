@@ -31,7 +31,8 @@ Create `.env` file with:
 - `GITHUB_USER_KEY`: Github [personal access token](https://github.com/settings/tokens) that can be used to access the GitHub API.
 - `REPO_OWNER`: Owner of the repository to commit files
 - `REPO_NAME`: Repository name
-- `REPO_DEST_FOLDER`: Folder in repository to create files in
+- `REPO_SUPPORTER_DEST_FOLDER`: Folder in repository to create supporters files in
+- `REPO_EVENT_DEST_FOLDER`: Folder in repository to create events files in
 - `PARIS_CALL_WEBSITE`: URL to redirect user after email is confirmed
 - `PARIS_CALL_API_URL`: URL of this server
 - `TYPEFORM_KEY`: Typeform secret to securize webhook

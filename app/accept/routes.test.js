@@ -1,12 +1,11 @@
 require('dotenv').config();
-const {
-  expect
-} = require('chai');
+const config = require('config');
+const { expect } = require('chai');
 const request = require('supertest');
 const sinon = require('sinon');
 const mailer = require('../mailer');
 const encoder = require('../encoder');
-const github = require('../github');
+const repository = require('../repository');
 
 const app = require('../../app');
 
@@ -42,11 +41,11 @@ const validData = {
 };
 
 
-describe('GET /accept', function () {
+describe('GET /accept/supporter', function () {
   context('without token', () => {
     it('responds 403', function (done) {
       request(app)
-        .get('/accept')
+        .get('/accept/supporter')
         .expect(403)
         .end(done);
     });
@@ -55,7 +54,7 @@ describe('GET /accept', function () {
   context('with invalid token', () => {
     it('responds 403', function (done) {
       request(app)
-        .get(`/accept?token=${invalidToken}`)
+        .get(`/accept/supporter?token=${invalidToken}`)
         .expect(403)
         .end(done);
     });
@@ -63,15 +62,15 @@ describe('GET /accept', function () {
 
   context('with valid token', () => {
     let mailerStub;
-    let githubStub;
+    let repositoryStub;
     let response;
     const validToken = encoder.encode(validData);
 
     before((done) => {
-      mailerStub = sinon.stub(mailer, 'send').resolves('');
-      githubStub = sinon.stub(github, 'createFile').resolves('');
+      mailerStub = sinon.stub(mailer, 'sendAsAdministrator').resolves('');
+      repositoryStub = sinon.stub(repository, 'createFile').resolves('');
       request(app)
-        .get(`/accept?token=${validToken}`)
+        .get(`/accept/supporter?token=${validToken}`)
         .end((err, res) => {
           response = res;
           done(err);
@@ -80,31 +79,28 @@ describe('GET /accept', function () {
 
     after(() => {
       mailerStub.restore();
-      githubStub.restore();
+      repositoryStub.restore();
     });
 
     it('responds 200', function () {
       expect(response.statusCode).to.equal(200);
     });
 
-    it('creates the file on github', function () {
-      expect(githubStub.calledOnce).to.be.true;
+    it('creates the file on repository', function () {
+      expect(repositoryStub.calledTwice).to.be.true;
     });
 
-    it('creates the file on the right github repository', function () {
-      const arguments = githubStub.getCall(0).args[0];
-      expect(arguments.owner).to.equal(process.env.REPO_OWNER);
-      expect(arguments.repo).to.equal(process.env.REPO_NAME);
+    it('creates files on the right path', function () {
+      config.repository.supporterDestinationFolders.forEach((folder, index) => {
+        const args = repositoryStub.getCall(index).args[0];
+        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-barcelona-lorem_ipsum_dolor.md`);
+      });
     });
 
-    it('creates the file on the right path', function () {
-      const arguments = githubStub.getCall(0).args[0];
-      expect(arguments.path).to.equal(`${process.env.REPO_DEST_FOLDER}/lorem_ipsum_dolor-barcelona-lorem_ipsum_dolor.md`);
-    });
-
-    it('creates the right file content', function () {
-      const arguments = githubStub.getCall(0).args[0];
-      expect(arguments.content).to.equal(`---
+    it('creates the right files content', function () {
+      config.repository.supporterDestinationFolders.forEach((_, index) => {
+        const args = repositoryStub.getCall(index).args[0];
+        expect(args.content).to.equal(`---
 name: Lorem ipsum dolor
 category: Barcelona
 nature:
@@ -113,6 +109,7 @@ alliance:
 date_signed: 2019-10-22
 ---
 `);
+      });
     });
 
     it('sends confirmation email to requester', function () {

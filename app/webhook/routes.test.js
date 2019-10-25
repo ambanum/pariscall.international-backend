@@ -12,11 +12,11 @@ const {
   requesterEmail,
 } = require('./fixtures');
 
-describe('POST /webhook', function () {
+describe('POST /webhook/supporter', function () {
   context('without Typeform signature', () => {
     it('responds 403', function (done) {
       request(app)
-        .post('/webhook')
+        .post('/webhook/supporter')
         .send(typeformRequest.payload)
         .set('Content-Type', typeformRequest.headers['Content-Type'])
         .expect(403)
@@ -28,7 +28,7 @@ describe('POST /webhook', function () {
     it('responds 403', function (done) {
       const invalidTypeformSignature = 'sha256=uUy7/8steB7ZgPXs4DtWMT1auaLsP1yRpLUHkPW1bZQ=';
       request(app)
-        .post('/webhook')
+        .post('/webhook/supporter')
         .send(typeformRequest.payload)
         .set('Content-Type', typeformRequest.headers['Content-Type'])
         .set('Typeform-Signature', invalidTypeformSignature)
@@ -43,7 +43,7 @@ describe('POST /webhook', function () {
     const encodedDataResult = 'encodedDataString';
 
     before(() => {
-      mailerStub = sinon.stub(mailer, 'send').resolves('');
+      mailerStub = sinon.stub(mailer, 'sendAsAdministrator').resolves('');
       encoderStub = sinon.stub(encoder, 'encode').returns(encodedDataResult);
     });
 
@@ -56,7 +56,7 @@ describe('POST /webhook', function () {
 
     it('responds with 200', function (done) {
       request(app)
-        .post('/webhook')
+        .post('/webhook/supporter')
         .send(typeformRequest.payload)
         .set('Content-Type', typeformRequest.headers['Content-Type'])
         .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
@@ -66,7 +66,7 @@ describe('POST /webhook', function () {
 
     it('sends a mail to the requester with encoded data', function (done) {
       request(app)
-        .post('/webhook')
+        .post('/webhook/supporter')
         .send(typeformRequest.payload)
         .set('Content-Type', typeformRequest.headers['Content-Type'])
         .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])

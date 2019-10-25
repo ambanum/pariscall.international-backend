@@ -1,4 +1,5 @@
 require('dotenv').config();
+const config = require('config');
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
@@ -8,9 +9,27 @@ const mailer = require('../mailer');
 const typeform = require('./typeform');
 
 const router = express.Router();
-const mailTemplate = pug.compileFile(path.resolve(__dirname, './mail-template.pug'));
 
-router.post('/', async (req, res, next) => {
+const confirmSupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/confirm-supporter.pug'));
+const confirmEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/confirm-event.pug'));
+
+router.post('/supporter', async (req, res, next) => {
+  handleWebhook(req, res, next, {
+    mailTemplate: confirmSupporterEmailTemplate,
+    linkUrl: `${config.frontend.website}/confirm-email/supporter`,
+    mailSubject: 'Verify your email',
+  });
+});
+
+router.post('/event', async (req, res, next) => {
+  handleWebhook(req, res, next, {
+    mailTemplate: confirmEventEmailTemplate,
+    linkUrl: `${config.frontend.website}/confirm-email/event`,
+    mailSubject: 'Verify your email',
+  });
+});
+
+function handleWebhook(req, res, next, options) {
   const typeformSignature = req.headers['typeform-signature'];
 
   if (!typeformSignature || !typeform.isValidSignature(typeformSignature, req.body)) {
@@ -25,31 +44,22 @@ router.post('/', async (req, res, next) => {
     date_signed: new Date().toISOString(),
   }
 
-  // encrypt data
   const encodedData = encoder.encode(data);
 
-  const linkUrl = `${process.env.PARIS_CALL_API_URL}/confirm-email?token=${encodedData}`;
-  const mailContent = mailTemplate({
-    linkUrl,
-    data,
-  });
+  const linkUrl = `${options.linkUrl}?token=${encodedData}`;
+  const mailContent = options.mailTemplate({ linkUrl, data });
 
-  // Send email to requester
-  mailer.send({
-    from: {
-      email: process.env.SENDER_EMAIL,
-      name: process.env.SENDER_NAME
-    },
+  mailer.sendAsAdministrator({
     to: {
       email: data.formResponse.confirm_email.value
     },
-    subject: 'Verify your email',
+    subject: options.mailSubject,
     content: mailContent,
   }).then(() => {
     res.sendStatus(200);
   }).catch((error) => {
     res.sendStatus(500);
   });
-});
+}
 
 module.exports = router;

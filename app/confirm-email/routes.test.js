@@ -1,7 +1,6 @@
 require('dotenv').config();
-const {
-  expect
-} = require('chai');
+const config = require('config');
+const { expect } = require('chai');
 const request = require('supertest');
 const sinon = require('sinon');
 const mailer = require('../mailer');
@@ -41,11 +40,11 @@ const validData = {
   date_signed: new Date().toISOString()
 };
 
-describe('GET /confirm-email', function () {
+describe('GET /confirm-email/supporter', function () {
   context('without token', () => {
     it('responds 403', function (done) {
       request(app)
-        .get('/confirm-email')
+        .get('/confirm-email/supporter')
         .expect(403)
         .end(done);
     });
@@ -54,10 +53,10 @@ describe('GET /confirm-email', function () {
   context('with invalid token', () => {
     it('responds 302 and redirect to confirm error page', function (done) {
       request(app)
-        .get(`/confirm-email?token=${invalidToken}`)
+        .get(`/confirm-email/supporter?token=${invalidToken}`)
         .expect(302)
         .end((err, res) => {
-          expect(res.header.location).to.equal(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+          expect(res.header.location).to.equal(`${config.frontend.website}/confirm/error`);
           done(err);
         });
     });
@@ -66,10 +65,10 @@ describe('GET /confirm-email', function () {
   context('with valid expired token', () => {
     it('responds 302 and redirect to expired error page', function (done) {
       request(app)
-        .get(`/confirm-email?token=${expiredToken}`)
+        .get(`/confirm-email/supporter?token=${expiredToken}`)
         .expect(302)
         .end((err, res) => {
-          expect(res.header.location).to.equal(`${process.env.PARIS_CALL_WEBSITE}/confirm/expired`);
+          expect(res.header.location).to.equal(`${config.frontend.website}/confirm/expired`);
           done(err);
         });
     });
@@ -81,9 +80,9 @@ describe('GET /confirm-email', function () {
     const validToken = encoder.encode(validData);
 
     before((done) => {
-      mailerStub = sinon.stub(mailer, 'send').resolves('');
+      mailerStub = sinon.stub(mailer, 'sendAsBot').resolves('');
       request(app)
-        .get(`/confirm-email?token=${validToken}`)
+        .get(`/confirm-email/supporter?token=${validToken}`)
         .end((err, res) => {
           response = res;
           done(err);
@@ -97,14 +96,13 @@ describe('GET /confirm-email', function () {
     });
 
     it('redirects to confirm success page', function () {
-      expect(response.header.location).to.equal(`${process.env.PARIS_CALL_WEBSITE}/confirm`);
+      expect(response.header.location).to.equal(`${config.frontend.website}/confirm`);
     });
 
-    it('sends an email to APPROBATOR_EMAIL from BOT_EMAIL', function () {
+    it('sends an email to APPROBATOR_EMAIL', function () {
       expect(mailerStub.calledOnce).to.be.true;
       const arguments = mailerStub.getCall(0).args[0];
-      expect(arguments.from.email).to.equal(process.env.BOT_EMAIL);
-      expect(arguments.to.email).to.equal(process.env.APPROBATOR_EMAIL);
+      expect(arguments.to.email).to.equal(config.mailer.approbator.email);
     });
   });
 });

@@ -1,0 +1,22 @@
+p Une nouvelle suggestion d'évènement :
+
+ul
+  each val, index in data.formResponse
+    li
+      strong #{data.formResponse[index].title}
+      br
+      | #{data.formResponse[index].value}
+  li
+      strong Date et heure de la suggestion
+      br
+      | #{new Date(data.date_signed).toLocaleDateString('fr-FR')} à #{new Date(data.date_signed).toLocaleTimeString('fr-FR', {hour: 'numeric', minute: 'numeric'})}
+
+p Cliquez sur le lien suivant pour approuver l'évènement' :
+  br
+  a(href=linkUrl)
+    strong Approuver
+
+p
+  small Le lien ne fonctionne pas ? Copiez le lien suivant dans la barre d’adresse de votre navigateur :
+  br
+  | #{linkUrl}
