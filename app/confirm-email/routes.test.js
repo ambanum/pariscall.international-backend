@@ -1,7 +1,6 @@
 require('dotenv').config();
-const {
-  expect
-} = require('chai');
+const config = require('config');
+const { expect } = require('chai');
 const request = require('supertest');
 const sinon = require('sinon');
 const mailer = require('../mailer');
@@ -57,7 +56,7 @@ describe('GET /confirm-email/supporter', function () {
         .get(`/confirm-email/supporter?token=${invalidToken}`)
         .expect(302)
         .end((err, res) => {
-          expect(res.header.location).to.equal(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+          expect(res.header.location).to.equal(`${config.frontend.website}/confirm/error`);
           done(err);
         });
     });
@@ -69,7 +68,7 @@ describe('GET /confirm-email/supporter', function () {
         .get(`/confirm-email/supporter?token=${expiredToken}`)
         .expect(302)
         .end((err, res) => {
-          expect(res.header.location).to.equal(`${process.env.PARIS_CALL_WEBSITE}/confirm/expired`);
+          expect(res.header.location).to.equal(`${config.frontend.website}/confirm/expired`);
           done(err);
         });
     });
@@ -97,13 +96,13 @@ describe('GET /confirm-email/supporter', function () {
     });
 
     it('redirects to confirm success page', function () {
-      expect(response.header.location).to.equal(`${process.env.PARIS_CALL_WEBSITE}/confirm`);
+      expect(response.header.location).to.equal(`${config.frontend.website}/confirm`);
     });
 
     it('sends an email to APPROBATOR_EMAIL', function () {
       expect(mailerStub.calledOnce).to.be.true;
       const arguments = mailerStub.getCall(0).args[0];
-      expect(arguments.to.email).to.equal(process.env.APPROBATOR_EMAIL);
+      expect(arguments.to.email).to.equal(config.mailer.approbator.email);
     });
   });
 });

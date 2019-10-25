@@ -1,4 +1,5 @@
 require('dotenv').config();
+const config = require('config');
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
@@ -15,7 +16,7 @@ const confirmEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mai
 router.post('/supporter', async (req, res, next) => {
   handleWebhook(req, res, next, {
     mailTemplate: confirmSupporterEmailTemplate,
-    linkUrl: `${process.env.PARIS_CALL_API_URL}/confirm-email/supporter`,
+    linkUrl: `${config.frontend.website}/confirm-email/supporter`,
     mailSubject: 'Verify your email',
   });
 });
@@ -23,7 +24,7 @@ router.post('/supporter', async (req, res, next) => {
 router.post('/event', async (req, res, next) => {
   handleWebhook(req, res, next, {
     mailTemplate: confirmEventEmailTemplate,
-    linkUrl: `${process.env.PARIS_CALL_API_URL}/confirm-email/event`,
+    linkUrl: `${config.frontend.website}/confirm-email/event`,
     mailSubject: 'Verify your email',
   });
 });

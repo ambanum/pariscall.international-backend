@@ -1,4 +1,5 @@
 require('dotenv').config();
+const config = require('config');
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
@@ -22,13 +23,17 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
     entityName = name.value;
 
     const filename = `${repository.sanitizeName(name.value)}-${repository.sanitizeName(category.value)}-${repository.sanitizeName(state.value)}.md`;
-    const path = `${process.env.REPO_SUPPORTER_DEST_FOLDER}/${filename}`;
 
-    await repository.createFile({
-      path: path,
-      commitMessage: `Add ${name.value} supporter`,
-      content: supporterFileTemplate({ data })
-    });
+    for (const folder of config.repository.supporterDestinationFolders) {
+      const path = `${folder}/${filename}`;
+      console.log(folder);
+
+      await repository.createFile({
+        path: path,
+        commitMessage: `Add ${name.value} supporter`,
+        content: supporterFileTemplate({ data })
+      });
+    }
 
     await mailer.sendAsAdministrator({
       to: {
@@ -53,7 +58,7 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
     entityName = name.value;
 
     const filename = `${repository.sanitizeName(name.value)}.md`;
-    const path = `${process.env.REPO_EVENT_DEST_FOLDER}/${filename}`;
+    const path = `${config.repository.eventDestinationFolder}/${filename}`;
 
     await repository.createFile({
       path: path,

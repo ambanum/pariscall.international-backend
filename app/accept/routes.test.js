@@ -1,7 +1,6 @@
 require('dotenv').config();
-const {
-  expect
-} = require('chai');
+const config = require('config');
+const { expect } = require('chai');
 const request = require('supertest');
 const sinon = require('sinon');
 const mailer = require('../mailer');
@@ -88,17 +87,20 @@ describe('GET /accept/supporter', function () {
     });
 
     it('creates the file on repository', function () {
-      expect(repositoryStub.calledOnce).to.be.true;
+      expect(repositoryStub.calledTwice).to.be.true;
     });
 
-    it('creates the file on the right path', function () {
-      const arguments = repositoryStub.getCall(0).args[0];
-      expect(arguments.path).to.equal(`${process.env.REPO_SUPPORTER_DEST_FOLDER}/lorem_ipsum_dolor-barcelona-lorem_ipsum_dolor.md`);
+    it('creates files on the right path', function () {
+      config.repository.supporterDestinationFolders.forEach((folder, index) => {
+        const args = repositoryStub.getCall(index).args[0];
+        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-barcelona-lorem_ipsum_dolor.md`);
+      });
     });
 
-    it('creates the right file content', function () {
-      const arguments = repositoryStub.getCall(0).args[0];
-      expect(arguments.content).to.equal(`---
+    it('creates the right files content', function () {
+      config.repository.supporterDestinationFolders.forEach((_, index) => {
+        const args = repositoryStub.getCall(index).args[0];
+        expect(args.content).to.equal(`---
 name: Lorem ipsum dolor
 category: Barcelona
 nature:
@@ -107,6 +109,7 @@ alliance:
 date_signed: 2019-10-22
 ---
 `);
+      });
     });
 
     it('sends confirmation email to requester', function () {

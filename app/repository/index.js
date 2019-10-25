@@ -1,4 +1,5 @@
 require('dotenv').config();
+const config = require('config');
 const sanitize = require('sanitize-filename');
 const changeCase = require('change-case');
 const diacritics = require('diacritics');
@@ -11,8 +12,8 @@ function createFile({ path, commitMessage, content }) {
   const base64Content = Buffer.from(content).toString('base64');
 
   return octokit.repos.createOrUpdateFile({
-    owner: process.env.REPO_OWNER,
-    repo: process.env.REPO_NAME,
+    owner: config.repository.owner,
+    repo: config.repository.name,
     path: path,
     message: commitMessage,
     content: base64Content,

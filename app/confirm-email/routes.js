@@ -1,3 +1,5 @@
+require('dotenv').config();
+const config = require('config');
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
@@ -9,17 +11,15 @@ const router = express.Router();
 const acceptSupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-supporter.pug'));
 const acceptEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-event.pug'));
 
-const NB_DAYS_BEFORE_EXPIRATION = 7;
-
 router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
   try {
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptSupporterEmailTemplate,
-      linkUrl: `${process.env.PARIS_CALL_API_URL}/accept/supporter`,
+      linkUrl: `${config.frontend.api}/accept/supporter`,
       mailSubject: 'ParisCall : nouveau signataire',
     });
   } catch (error) {
-    res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+    res.redirect(`${config.frontend.website}/confirm/error`);
   }
 });
 
@@ -27,11 +27,11 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
   try {
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptEventEmailTemplate,
-      linkUrl: `${process.env.PARIS_CALL_API_URL}/accept/event`,
+      linkUrl: `${config.frontend.api}/accept/event`,
       mailSubject: 'ParisCall : nouvel évènement',
     });
   } catch (error) {
-    res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+    res.redirect(`${config.frontend.website}/confirm/error`);
   }
 });
 
@@ -39,10 +39,10 @@ function handleConfirmEmail(req, res, next, options) {
   const data = encoder.decode(req.query.token);
 
   const now = new Date();
-  const oneWeekAgo = now.setDate(now.getDate() - NB_DAYS_BEFORE_EXPIRATION);
+  const oneWeekAgo = now.setDate(now.getDate() - config.mailer.nbDaysBeforeTokenExpiration);
   const isTokenExpired = new Date(data.date_signed) < oneWeekAgo;
   if (isTokenExpired) {
-    return res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/expired`);
+    return res.redirect(`${config.frontend.website}/confirm/expired`);
   }
 
   const reEncodedData = encoder.encode(data);
@@ -50,14 +50,14 @@ function handleConfirmEmail(req, res, next, options) {
 
   mailer.sendAsBot({
     to: {
-      email: process.env.APPROBATOR_EMAIL,
+      email: config.mailer.approbator.email,
     },
     subject: options.mailSubject,
     content: options.mailTemplate({ linkUrl, data }),
   }).then(() => {
-    res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm`);
+    res.redirect(`${config.frontend.website}/confirm`);
   }).catch(() => {
-    res.redirect(`${process.env.PARIS_CALL_WEBSITE}/confirm/error`);
+    res.redirect(`${config.frontend.website}/confirm/error`);
   });
 }
 
