@@ -17,9 +17,9 @@ const notifyEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail
 const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/event.pug'));
 
 const categoryNameToType = {
-  "Secteur privé": "private_sector",
-  "État": "state",
-  "Société civile": "civil_society",
+  "Entreprise ou autre acteur privé": "private_sector",
+  "État-nation": "state",
+  "Organisation de la société civile": "civil_society",
 }
 
 router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
@@ -128,6 +128,8 @@ function errorsHandler(req, res, next, error, options) {
     statusCode = 403;
     message = `Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu.`;
   }
+
+  console.log(error);
 
   res.status(statusCode).render('error', {
     title: `Une erreur est survenue`,

@@ -14,7 +14,7 @@ const validData = {
   formResponse: {
     category: {
       title: 'Quel est le type de votre organisation ?',
-      value: 'État'
+      value: 'État-nation'
     },
     name: {
       title: 'Quel est le nom de votre organisation ?',
