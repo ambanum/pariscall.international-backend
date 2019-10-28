@@ -26,6 +26,12 @@ function extractData(typeformObject) {
       case 'email':
         result[question.ref].value = answer.email;
         break;
+      case 'long_text':
+        result[question.ref].value = answer.text;
+        break;
+      case 'date':
+        result[question.ref].value = answer.date;
+        break;
     }
   });
 
