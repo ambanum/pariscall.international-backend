@@ -6,5 +6,7 @@ block content
 
   hr
   h3 Informations techniques
-  p= error.status
-  pre #{error.stack}
+  p
+    small= error.status
+  pre
+    small= error.stack
