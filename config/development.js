@@ -5,7 +5,8 @@ module.exports = {
   },
   mailer: {
     approver: {
-      email: 'npg.dupont@gmail.com'
+      email: 'npg.dupont@gmail.com',
+      name: 'Paris Call Approver',
     },
     administrator: {
       name: 'Paris Call',
