@@ -14,7 +14,7 @@ const validData = {
   formResponse: {
     category: {
       title: 'Quel est le type de votre organisation ?',
-      value: 'Barcelona'
+      value: 'État'
     },
     name: {
       title: 'Quel est le nom de votre organisation ?',
@@ -93,7 +93,7 @@ describe('GET /accept/supporter', function () {
     it('creates files on the right path', function () {
       config.repository.supporterDestinationFolders.forEach((folder, index) => {
         const args = repositoryStub.getCall(index).args[0];
-        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-barcelona-lorem_ipsum_dolor.md`);
+        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-state-lorem_ipsum_dolor.md`);
       });
     });
 
@@ -102,11 +102,11 @@ describe('GET /accept/supporter', function () {
         const args = repositoryStub.getCall(index).args[0];
         expect(args.content).to.equal(`---
 name: Lorem ipsum dolor
-category: Barcelona
+category: state
 nature:
 nationality: Lorem ipsum dolor
 alliance:
-date_signed: 2019-10-22
+date_signed: '2019-10-22'
 ---
 `);
       });

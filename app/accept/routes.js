@@ -14,6 +14,12 @@ const supporterFileTemplate = pug.compileFile(path.resolve(__dirname, './file-te
 const notifyEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/event.pug'));
 const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/event.pug'));
 
+const categoryNameToType = {
+  "Secteur privé": "private_sector",
+  "État": "state",
+  "Société civile": "civil_society",
+}
+
 router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
   let entityName;
   try {
@@ -22,16 +28,20 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
     const { formResponse: { name, category, state, confirm_email } } = data;
     entityName = name.value;
 
-    const filename = `${repository.sanitizeName(name.value)}-${repository.sanitizeName(category.value)}-${repository.sanitizeName(state.value)}.md`;
+    const filename = `${repository.sanitizeName(name.value)}-${repository.sanitizeName(categoryNameToType[category.value])}-${repository.sanitizeName(state.value)}.md`;
 
     for (const folder of config.repository.supporterDestinationFolders) {
       const path = `${folder}/${filename}`;
-      console.log(folder);
 
       await repository.createFile({
         path: path,
         commitMessage: `Add ${name.value} supporter`,
-        content: supporterFileTemplate({ data })
+        content: supporterFileTemplate({
+          name: data.formResponse.name.value,
+          category: categoryNameToType[data.formResponse.category.value],
+          nationality: data.formResponse.state.value,
+          date_signed: new Date(data.date_signed).toISOString().slice(0,10),
+        })
       });
     }
 
