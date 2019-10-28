@@ -126,6 +126,7 @@ function errorsHandler(req, res, next, error, options) {
 
   if (error.message.includes('failed to decrypt')) {
     statusCode = 403;
+    message = `Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu.`;
   }
 
   res.status(statusCode).render('error', {
