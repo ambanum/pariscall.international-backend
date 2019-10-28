@@ -5,7 +5,8 @@ module.exports = {
   },
   mailer: {
     approbator: {
-      email: 'matti.schneider@diplomatie.gouv.fr'
+      email: 'matti.schneider@diplomatie.gouv.fr',
+      name: 'Paris Call Approbator',
     },
     administrator: {
       name: 'Paris Call',

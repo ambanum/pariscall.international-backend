@@ -53,6 +53,7 @@ function handleConfirmEmail(req, res, next, options) {
   mailer.sendAsBot({
     to: {
       email: config.mailer.approbator.email,
+      name: config.mailer.approbator.name,
     },
     subject: options.mailSubject,
     content: options.mailTemplate({ linkUrl, data }),
