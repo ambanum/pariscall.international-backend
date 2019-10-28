@@ -1,8 +1,10 @@
+
 require('dotenv').config();
 const config = require('config');
 const express = require('express');
 const path = require('path');
 const pug = require('pug');
+const parseDomain = require('parse-domain');
 
 const mailer = require('../mailer');
 const encoder = require('../encoder');
@@ -64,24 +66,36 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
   try {
     const data = encoder.decode(req.query.token);
 
-    const { formResponse: { name, confirm_email } } = data;
+    const { formResponse: { name, address, link, start_date, end_date, description, confirm_email } } = data;
     entityName = name.value;
 
     const filename = `${repository.sanitizeName(name.value)}.md`;
     const path = `${config.repository.eventDestinationFolder}/${filename}`;
 
+    const parsedLink = parseDomain(link.value);
+
     await repository.createFile({
       path: path,
       commitMessage: `Add ${name.value} event`,
-      content: eventFileTemplate({ data }),
+      content: eventFileTemplate({
+        name: name.value,
+        address: address && address.value,
+        link: link && link.value,
+        link_title: link && `${parsedLink.subdomain}.${parsedLink.domain}.${parsedLink.tld}`,
+        start_date: start_date.value,
+        end_date: end_date ? end_date.value : start_date.value,
+        description: description && description.value,
+      }),
     });
 
     await mailer.sendAsAdministrator({
       to: {
         email: confirm_email.value
       },
-      subject: 'Your event is accepted',
-      content: notifyEventEmailTemplate({ data })
+      subject: `Event ${name.value} is approved`,
+      content: notifyEventEmailTemplate({
+        name: name.value
+      })
     });
 
     res.render('index', {
