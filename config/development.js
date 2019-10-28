@@ -4,7 +4,7 @@ module.exports = {
     name: 'test',
   },
   mailer: {
-    approbator: {
+    approver: {
       email: 'npg.dupont@gmail.com'
     },
     administrator: {

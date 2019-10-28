@@ -99,10 +99,10 @@ describe('GET /confirm-email/supporter', function () {
       expect(response.header.location).to.equal(`${config.frontend.website}/en/confirm/supporter`);
     });
 
-    it('sends an email to APPROBATOR_EMAIL', function () {
+    it('sends an email to APPROVER_EMAIL', function () {
       expect(mailerStub.calledOnce).to.be.true;
       const arguments = mailerStub.getCall(0).args[0];
-      expect(arguments.to.email).to.equal(config.mailer.approbator.email);
+      expect(arguments.to.email).to.equal(config.mailer.approver.email);
     });
   });
 });

@@ -38,9 +38,9 @@ Create `.env` file with:
 - `TYPEFORM_KEY`: Typeform secret to securize webhook
 - `SENDER_NAME`: Sender name used to send email to supporters
 - `SENDER_EMAIL`: Sender email used to send email to supporters
-- `BOT_EMAIL`: Bot email used to send email to approbators
-- `BOT_NAME`: Bot name used to send email to approbators
-- `APPROBATOR_EMAIL`: Approbator email
+- `BOT_EMAIL`: Bot email used to send email to approvers
+- `BOT_NAME`: Bot name used to send email to approvers
+- `APPROVER_EMAIL`: Approbator email
 
 Example:
 ```
@@ -58,7 +58,7 @@ SENDER_NAME='Paris Call'
 SENDER_EMAIL='an_account@example.com'
 BOT_EMAIL='an_account@example.com'
 BOT_NAME='Bot'
-APPROBATOR_EMAIL='an_account@example.com'
+APPROVER_EMAIL='an_account@example.com'
 ```
 
 ### Usage

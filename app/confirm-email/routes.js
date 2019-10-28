@@ -52,8 +52,8 @@ function handleConfirmEmail(req, res, next, options) {
 
   mailer.sendAsBot({
     to: {
-      email: config.mailer.approbator.email,
-      name: config.mailer.approbator.name,
+      email: config.mailer.approver.email,
+      name: config.mailer.approver.name,
     },
     subject: options.mailSubject,
     content: options.mailTemplate({ linkUrl, data }),
