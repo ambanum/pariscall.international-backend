@@ -10,11 +10,11 @@ module.exports = {
     },
     administrator: {
       name: 'Paris Call',
-      email: 'npg.dupont@gmail.com',
+      email: 'matti.schneider@diplomatie.gouv.fr',
     },
     bot: {
       name: 'Paris Call Bot',
-      email: 'npg.dupont@gmail.com',
+      email: 'matti.schneider@diplomatie.gouv.fr',
     },
   },
   frontend: {
