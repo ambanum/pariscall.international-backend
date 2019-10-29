@@ -72,7 +72,21 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
     const filename = `${repository.sanitizeName(name.value)}.md`;
     const path = `${config.repository.eventDestinationFolder}/${filename}`;
 
-    const parsedLink = parseDomain(link.value);
+    let linkTitle = link && link.value;
+    if (link) {
+      const parsedLink = parseDomain(link.value);
+      if (parsedLink) {
+        if (parsedLink.domain) {
+          linkTitle = parsedLink.domain;
+        }
+        if (parsedLink.tld) {
+          linkTitle = `${linkTitle}.${parsedLink.tld}`;
+        }
+        if (parsedLink.subdomain) {
+          linkTitle = `${parsedLink.subdomain}.${linkTitle}`;
+        }
+      }
+    }
 
     await repository.createFile({
       path: path,
@@ -81,7 +95,7 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
         name: name.value,
         address: address && address.value,
         link: link && link.value,
-        link_title: link && `${parsedLink.subdomain}.${parsedLink.domain}.${parsedLink.tld}`,
+        link_title: linkTitle,
         start_date: start_date.value,
         end_date: end_date ? end_date.value : start_date.value,
         description: description && description.value,
