@@ -106,3 +106,70 @@ describe('GET /confirm-email/supporter', function () {
     });
   });
 });
+
+describe('GET /confirm-email/event', function () {
+  context('without token', () => {
+    it('responds 403', function (done) {
+      request(app)
+        .get('/confirm-email/event')
+        .expect(403)
+        .end(done);
+    });
+  });
+
+  context('with invalid token', () => {
+    it('responds 302 and redirect to confirm error page', function (done) {
+      request(app)
+        .get(`/confirm-email/event?token=${invalidToken}`)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.equal(`${config.frontend.website}/en/confirm/event/error`);
+          done(err);
+        });
+    });
+  });
+
+  context('with valid expired token', () => {
+    it('responds 302 and redirect to expired error page', function (done) {
+      request(app)
+        .get(`/confirm-email/event?token=${expiredToken}`)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.equal(`${config.frontend.website}/en/confirm/event/expired`);
+          done(err);
+        });
+    });
+  });
+
+  context('with valid token', () => {
+    let mailerStub;
+    let response;
+    const validToken = encoder.encode(validData);
+
+    before((done) => {
+      mailerStub = sinon.stub(mailer, 'sendAsBot').resolves('');
+      request(app)
+        .get(`/confirm-email/event?token=${validToken}`)
+        .end((err, res) => {
+          response = res;
+          done(err);
+        });
+    });
+
+    after(() => mailerStub.restore());
+
+    it('responds 302', function () {
+      expect(response.statusCode).to.equal(302);
+    });
+
+    it('redirects to confirm success page', function () {
+      expect(response.header.location).to.equal(`${config.frontend.website}/en/confirm/event`);
+    });
+
+    it('sends an email to APPROVER_EMAIL', function () {
+      expect(mailerStub.calledOnce).to.be.true;
+      const arguments = mailerStub.getCall(0).args[0];
+      expect(arguments.to.email).to.equal(config.mailer.approver.email);
+    });
+  });
+});

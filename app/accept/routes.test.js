@@ -1,6 +1,8 @@
 require('dotenv').config();
 const config = require('config');
-const { expect } = require('chai');
+const {
+  expect
+} = require('chai');
 const request = require('supertest');
 const sinon = require('sinon');
 const mailer = require('../mailer');
@@ -10,7 +12,7 @@ const repository = require('../repository');
 const app = require('../../app');
 
 const invalidToken = 'invalidToken';
-const validData = {
+const validSupporterData = {
   formResponse: {
     category: {
       title: 'Quel est le type de votre organisation ?',
@@ -40,7 +42,6 @@ const validData = {
   date_signed: '2019-10-22T08:04:35.611Z'
 };
 
-
 describe('GET /accept/supporter', function () {
   context('without token', () => {
     it('responds 403', function (done) {
@@ -64,7 +65,7 @@ describe('GET /accept/supporter', function () {
     let mailerStub;
     let repositoryStub;
     let response;
-    const validToken = encoder.encode(validData);
+    const validToken = encoder.encode(validSupporterData);
 
     before((done) => {
       mailerStub = sinon.stub(mailer, 'sendAsAdministrator').resolves('');
@@ -110,6 +111,126 @@ date_signed: '2019-10-22'
 ---
 `);
       });
+    });
+
+    it('sends confirmation email to requester', function () {
+      expect(mailerStub.calledOnce).to.be.true;
+      const arguments = mailerStub.getCall(0).args[0];
+      expect(arguments.to.email).to.equal('an_account@example.com');
+    });
+  });
+});
+
+
+const validEventData = {
+  formResponse: {
+    name: {
+      title: "Nom de l'événement",
+      value: 'Cyber Pets Gathering'
+    },
+    start_date: {
+      title: 'Date de début',
+      value: '2019-11-20'
+    },
+    type: {
+      title: "L'évènement est :",
+      value: 'ouvert au public'
+    },
+    address: {
+      title: "Lieu de l'événement",
+      value: 'Grande Halle de la Villette, Paris'
+    },
+    link: {
+      title: "Lien vers une description détaillée et l'inscription",
+      value: 'https://cyberpets.gathering'
+    },
+    description: {
+      title: "Courte description de l'événement",
+      value: 'Why do we always focus on humans? All species are impacted by cybersecurity. This gathering aims at helping them all!'
+    },
+    hashtag: {
+      title: 'Hashtag',
+      value: '#CyberPets'
+    },
+    confirm_email: {
+      title: "Courriel pour valider le référencement de l'événement",
+      value: 'an_account@example.com'
+    }
+  },
+  date_signed: '2019-10-31T13:48:20.571Z',
+  lang: 'en'
+};
+
+describe('GET /accept/event', function () {
+  context('without token', () => {
+    it('responds 403', function (done) {
+      request(app)
+        .get('/accept/event')
+        .expect(403)
+        .end(done);
+    });
+  });
+
+  context('with invalid token', () => {
+    it('responds 403', function (done) {
+      request(app)
+        .get(`/accept/event?token=${invalidToken}`)
+        .expect(403)
+        .end(done);
+    });
+  });
+
+  context('with valid token', () => {
+    let mailerStub;
+    let repositoryStub;
+    let response;
+    const validToken = encoder.encode(validEventData);
+
+    before((done) => {
+      mailerStub = sinon.stub(mailer, 'sendAsAdministrator').resolves('');
+      repositoryStub = sinon.stub(repository, 'createFile').resolves('');
+      request(app)
+        .get(`/accept/event?token=${validToken}`)
+        .end((err, res) => {
+          response = res;
+          done(err);
+        });
+    });
+
+    after(() => {
+      mailerStub.restore();
+      repositoryStub.restore();
+    });
+
+    it('responds 200', function () {
+      expect(response.statusCode).to.equal(200);
+    });
+
+    it('creates the file on repository', function () {
+      expect(repositoryStub.calledOnce).to.be.true;
+    });
+
+    it('creates files on the right path', function () {
+      const folder = config.repository.eventDestinationFolder;
+      const args = repositoryStub.getCall(0).args[0];
+      expect(args.path).to.equal(`${folder}/cyber_pets_gathering.md`);
+    });
+
+    it('creates the right files content', function () {
+      const args = repositoryStub.getCall(0).args[0];
+      expect(args.content).to.equal(`---
+name: Cyber Pets Gathering
+address: Grande Halle de la Villette, Paris
+city:
+country:
+link: https://cyberpets.gathering
+link_title: https://cyberpets.gathering
+start_date: '2019-11-20'
+end_date: '2019-11-20'
+time:
+---
+Why do we always focus on humans? All species are impacted by cybersecurity. This gathering aims at helping them all!
+`);
     });
 
     it('sends confirmation email to requester', function () {
