@@ -130,8 +130,6 @@ function errorsHandler(req, res, next, error, options) {
     message = `Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu.`;
   }
 
-  console.log(error);
-
   res.status(statusCode).render('error', {
     title: `Une erreur est survenue`,
     error,
