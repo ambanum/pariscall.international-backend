@@ -7,7 +7,6 @@ const pug = require('pug');
 const encoder = require('../encoder');
 const mailer = require('../mailer');
 const typeform = require('./typeform');
-
 const router = express.Router();
 
 const confirmSupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/confirm-supporter.pug'));
@@ -17,7 +16,7 @@ router.post('/supporter', async (req, res, next) => {
   handleWebhook(req, res, next, {
     mailTemplate: confirmSupporterEmailTemplate,
     linkUrl: `${config.frontend.api}/confirm-email/supporter`,
-    mailSubject: 'Verify your email',
+    mailSubject: res.__('supporter.confirmEmail.subject'),
   });
 });
 
@@ -25,7 +24,7 @@ router.post('/event', async (req, res, next) => {
   handleWebhook(req, res, next, {
     mailTemplate: confirmEventEmailTemplate,
     linkUrl: `${config.frontend.api}/confirm-email/event`,
-    mailSubject: 'Verify your email',
+    mailSubject: res.__('event.confirmEmail.subject'),
   });
 });
 
@@ -42,12 +41,13 @@ function handleWebhook(req, res, next, options) {
   const data = {
     formResponse: typeform.extractData(form_response),
     date_signed: new Date().toISOString(),
+    lang: req.getLocale(),
   }
 
   const encodedData = encoder.encode(data);
 
-  const linkUrl = `${options.linkUrl}?token=${encodedData}`;
-  const mailContent = options.mailTemplate({ linkUrl, data });
+  const linkUrl = `${options.linkUrl}?lang=${req.getLocale()}&token=${encodedData}`;
+  const mailContent = options.mailTemplate({ linkUrl, data, __: res.__ });
 
   mailer.sendAsAdministrator({
     to: {

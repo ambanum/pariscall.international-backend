@@ -9,6 +9,7 @@ const parseDomain = require('parse-domain');
 const mailer = require('../mailer');
 const encoder = require('../encoder');
 const repository = require('../repository');
+const middlewares = require('../middlewares');
 
 const router = express.Router();
 const notifySupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/supporter.pug'));
@@ -20,9 +21,12 @@ const categoryNameToType = {
   "Entreprise ou autre acteur privé": "private_sector",
   "État-nation": "state",
   "Organisation de la société civile": "civil_society",
+  "Company or other private actor": "private_sector",
+  "Nation state": "state",
+  "Civil society organization": "civil_society",
 }
 
-router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
   let entityName;
   try {
     const data = encoder.decode(req.query.token);
@@ -48,11 +52,9 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
     }
 
     await mailer.sendAsAdministrator({
-      to: {
-        email: confirm_email.value
-      },
-      subject: 'You are now a supporter of the Paris Call!',
-      content: notifySupporterEmailTemplate({ data })
+      to: { email: confirm_email.value },
+      subject: res.__('supporter.notifyEmail.subject'),
+      content: notifySupporterEmailTemplate({ data, __: res.__ })
     });
 
     res.render('index', { title: `${entityName} correctement ajouté à la liste des signataires` });
@@ -61,7 +63,7 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
   };
 });
 
-router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
   let entityName;
   try {
     const data = encoder.decode(req.query.token);
@@ -103,31 +105,16 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
     });
 
     await mailer.sendAsAdministrator({
-      to: {
-        email: confirm_email.value
-      },
-      subject: `Event ${name.value} is approved`,
-      content: notifyEventEmailTemplate({
-        name: name.value
-      })
+      to: { email: confirm_email.value },
+      subject: res.__('event.notifyEmail.subject', name.value),
+      content: notifyEventEmailTemplate({ name: name.value, __: res.__ })
     });
 
-    res.render('index', {
-      title: `${entityName} correctement ajouté aux évènements`
-    });
+    res.render('index', { title: `${entityName} correctement ajouté aux évènements` });
   } catch (error) {
     errorsHandler(req, res, next, error, { entityName });
   };
 });
-
-function tokenValidationMiddleware(req, res, next) {
-  const encodedData = req.query.token;
-  if (!encodedData) {
-    return res.sendStatus(403);
-  }
-
-  next();
-}
 
 function errorsHandler(req, res, next, error, options) {
   let statusCode = error.status || 500;
@@ -142,8 +129,6 @@ function errorsHandler(req, res, next, error, options) {
     statusCode = 403;
     message = `Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu.`;
   }
-
-  console.log(error);
 
   res.status(statusCode).render('error', {
     title: `Une erreur est survenue`,

@@ -10,6 +10,8 @@ const encoder = require('../encoder');
 const repository = require('../repository');
 
 const app = require('../../app');
+const enTranslations = require('../../locales/en.json');
+const frTranslations = require('../../locales/fr.json');
 
 const invalidToken = 'invalidToken';
 const validSupporterData = {
@@ -78,6 +80,8 @@ describe('GET /accept/supporter', function () {
         });
     });
 
+    afterEach(() => mailerStub.resetHistory());
+
     after(() => {
       mailerStub.restore();
       repositoryStub.restore();
@@ -113,10 +117,58 @@ date_signed: '2019-10-22'
       });
     });
 
-    it('sends confirmation email to requester', function () {
-      expect(mailerStub.calledOnce).to.be.true;
-      const arguments = mailerStub.getCall(0).args[0];
-      expect(arguments.to.email).to.equal('an_account@example.com');
+    context('mail', function () {
+      let args;
+      const requesterEmail = 'an_account@example.com';
+
+      context('with no lang params', function () {
+        before((done) => {
+          request(app)
+          .get(`/accept/supporter?token=${validToken}`)
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
+        });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('in the default language', function () {
+          expect(args.content).to.includes(enTranslations.mailSignature);
+        });
+      });
+
+      context('with lang param', function () {
+        const lang = "fr";
+        before((done) => {
+          request(app)
+          .get(`/accept/supporter?lang=${lang}&token=${validToken}`)
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
+        });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('in the specified language', function () {
+          expect(args.content).to.includes(frTranslations.mailSignature);
+        });
+      });
     });
   });
 });
@@ -197,6 +249,8 @@ describe('GET /accept/event', function () {
         });
     });
 
+    afterEach(() => mailerStub.resetHistory());
+
     after(() => {
       mailerStub.restore();
       repositoryStub.restore();
@@ -233,10 +287,58 @@ Why do we always focus on humans? All species are impacted by cybersecurity. Thi
 `);
     });
 
-    it('sends confirmation email to requester', function () {
-      expect(mailerStub.calledOnce).to.be.true;
-      const arguments = mailerStub.getCall(0).args[0];
-      expect(arguments.to.email).to.equal('an_account@example.com');
+    context('mail', function () {
+      let args;
+      const requesterEmail = 'an_account@example.com';
+
+      context('with no lang params', function () {
+        before((done) => {
+          request(app)
+          .get(`/accept/event?token=${validToken}`)
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
+        });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('in the default language', function () {
+          expect(args.content).to.includes(enTranslations.mailSignature);
+        });
+      });
+
+      context('with lang param', function () {
+        const lang = "fr";
+        before((done) => {
+          request(app)
+          .get(`/accept/event?lang=${lang}&token=${validToken}`)
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
+        });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('in the specified language', function () {
+          expect(args.content).to.includes(frTranslations.mailSignature);
+        });
+      });
     });
   });
 });

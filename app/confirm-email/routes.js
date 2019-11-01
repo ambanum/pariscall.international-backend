@@ -6,12 +6,13 @@ const pug = require('pug');
 
 const encoder = require('../encoder');
 const mailer = require('../mailer');
+const middlewares = require('../middlewares');
 
 const router = express.Router();
 const acceptSupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-supporter.pug'));
 const acceptEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-event.pug'));
 
-router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
   try {
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptSupporterEmailTemplate,
@@ -20,11 +21,11 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
       entity: 'supporter',
     });
   } catch (error) {
-    res.redirect(`${config.frontend.website}/en/confirm/supporter/error`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/supporter/error`);
   }
 });
 
-router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
   try {
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptEventEmailTemplate,
@@ -33,7 +34,7 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
       entity: 'event',
     });
   } catch (error) {
-    res.redirect(`${config.frontend.website}/en/confirm/event/error`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/event/error`);
   }
 });
 
@@ -44,11 +45,11 @@ function handleConfirmEmail(req, res, next, options) {
   const oneWeekAgo = now.setDate(now.getDate() - config.mailer.nbDaysBeforeTokenExpiration);
   const isTokenExpired = new Date(data.date_signed) < oneWeekAgo;
   if (isTokenExpired) {
-    return res.redirect(`${config.frontend.website}/en/confirm/${options.entity}/expired`);
+    return res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}/expired`);
   }
 
   const reEncodedData = encoder.encode(data);
-  const linkUrl = `${options.linkUrl}?token=${reEncodedData}`;
+  const linkUrl = `${options.linkUrl}?lang=${req.getLocale()}&token=${reEncodedData}`;
 
   mailer.sendAsBot({
     to: {
@@ -58,19 +59,10 @@ function handleConfirmEmail(req, res, next, options) {
     subject: options.mailSubject,
     content: options.mailTemplate({ linkUrl, data }),
   }).then(() => {
-    res.redirect(`${config.frontend.website}/en/confirm/${options.entity}`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}`);
   }).catch(() => {
-    res.redirect(`${config.frontend.website}/en/confirm/${options.entity}/error`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}/error`);
   });
-}
-
-function tokenValidationMiddleware(req, res, next) {
-  const encodedData = req.query.token;
-  if (!encodedData) {
-    return res.sendStatus(403);
-  }
-
-  next();
 }
 
 module.exports = router;
