@@ -12,7 +12,9 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(logger('dev'));
+if(app.get('env') !== 'test') {
+  app.use(logger('dev'));
+}
 app.use(bodyParser.raw({ type: 'application/json' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
