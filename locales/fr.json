@@ -1,0 +1,29 @@
+{
+  "event": {
+    "confirmEmail": {
+      "subject": "Vérifier le courriel",
+      "intro": "Merci de votre intérêt pour la cybersécurité. Voici les informations que vous avez fournies :",
+      "clickOnLink": "Si tout est correct, confirmez votre adresse e-mail en cliquant sur le lien ci-dessous <strong>dans les sept jours :</ strong>",
+      "linkDoesNotWork": "Le lien ne fonctionne pas? Copiez le lien suivant dans la barre d'adresse de votre navigateur :",
+      "verifyButton": "Vérifier le courriel"
+    },
+    "notifyEmail": {
+      "subject": "L'évènement %s est approuvé",
+      "text": "L'événement %s est visible sur le site internet de l'Appel de Paris"
+    }
+  },
+  "supporter": {
+    "confirmEmail": {
+      "subject": "Vérifier le courriel",
+      "intro": "Merci de votre intérêt pour la cybersécurité. Voici les informations que vous avez fournies :",
+      "clickOnLink": "Si tout est correct, confirmez votre adresse e-mail en cliquant sur le lien ci-dessous <strong>dans les sept jours :</ strong>",
+      "linkDoesNotWork": "Le lien ne fonctionne pas? Copiez le lien suivant dans la barre d'adresse de votre navigateur :",
+      "verifyButton": "Vérifier le courriel"
+    },
+    "notifyEmail": {
+      "subject": "Votre soutien à l'Appel de Paris est approuvé",
+      "text": "Votre soutien est maintenant visible sur le site internet de l'Appel de Paris"
+    }
+  },
+  "mailSignature": "L'équipe de l'Appel de Paris"
+}

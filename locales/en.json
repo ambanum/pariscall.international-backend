@@ -1,0 +1,29 @@
+{
+  "event": {
+    "confirmEmail": {
+      "subject": "Check email",
+      "intro": "Thank you for your interest in cybersecurity Here is the information you provided:",
+      "clickOnLink": "If everything is correct, confirm your e-mail address by clicking on the link below <strong> within seven days: </ strong>",
+      "linkDoesNotWork": "The link does not work? Copy the following link into the address bar of your browser:",
+      "verifyButton": "Check email"
+    },
+    "notifyEmail": {
+      "subject": "Event %s is approved",
+      "text": "The event %s is visible on the Paris Call website"
+    }
+  },
+  "supporter": {
+    "confirmEmail": {
+      "subject": "Check email",
+      "intro": "Thank you for your interest in cybersecurity Here is the information you provided:",
+      "clickOnLink": "If everything is correct, confirm your e-mail address by clicking on the link below <strong> within seven days: </ strong>",
+      "linkDoesNotWork": "The link does not work? Copy the following link into the address bar of your browser:",
+      "verifyButton": "Check email"
+    },
+    "notifyEmail": {
+      "subject": "Your support for the Paris Call is approved",
+      "text": "Your support is now visible on the Paris Call website"
+    }
+  },
+  "mailSignature": "The Paris Call team"
+}

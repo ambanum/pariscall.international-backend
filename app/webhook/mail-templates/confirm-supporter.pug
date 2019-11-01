@@ -1,19 +1,20 @@
-p Thank you for your interest in cybersecurity. Here is the information you provided:
+p= __('supporter.confirmEmail.intro')
 
 ul
   each val, index in data.formResponse
     li
-      strong #{data.formResponse[index].title}
+      strong= data.formResponse[index].title
       br
       | #{data.formResponse[index].value}
 
-p If everything is correct, please confirm your email by clicking on the link below&nbsp;
-  strong within seven days:
+p= __('supporter.confirmEmail.clickOnLink')
   br
   a(href=linkUrl)
-    strong Verify email address
+    strong= __('supporter.confirmEmail.verifyButton')
+
+p= __('mailSignature')
 
 p
-  small The link doesn't work? Copy the following link in the address bar of your browser:
-  br
-  | #{linkUrl}
+  small= __('supporter.confirmEmail.linkDoesNotWork')
+    br
+    | #{linkUrl}

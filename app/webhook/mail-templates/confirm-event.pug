@@ -1,19 +1,20 @@
-p Thank you for suggesting an event. Here is the information you provided:
+p= __('event.confirmEmail.intro')
 
 ul
   each val, index in data.formResponse
     li
-      strong #{data.formResponse[index].title}
+      strong= data.formResponse[index].title
       br
       | #{data.formResponse[index].value}
 
-p If everything is correct, please confirm your email by clicking on the link below&nbsp;
-  strong within seven days:
+p= __('event.confirmEmail.clickOnLink')
   br
   a(href=linkUrl)
-    strong Verify email address
+    strong= __('event.confirmEmail.verifyButton')
 
-p
-  small The link doesn't work? Copy the following link in the address bar of your browser:
-  br
-  | #{linkUrl}
+p= __('mailSignature')
+
+p= __('event.confirmEmail.clickOnLink')
+  small __('event.confirmEmail.linkDoesNotWork')
+    br
+    | #{linkUrl}

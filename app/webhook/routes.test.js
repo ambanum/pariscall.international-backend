@@ -1,16 +1,14 @@
-const {
-  expect
-} = require('chai');
+const { expect } = require('chai');
 const request = require('supertest');
 const sinon = require('sinon');
 const mailer = require('../mailer');
 const encoder = require('../encoder');
 
 const app = require('../../app');
-const {
-  typeformRequest,
-  requesterEmail,
-} = require('./fixtures');
+const { typeformRequest, requesterEmail } = require('./fixtures');
+const enTranslations = require('../../locales/en.json');
+const frTranslations = require('../../locales/fr.json');
+const defaultLanguage = 'en';
 
 describe('POST /webhook/supporter', function () {
   context('without Typeform signature', () => {
@@ -64,20 +62,71 @@ describe('POST /webhook/supporter', function () {
         .end(done);
     });
 
-    it('sends a mail to the requester with encoded data', function (done) {
-      request(app)
-        .post('/webhook/supporter')
-        .send(typeformRequest.payload)
-        .set('Content-Type', typeformRequest.headers['Content-Type'])
-        .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
-        .expect(200)
-        .end(function (err) {
-          expect(mailerStub.calledOnce).to.be.true;
-          const arguments = mailerStub.getCall(0).args[0];
-          expect(arguments.to.email).to.equal(requesterEmail);
-          expect(arguments.content).to.includes(encodedDataResult);
-          done(err);
+    context('mail', function () {
+      let args;
+
+      context('with no lang params', function () {
+        before((done) => {
+          request(app)
+          .post('/webhook/supporter')
+          .send(typeformRequest.payload)
+          .set('Content-Type', typeformRequest.headers['Content-Type'])
+          .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
         });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('with the proper link', function () {
+          expect(args.content).to.includes(`/confirm-email/supporter?lang=${defaultLanguage}&amp;token=${encodedDataResult}`);
+        });
+
+        it('in the specified language', function () {
+          expect(args.content).to.includes(enTranslations.mailSignature);
+        });
+      });
+
+      context('with lang param', function () {
+        const lang = "fr";
+        before((done) => {
+          request(app)
+          .post(`/webhook/supporter?lang=${lang}`)
+          .send(typeformRequest.payload)
+          .set('Content-Type', typeformRequest.headers['Content-Type'])
+          .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
+        });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('with the proper link', function () {
+          expect(args.content).to.includes(`/confirm-email/supporter?lang=${lang}&amp;token=${encodedDataResult}`);
+        });
+
+        it('in the specified language', function () {
+          expect(args.content).to.includes(frTranslations.mailSignature);
+        });
+      });
     });
   });
 });
@@ -134,20 +183,72 @@ describe('POST /webhook/event', function () {
         .end(done);
     });
 
-    it('sends a mail to the requester with encoded data', function (done) {
-      request(app)
-        .post('/webhook/event')
-        .send(typeformRequest.payload)
-        .set('Content-Type', typeformRequest.headers['Content-Type'])
-        .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
-        .expect(200)
-        .end(function (err) {
-          expect(mailerStub.calledOnce).to.be.true;
-          const arguments = mailerStub.getCall(0).args[0];
-          expect(arguments.to.email).to.equal(requesterEmail);
-          expect(arguments.content).to.includes(encodedDataResult);
-          done(err);
+    context('mail', function () {
+      let args;
+
+      context('with no lang params', function () {
+        before((done) => {
+          request(app)
+          .post('/webhook/event')
+          .send(typeformRequest.payload)
+          .set('Content-Type', typeformRequest.headers['Content-Type'])
+          .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
         });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('with the proper link', function () {
+          expect(args.content).to.includes(`/confirm-email/event?lang=${defaultLanguage}&amp;token=${encodedDataResult}`);
+        });
+
+        it('in the specified language', function () {
+          expect(args.content).to.includes(enTranslations.mailSignature);
+        });
+      });
+
+      context('with lang param', function () {
+        const lang = "fr";
+        before((done) => {
+          request(app)
+          .post(`/webhook/event?lang=${lang}`)
+          .send(typeformRequest.payload)
+          .set('Content-Type', typeformRequest.headers['Content-Type'])
+          .set('Typeform-Signature', typeformRequest.headers['Typeform-Signature'])
+          .expect(200)
+          .end(function (err) {
+            args = mailerStub.getCall(0).args[0];
+            done(err);
+          });
+        });
+
+        it('sends a mail', function () {
+          expect(mailerStub.calledOnce).to.be.true;
+        });
+
+        it('to the requester', function () {
+          expect(args.to.email).to.equal(requesterEmail);
+        });
+
+        it('with the proper link', function () {
+          expect(args.content).to.includes(`/confirm-email/event?lang=${lang}&amp;token=${encodedDataResult}`);
+        });
+
+        it('in the specified language', function () {
+          expect(args.content).to.includes(frTranslations.mailSignature);
+        });
+      });
     });
   });
 });
+

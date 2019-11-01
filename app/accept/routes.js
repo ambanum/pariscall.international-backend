@@ -21,6 +21,9 @@ const categoryNameToType = {
   "Entreprise ou autre acteur privé": "private_sector",
   "État-nation": "state",
   "Organisation de la société civile": "civil_society",
+  "Company or other private actor": "private_sector",
+  "Nation state": "state",
+  "Civil society organization": "civil_society",
 }
 
 router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
@@ -49,11 +52,9 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     }
 
     await mailer.sendAsAdministrator({
-      to: {
-        email: confirm_email.value
-      },
-      subject: 'You are now a supporter of the Paris Call!',
-      content: notifySupporterEmailTemplate({ data })
+      to: { email: confirm_email.value },
+      subject: res.__('supporter.notifyEmail.subject'),
+      content: notifySupporterEmailTemplate({ data, __: res.__ })
     });
 
     res.render('index', { title: `${entityName} correctement ajouté à la liste des signataires` });
@@ -104,18 +105,12 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
     });
 
     await mailer.sendAsAdministrator({
-      to: {
-        email: confirm_email.value
-      },
-      subject: `Event ${name.value} is approved`,
-      content: notifyEventEmailTemplate({
-        name: name.value
-      })
+      to: { email: confirm_email.value },
+      subject: res.__('event.notifyEmail.subject', name.value),
+      content: notifyEventEmailTemplate({ name: name.value, __: res.__ })
     });
 
-    res.render('index', {
-      title: `${entityName} correctement ajouté aux évènements`
-    });
+    res.render('index', { title: `${entityName} correctement ajouté aux évènements` });
   } catch (error) {
     errorsHandler(req, res, next, error, { entityName });
   };

@@ -21,7 +21,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       entity: 'supporter',
     });
   } catch (error) {
-    res.redirect(`${config.frontend.website}/en/confirm/supporter/error`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/supporter/error`);
   }
 });
 
@@ -34,7 +34,7 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       entity: 'event',
     });
   } catch (error) {
-    res.redirect(`${config.frontend.website}/en/confirm/event/error`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/event/error`);
   }
 });
 
@@ -45,11 +45,11 @@ function handleConfirmEmail(req, res, next, options) {
   const oneWeekAgo = now.setDate(now.getDate() - config.mailer.nbDaysBeforeTokenExpiration);
   const isTokenExpired = new Date(data.date_signed) < oneWeekAgo;
   if (isTokenExpired) {
-    return res.redirect(`${config.frontend.website}/en/confirm/${options.entity}/expired`);
+    return res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}/expired`);
   }
 
   const reEncodedData = encoder.encode(data);
-  const linkUrl = `${options.linkUrl}?token=${reEncodedData}`;
+  const linkUrl = `${options.linkUrl}?lang=${req.getLocale()}&token=${reEncodedData}`;
 
   mailer.sendAsBot({
     to: {
@@ -59,9 +59,9 @@ function handleConfirmEmail(req, res, next, options) {
     subject: options.mailSubject,
     content: options.mailTemplate({ linkUrl, data }),
   }).then(() => {
-    res.redirect(`${config.frontend.website}/en/confirm/${options.entity}`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}`);
   }).catch(() => {
-    res.redirect(`${config.frontend.website}/en/confirm/${options.entity}/error`);
+    res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}/error`);
   });
 }
 
