@@ -6,12 +6,13 @@ const pug = require('pug');
 
 const encoder = require('../encoder');
 const mailer = require('../mailer');
+const middlewares = require('../middlewares');
 
 const router = express.Router();
 const acceptSupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-supporter.pug'));
 const acceptEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/accept-event.pug'));
 
-router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
   try {
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptSupporterEmailTemplate,
@@ -24,7 +25,7 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
   }
 });
 
-router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
   try {
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptEventEmailTemplate,
@@ -62,15 +63,6 @@ function handleConfirmEmail(req, res, next, options) {
   }).catch(() => {
     res.redirect(`${config.frontend.website}/en/confirm/${options.entity}/error`);
   });
-}
-
-function tokenValidationMiddleware(req, res, next) {
-  const encodedData = req.query.token;
-  if (!encodedData) {
-    return res.sendStatus(403);
-  }
-
-  next();
 }
 
 module.exports = router;

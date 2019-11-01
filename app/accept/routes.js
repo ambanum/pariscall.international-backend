@@ -9,6 +9,7 @@ const parseDomain = require('parse-domain');
 const mailer = require('../mailer');
 const encoder = require('../encoder');
 const repository = require('../repository');
+const middlewares = require('../middlewares');
 
 const router = express.Router();
 const notifySupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/supporter.pug'));
@@ -22,7 +23,7 @@ const categoryNameToType = {
   "Organisation de la société civile": "civil_society",
 }
 
-router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
   let entityName;
   try {
     const data = encoder.decode(req.query.token);
@@ -61,7 +62,7 @@ router.get('/supporter', tokenValidationMiddleware, async (req, res, next) => {
   };
 });
 
-router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
+router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
   let entityName;
   try {
     const data = encoder.decode(req.query.token);
@@ -119,15 +120,6 @@ router.get('/event', tokenValidationMiddleware, async (req, res, next) => {
     errorsHandler(req, res, next, error, { entityName });
   };
 });
-
-function tokenValidationMiddleware(req, res, next) {
-  const encodedData = req.query.token;
-  if (!encodedData) {
-    return res.sendStatus(403);
-  }
-
-  next();
-}
 
 function errorsHandler(req, res, next, error, options) {
   let statusCode = error.status || 500;
