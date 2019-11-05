@@ -1,5 +1,5 @@
 
-require('dotenv').config();
+require('dotenv-safe').config();
 const config = require('config');
 const express = require('express');
 const path = require('path');

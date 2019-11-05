@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv-safe').config();
 const base64url = require('base64url');
 const themis = require('jsthemis');
 const zlib = require('zlib');
