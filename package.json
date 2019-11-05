@@ -1,6 +1,5 @@
 {
   "name": "paris-call-server",
-  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./app/server",
