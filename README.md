@@ -1,8 +1,8 @@
+# Paris Call contribution API
 
-# Paris-call-server
+An API transforming Typeform data from incoming webhooks into confirmation emails sent to the filler of the form, then into approval emails sent to a third party, and finally into a Jekyll-compatible file in some repository.
 
-Server allowing to confirm email addresses and to add organizations in Paris Call supporters list
-> Serveur permettant de confirmer les adresses email et d'ajouter des organisations dans la liste des supporters de l'Appel de Paris
+> Serveur permettant de confirmer les adresses email et d'ajouter des organisations dans la liste des soutiens de l'Appel de Paris.
 
 - - -
 
@@ -11,7 +11,7 @@ Server allowing to confirm email addresses and to add organizations in Paris Cal
 ### Prerequisites
 
 - [Node](https://nodejs.org/en/download)
-- [Themis Core](https://docs.cossacklabs.com/pages/documentation-themis/#installing-themis-from-repositories)
+- [Themis Core](https://docs.cossacklabs.com/pages/documentation-themis/#installing-themis-core)
 
 ### Installation
 
@@ -78,6 +78,4 @@ We suggest to use a production process manager for Node.js like [pm2](https://gi
 
 # License
 
-- The code for this software is distributed under the European Union Public Licence (EUPL) v1.2.
-
-Contact the author if you have any specific need or question regarding licensing.
+EUPL v1.2: akin to an AGPL, but more readable and translated and legally binding into all languages of the EU. [Recap](https://choosealicense.com/licenses/eupl-1.2/).
