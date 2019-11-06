@@ -1,27 +1,25 @@
 h1= __('event.confirmEmail.title')
-p= __('event.confirmEmail.intro', 'https://pariscall.diplomatie.fr/en/#events')
+p !{__('event.confirmEmail.intro', introUrl)}
 
 p= __('review')
 
 dl
   each val, index in data.formResponse
-    dt
-      data.formResponse[index].title
+    dt= data.formResponse[index].title
     dd
-      strong= #{data.formResponse[index].value}
+      strong= data.formResponse[index].value
 
 p= __('clickOnLink')
 
 h2
-  a(href=linkUrl)
-    __('event.confirmEmail.verifyButton')
+  a(href=linkUrl)= __('event.confirmEmail.verifyButton')
 
 p
-  small= __('cancel', 'https://pariscall.diplomatie.fr/en/#events')
+  small !{__('cancel', cancelUrl)}
 
-p= __('event.confirmEmail.details', 'https://pariscall.diplomatie.fr/en/supporters')
+p !{__('event.confirmEmail.details', detailsUrl)}
 
 p= __('mailSignature')
 
 p
-  small= __('linkDoesNotWork', #{linkUrl})
+  small !{__('linkDoesNotWork', linkUrl)}

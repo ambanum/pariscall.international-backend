@@ -1,27 +1,25 @@
 h1= __('supporter.confirmEmail.title')
-p= __('supporter.confirmEmail.intro', 'https://pariscall.diplomatie.fr/fr/support')
+p !{__('supporter.confirmEmail.intro', introUrl)}
 
 p= __('review')
 
 dl
   each val, index in data.formResponse
-    dt
-      data.formResponse[index].title
+    dt= data.formResponse[index].title
     dd
-      strong= #{data.formResponse[index].value}
+      strong= data.formResponse[index].value
 
 p= __('clickOnLink')
 
 h2
-  a(href=linkUrl)
-    __('supporter.confirmEmail.verifyButton')
+  a(href=linkUrl)= __('supporter.confirmEmail.verifyButton')
 
 p
-  small= __('cancel', 'https://pariscall.diplomatie.fr/fr/support')
+  small !{__('cancel', cancelUrl)}
 
-p= __('supporter.confirmEmail.details', 'https://pariscall.diplomatie.fr/fr/supporters')
+p !{__('supporter.confirmEmail.details', detailsUrl)}
 
 p= __('mailSignature')
 
 p
-  small= __('linkDoesNotWork', #{linkUrl})
+  small !{__('linkDoesNotWork', linkUrl)}

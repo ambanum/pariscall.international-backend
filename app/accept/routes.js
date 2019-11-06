@@ -54,7 +54,11 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     await mailer.sendAsAdministrator({
       to: { email: confirm_email.value },
       subject: res.__('supporter.notifyEmail.subject'),
-      content: notifySupporterEmailTemplate({ data, __: res.__ })
+      content: notifySupporterEmailTemplate({
+        data,
+        __: res.__,
+        introUrl: `${config.frontend.website}/${req.getLocale()}/supporters`
+      })
     });
 
     res.render('index', { title: `${entityName} correctement ajouté à la liste des signataires` });
@@ -107,7 +111,11 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
     await mailer.sendAsAdministrator({
       to: { email: confirm_email.value },
       subject: res.__('event.notifyEmail.subject', name.value),
-      content: notifyEventEmailTemplate({ name: name.value, __: res.__ })
+      content: notifyEventEmailTemplate({
+        name: name.value,
+        __: res.__,
+        introUrl: `${config.frontend.website}/${req.getLocale()}/#events`
+      })
     });
 
     res.render('index', { title: `${entityName} correctement ajouté aux évènements` });

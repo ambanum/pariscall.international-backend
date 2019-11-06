@@ -17,6 +17,7 @@ router.post('/supporter', async (req, res, next) => {
     mailTemplate: confirmSupporterEmailTemplate,
     linkUrl: `${config.frontend.api}/confirm-email/supporter`,
     mailSubject: res.__('supporter.confirmEmail.subject'),
+    urlSuffix: 'support',
   });
 });
 
@@ -25,6 +26,7 @@ router.post('/event', async (req, res, next) => {
     mailTemplate: confirmEventEmailTemplate,
     linkUrl: `${config.frontend.api}/confirm-email/event`,
     mailSubject: res.__('event.confirmEmail.subject'),
+    urlSuffix: '#events',
   });
 });
 
@@ -47,7 +49,14 @@ function handleWebhook(req, res, next, options) {
   const encodedData = encoder.encode(data);
 
   const linkUrl = `${options.linkUrl}?lang=${req.getLocale()}&token=${encodedData}`;
-  const mailContent = options.mailTemplate({ linkUrl, data, __: res.__ });
+  const mailContent = options.mailTemplate({
+    linkUrl,
+    data,
+    __: res.__,
+    introUrl: `${config.frontend.website}/${req.getLocale()}/${options.urlSuffix}`,
+    cancelUrl: `${config.frontend.website}/${req.getLocale()}/${options.urlSuffix}`,
+    detailsUrl: `${config.frontend.website}/${req.getLocale()}/supporters`,
+  });
 
   mailer.sendAsAdministrator({
     to: {
