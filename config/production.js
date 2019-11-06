@@ -5,16 +5,16 @@ module.exports = {
   },
   mailer: {
     approver: {
-      email: 'matti.schneider@diplomatie.gouv.fr',
       name: 'Paris Call Approver',
+      email: 'paris.call@diplomatie.gouv.fr',
     },
     administrator: {
       name: 'Paris Call',
-      email: 'npg.dupont@gmail.com',
+      email: 'paris.call@diplomatie.gouv.fr',
     },
     bot: {
       name: 'Paris Call Bot',
-      email: 'npg.dupont@gmail.com',
+      email: 'pariscall-tech.dgp-asd-asc@diplomatie.gouv.fr',
     },
   },
   frontend: {
