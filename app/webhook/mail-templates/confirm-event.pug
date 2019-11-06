@@ -1,20 +1,25 @@
-p= __('event.confirmEmail.intro')
+h1= __('event.confirmEmail.title')
+p !{__('event.confirmEmail.intro', introUrl)}
 
-ul
+p= __('review')
+
+dl
   each val, index in data.formResponse
-    li
-      strong= data.formResponse[index].title
-      br
-      | #{data.formResponse[index].value}
+    dt= data.formResponse[index].title
+    dd
+      strong= data.formResponse[index].value
 
-p= __('event.confirmEmail.clickOnLink')
-  br
-  a(href=linkUrl)
-    strong= __('event.confirmEmail.verifyButton')
+p= __('clickOnLink')
+
+h2
+  a(href=linkUrl)= __('event.confirmEmail.verifyButton')
+
+p
+  small !{__('cancel', cancelUrl)}
+
+p !{__('event.confirmEmail.details', detailsUrl)}
 
 p= __('mailSignature')
 
-p= __('event.confirmEmail.clickOnLink')
-  small __('event.confirmEmail.linkDoesNotWork')
-    br
-    | #{linkUrl}
+p
+  small !{__('linkDoesNotWork', linkUrl)}

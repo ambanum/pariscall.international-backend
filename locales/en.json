@@ -1,29 +1,37 @@
 {
   "event": {
     "confirmEmail": {
-      "subject": "Check email",
-      "intro": "Thank you for your interest in cybersecurity Here is the information you provided:",
-      "clickOnLink": "If everything is correct, confirm your e-mail address by clicking on the link below <strong> within seven days: </ strong>",
-      "linkDoesNotWork": "The link does not work? Copy the following link into the address bar of your browser:",
-      "verifyButton": "Check email"
+      "subject": "[Paris Call] Confirm your event",
+      "title": "You suggested an event to the Paris Call",
+      "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"%s\">event suggestion form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
+      "verifyButton": "Suggest this event",
+      "details": "Once confirmed, your event will be reviewed before being made public. You will be notified once your event is <a href=\"%s\">publicly visible</a>."
     },
     "notifyEmail": {
-      "subject": "Event %s is approved",
-      "text": "The event %s is visible on the Paris Call website"
+      "subject": "[Paris Call] Your event is public",
+      "title": "Your event is publicly visible",
+      "intro": "You recently suggested the event “%s” to the Paris Call for trust and security in cyberspace. We are happy to inform you that this event is now <a href=\"%s\">publicly visible</a>.  Thank you for your contribution!",
+      "followup": "If you need to edit this event, please reply to this email."
     }
   },
   "supporter": {
     "confirmEmail": {
-      "subject": "Check email",
-      "intro": "Thank you for your interest in cybersecurity Here is the information you provided:",
-      "clickOnLink": "If everything is correct, confirm your e-mail address by clicking on the link below <strong> within seven days: </ strong>",
-      "linkDoesNotWork": "The link does not work? Copy the following link into the address bar of your browser:",
-      "verifyButton": "Check email"
+      "subject": "[Paris Call] Confirm your support",
+      "title": "You expressed support to the Paris Call",
+      "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"%s\">support form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
+      "verifyButton": "Confirm your support",
+      "details": "Once confirmed, your support is effective. There is nothing more to do. It will be reviewed before being made public. You will be notified once your support is <a href=\"%s\">publicly visible</a>."
     },
     "notifyEmail": {
-      "subject": "Your support for the Paris Call is approved",
-      "text": "Your support is now visible on the Paris Call website"
+      "subject": "[Paris Call] Your support is public",
+      "title": "Your support is publicly visible",
+      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support is now <a href=\"%s\">publicly visible</a>.",
+      "followup": "We will send only information specifically related to your support to this address. Updates on the Paris Call will be sent regularly to the contact address you specified when you stated your support."
     }
   },
-  "mailSignature": "The Paris Call team"
+  "review": "Please double-check the information below:",
+  "clickOnLink": "If everything is correct, confirm your request by clicking the link below within seven days:",
+  "linkDoesNotWork": "If the link does not work, copy the following address into your browser address bar: <code>%s</code>",
+  "mailSignature": "The Paris Call team",
+  "cancel": "If this request does not come from you, you don’t have anything to do. This data will not be stored if you don’t confirm the request. If you want to correct some pieces of information, please create a <a href=\"%s\">new request</a>."
 }
