@@ -20,7 +20,7 @@
       "title": "You expressed support to the Paris Call",
       "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"%s\">support form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
       "verifyButton": "Confirm your support",
-      "details": "Once confirmed, your support is effective. There is nothing more to do. It will be reviewed before being made public. You will be notified once your support is <a href=\"%s\">publicly visible</a>.",
+      "details": "Once confirmed, your support is effective. There is nothing more to do. It will be reviewed before being made public. You will be notified once your support is <a href=\"%s\">publicly visible</a>."
     },
     "notifyEmail": {
       "subject": "[Paris Call] Your support is public",
