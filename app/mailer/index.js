@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv-safe').config();
 const config = require('config');
 const striptags = require('striptags');
 const mailjet = require('node-mailjet').connect(process.env.MAILJET_APIKEY_PUBLIC, process.env.MAILJET_APIKEY_PRIVATE);

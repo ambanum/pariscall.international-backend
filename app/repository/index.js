@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv-safe').config();
 const config = require('config');
 const sanitize = require('sanitize-filename');
 const changeCase = require('change-case');

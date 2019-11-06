@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv-safe').config();
 const crypto = require('crypto');
 
 function extractData(typeformObject) {
