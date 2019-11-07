@@ -38,7 +38,9 @@ async function handleWebhook(req, res, next, options) {
   }
 
   // Convert body buffer to string and parse it in JSON
-  const { form_response } = JSON.parse(req.body.toString('utf8'));
+  const {
+    form_response
+  } = JSON.parse(req.body.toString('utf8'));
 
   const data = {
     formResponse: typeform.extractData(form_response),

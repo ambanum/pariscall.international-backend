@@ -65,7 +65,10 @@ async function handleConfirmEmail(req, res, next, options) {
         name: config.mailer.approver.name,
       },
       subject: options.mailSubject,
-      content: options.mailTemplate({ linkUrl, data }),
+      content: options.mailTemplate({
+        linkUrl,
+        data
+      }),
     });
 
     const message = `Approval email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`;
