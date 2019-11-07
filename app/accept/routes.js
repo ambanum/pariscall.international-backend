@@ -68,7 +68,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       let message;
 
       if (error.status === 422 && error.message.includes('sha')) {
-        title = `Une erreur est survenue lors de l'ajout du signataire`;
+        title = "Une erreur est survenue lors de l'ajout du signataire";
         message = `Il semblerait que "${name.value}" existe déjà.`;
       }
 
@@ -97,7 +97,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       })
     });
 
-    console.log(`Notification email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`);
+    console.log(`Notification email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`);
 
     res.render('index', {
       title: `${name.value} correctement ajouté à la liste des signataires`
@@ -199,7 +199,7 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       })
     });
 
-    console.log(`Notification email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`);
+    console.log(`Notification email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`);
 
     res.render('index', {
       title: `${name.value} correctement ajouté aux évènements`

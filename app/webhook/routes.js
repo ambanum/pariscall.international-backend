@@ -72,7 +72,7 @@ async function handleWebhook(req, res, next, options) {
       content: mailContent,
     });
 
-    const message = `Confirmation email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`;
+    const message = `Confirmation email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`;
     console.log(message);
     res.send(message);
   } catch (error) {

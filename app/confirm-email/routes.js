@@ -71,7 +71,7 @@ async function handleConfirmEmail(req, res, next, options) {
       }),
     });
 
-    const message = `Approval email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`;
+    const message = `Approval email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`;
     console.log(message);
     res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}`);
   } catch (error) {

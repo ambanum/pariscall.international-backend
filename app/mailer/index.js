@@ -5,8 +5,8 @@ const striptags = require('striptags');
 const sendInBlue = require('sib-api-v3-sdk');
 const defaultClient = sendInBlue.ApiClient.instance;
 
-const apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
+const authentication = defaultClient.authentications['api-key'];
+authentication.apiKey = process.env.SENDINBLUE_API_KEY;
 
 const apiInstance = new sendInBlue.SMTPApi();
 
@@ -40,7 +40,7 @@ function send(options) {
     },
     to: [{
       email: options.to.email,
-      name: options.to.name || ''
+      name: options.to.name
     }],
     subject: options.subject,
     textContent: striptags(options.content),
