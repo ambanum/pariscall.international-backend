@@ -60,7 +60,8 @@ function handleWebhook(req, res, next, options) {
 
   mailer.sendAsAdministrator({
     to: {
-      email: data.formResponse.confirm_email.value
+      email: data.formResponse.confirm_email.value,
+      name: data.formResponse.name.value
     },
     subject: options.mailSubject,
     content: mailContent,

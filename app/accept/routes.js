@@ -51,8 +51,14 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       });
     }
 
-    await mailer.sendAsAdministrator({
-      to: { email: confirm_email.value },
+  try {
+    const {
+      messageId
+    } = await mailer.sendAsAdministrator({
+      to: {
+        email: confirm_email.value,
+        name: name.value,
+      },
       subject: res.__('supporter.notifyEmail.subject'),
       content: notifySupporterEmailTemplate({
         data,
@@ -108,8 +114,14 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       }),
     });
 
-    await mailer.sendAsAdministrator({
-      to: { email: confirm_email.value },
+  try {
+    const {
+      messageId
+    } = await mailer.sendAsAdministrator({
+      to: {
+        email: confirm_email.value,
+        name: name.value,
+      },
       subject: res.__('event.notifyEmail.subject', name.value),
       content: notifyEventEmailTemplate({
         name: name.value,
