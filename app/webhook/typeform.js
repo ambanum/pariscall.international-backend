@@ -1,13 +1,12 @@
 require('dotenv-safe').config();
 const crypto = require('crypto');
 
-function extractData(typeformObject) {
-  const { definition, answers } = typeformObject;
+function extractData(typeformData) {
+  const { definition, answers } = typeformData;
   const result = {};
 
-  answers.forEach((answer) => {
-    const fieldId = answer.field.id;
-    const question = definition.fields.find(field => field.id === fieldId);
+  answers.forEach(answer => {
+    const question = definition.fields.find(field => field.id === answer.field.id);
 
     let title = question.title;
     const hasPlaceholderInTitle = question.title.match(/\{\{field:(.*)\}\}/);
@@ -48,7 +47,7 @@ function extractData(typeformObject) {
 }
 
 function getAnswer(ref, answers) {
-  const answer = answers.find((el) => el.field.ref == ref);
+  const answer = answers.find(answer => answer.field.ref == ref);
 
   switch (answer.type) {
     case 'choice':
