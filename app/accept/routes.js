@@ -17,9 +17,9 @@ const notifyEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail
 const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/event.pug'));
 
 const CATEGORY_MATCHERS = {
-  civil_society: /civil/,
-  private_sector: /(privé|private)/,
-  state: /(État|State)/,
+  civil_society: /civil/i,
+  private_sector: /(privé|private)/i,
+  state: /([éÉE]tat|State)/i,
 }
 
 
@@ -44,8 +44,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     }
   } = data;
 
-  const categoryName = Object.keys(CATEGORY_MATCHERS).find(categoryName => CATEGORY_MATCHERS[categoryName].match(category.value));
-
+  const categoryName = Object.keys(CATEGORY_MATCHERS).find(categoryName => CATEGORY_MATCHERS[categoryName].exec(category.value));
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${repository.sanitizeName(state.value)}.md`;
 
   for (const folder of config.repository.supporterDestinationFolders) {
