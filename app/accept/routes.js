@@ -47,37 +47,36 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
   const categoryName = Object.keys(CATEGORY_MATCHERS).find(categoryName => CATEGORY_MATCHERS[categoryName].exec(category.value));
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${repository.sanitizeName(state.value)}.md`;
 
-  for (const folder of config.repository.supporterDestinationFolders) {
-    const path = `${folder}/${filename}`;
-
-    try {
-      const response = await repository.createFile({
-        path: path,
-        commitMessage: `Add ${name.value} supporter`,
-        content: supporterFileTemplate({
-          name: name.value,
-          category: categoryName,
-          nationality: state.value,
-          date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
-        })
-      });
-      console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
-    } catch (error) {
-      let title = 'Une erreur est survenue';
-      let message;
-
-      if (error.status === 422 && error.message.includes('sha')) {
-        title = "Une erreur est survenue lors de l'ajout du signataire";
-        message = `Il semblerait que "${name.value}" existe déjà.`;
-      }
-
-      console.error(error);
-      res.status(500).render('error', {
-        title,
-        message,
-        error
-      });
+  try {
+    for (const folder of config.repository.supporterDestinationFolders) {
+      const path = `${folder}/${filename}`;
+        const response = await repository.createFile({
+          path: path,
+          commitMessage: `Add ${name.value} supporter`,
+          content: supporterFileTemplate({
+            name: name.value,
+            category: categoryName,
+            nationality: state.value,
+            date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
+          })
+        });
+        console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
     }
+  } catch (error) {
+    let title = 'Une erreur est survenue';
+    let message;
+
+    if (error.status === 422 && error.message.includes('sha')) {
+      title = "Une erreur est survenue lors de l'ajout du signataire";
+      message = `Il semblerait que "${name.value}" existe déjà.`;
+    }
+
+    console.error(error);
+    return res.status(500).render('error', {
+      title,
+      message,
+      error
+    });
   }
 
   try {
