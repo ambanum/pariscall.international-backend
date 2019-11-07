@@ -1,30 +1,14 @@
 require('dotenv-safe').config();
 const config = require('config');
 const striptags = require('striptags');
-const mailjet = require('node-mailjet').connect(process.env.MAILJET_APIKEY_PUBLIC, process.env.MAILJET_APIKEY_PRIVATE);
 
-function send(options) {
-  const request = mailjet.post("send", {
-      'version': 'v3.1'
-    })
-    .request({
-      "Messages": [{
-        "From": {
-          "Email": options.from.email,
-          "Name": options.from.name || ''
-        },
-        "To": [{
-          "Email": options.to.email,
-          "Name": options.to.name || ''
-        }],
-        "Subject": options.subject,
-        "TextPart": striptags(options.content),
-        "HTMLPart": options.content,
-      }]
-    });
+const sendInBlue = require('sib-api-v3-sdk');
+const defaultClient = sendInBlue.ApiClient.instance;
 
-  return request;
-}
+const authentication = defaultClient.authentications['api-key'];
+authentication.apiKey = process.env.SENDINBLUE_API_KEY;
+
+const apiInstance = new sendInBlue.SMTPApi();
 
 function sendAsBot(options) {
   const augmentedOptions = {
@@ -48,8 +32,24 @@ function sendAsAdministrator(options) {
   return send(augmentedOptions);
 }
 
+function send(options) {
+  return apiInstance.sendTransacEmail({
+    sender: {
+      email: options.from.email,
+      name: options.from.name
+    },
+    to: [{
+      email: options.to.email,
+      name: options.to.name
+    }],
+    subject: options.subject,
+    textContent: striptags(options.content),
+    htmlContent: options.content,
+  });
+}
+
 module.exports = {
-  send,
   sendAsBot,
-  sendAsAdministrator
+  sendAsAdministrator,
+  send,
 };

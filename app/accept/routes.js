@@ -1,4 +1,3 @@
-
 require('dotenv-safe').config();
 const config = require('config');
 const express = require('express');
@@ -27,32 +26,69 @@ const categoryNameToType = {
 }
 
 router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
-  let entityName;
+  let data;
   try {
-    const data = encoder.decode(req.query.token);
+    data = encoder.decode(req.query.token);
+  } catch (error) {
+    return res.status(403).render('error', {
+      title: 'Une erreur est survenue',
+      error,
+      message: "Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu."
+    });
+  }
 
-    const { formResponse: { name, category, state, confirm_email } } = data;
-    entityName = name.value;
+  const {
+    formResponse: {
+      name,
+      category,
+      state,
+      confirm_email
+    }
+  } = data;
 
-    const filename = `${repository.sanitizeName(name.value)}-${repository.sanitizeName(categoryNameToType[category.value])}-${repository.sanitizeName(state.value)}.md`;
+  const filename = `${repository.sanitizeName(name.value)}-${repository.sanitizeName(categoryNameToType[category.value])}-${repository.sanitizeName(state.value)}.md`;
 
-    for (const folder of config.repository.supporterDestinationFolders) {
-      const path = `${folder}/${filename}`;
+  for (const folder of config.repository.supporterDestinationFolders) {
+    const path = `${folder}/${filename}`;
 
-      await repository.createFile({
+    try {
+      const response = await repository.createFile({
         path: path,
         commitMessage: `Add ${name.value} supporter`,
         content: supporterFileTemplate({
-          name: data.formResponse.name.value,
-          category: categoryNameToType[data.formResponse.category.value],
-          nationality: data.formResponse.state.value,
-          date_signed: new Date(data.date_signed).toISOString().slice(0,10),
+          name: name.value,
+          category: categoryNameToType[category.value],
+          nationality: state.value,
+          date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
         })
       });
-    }
+      console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
+    } catch (error) {
+      let title = 'Une erreur est survenue';
+      let message;
 
-    await mailer.sendAsAdministrator({
-      to: { email: confirm_email.value },
+      if (error.status === 422 && error.message.includes('sha')) {
+        title = "Une erreur est survenue lors de l'ajout du signataire";
+        message = `Il semblerait que "${name.value}" existe déjà.`;
+      }
+
+      console.error(error);
+      res.status(500).render('error', {
+        title,
+        message,
+        error
+      });
+    }
+  }
+
+  try {
+    const {
+      messageId
+    } = await mailer.sendAsAdministrator({
+      to: {
+        email: confirm_email.value,
+        name: name.value,
+      },
       subject: res.__('supporter.notifyEmail.subject'),
       content: notifySupporterEmailTemplate({
         data,
@@ -61,40 +97,62 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       })
     });
 
-    res.render('index', { title: `${entityName} correctement ajouté à la liste des signataires` });
+    console.log(`Notification email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`);
+
+    res.render('index', {
+      title: `${name.value} correctement ajouté à la liste des signataires`
+    });
   } catch (error) {
-    errorsHandler(req, res, next, error, { entityName });
-  };
+    console.error(error);
+    res.status(500).send(error.response.body);
+  }
 });
 
 router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
-  let entityName;
+  let data;
   try {
-    const data = encoder.decode(req.query.token);
+    data = encoder.decode(req.query.token);
+  } catch (error) {
+    return res.status(403).render('error', {
+      title: 'Une erreur est survenue',
+      error,
+      message: "Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu."
+    });
+  }
 
-    const { formResponse: { name, address, link, start_date, end_date, description, confirm_email } } = data;
-    entityName = name.value;
+  const {
+    formResponse: {
+      name,
+      address,
+      link,
+      start_date,
+      end_date,
+      description,
+      confirm_email
+    }
+  } = data;
 
-    const filename = `${repository.sanitizeName(name.value)}.md`;
-    const path = `${config.repository.eventDestinationFolder}/${filename}`;
+  const filename = `${repository.sanitizeName(name.value)}.md`;
+  const path = `${config.repository.eventDestinationFolder}/${filename}`;
 
-    let linkTitle = link && link.value;
-    if (link) {
-      const parsedLink = parseDomain(link.value);
-      if (parsedLink) {
-        if (parsedLink.domain) {
-          linkTitle = parsedLink.domain;
-        }
-        if (parsedLink.tld) {
-          linkTitle = `${linkTitle}.${parsedLink.tld}`;
-        }
-        if (parsedLink.subdomain) {
-          linkTitle = `${parsedLink.subdomain}.${linkTitle}`;
-        }
+  let linkTitle = link && link.value;
+  if (link) {
+    const parsedLink = parseDomain(link.value);
+    if (parsedLink) {
+      if (parsedLink.domain) {
+        linkTitle = parsedLink.domain;
+      }
+      if (parsedLink.tld) {
+        linkTitle = `${linkTitle}.${parsedLink.tld}`;
+      }
+      if (parsedLink.subdomain) {
+        linkTitle = `${parsedLink.subdomain}.${linkTitle}`;
       }
     }
+  }
 
-    await repository.createFile({
+  try {
+    const response = await repository.createFile({
       path: path,
       commitMessage: `Add ${name.value} event`,
       content: eventFileTemplate({
@@ -107,42 +165,49 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
         description: description && description.value,
       }),
     });
+    console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
+  } catch (error) {
+    let title = 'Une erreur est survenue';
+    let message;
 
-    await mailer.sendAsAdministrator({
-      to: { email: confirm_email.value },
+    if (error.status === 422 && error.message.includes('sha')) {
+      title = "Une erreur est survenue lors de l'ajout de l'évènement";
+      message = `Il semblerait que "${name.value}" existe déjà.`;
+    }
+
+    console.error(error);
+    return res.status(500).render('error', {
+      title,
+      message,
+      error
+    });
+  }
+
+  try {
+    const {
+      messageId
+    } = await mailer.sendAsAdministrator({
+      to: {
+        email: confirm_email.value,
+        name: name.value,
+      },
       subject: res.__('event.notifyEmail.subject', name.value),
       content: notifyEventEmailTemplate({
         name: name.value,
         __: res.__,
-        introUrl: `${config.frontend.website}/${req.getLocale()}/#events`
+        introUrl: `${config.frontend.website}/${req.getLocale()}/#events`,
       })
     });
 
-    res.render('index', { title: `${entityName} correctement ajouté aux évènements` });
+    console.log(`Notification email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`);
+
+    res.render('index', {
+      title: `${name.value} correctement ajouté aux évènements`
+    });
   } catch (error) {
-    errorsHandler(req, res, next, error, { entityName });
-  };
+    console.error(error);
+    res.status(500).send(error.response.body);
+  }
 });
-
-function errorsHandler(req, res, next, error, options) {
-  let statusCode = error.status || 500;
-  let message = error.message;
-
-  if (error.status === 422 && error.message.includes('sha')) {
-    title = `Une erreur est survenue lors de l'ajout de ${options.entityName}`;
-    message = `Il semblerait que ${options.entityName} existe déjà.`;
-  }
-
-  if (error.message.includes('failed to decrypt')) {
-    statusCode = 403;
-    message = `Il semblerait que le lien d'approbation soit altéré, réessayez de le copier depuis le mail que vous avez reçu.`;
-  }
-
-  res.status(statusCode).render('error', {
-    title: `Une erreur est survenue`,
-    error,
-    message
-  });
-}
 
 module.exports = router;
