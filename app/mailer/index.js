@@ -3,12 +3,12 @@ const config = require('config');
 const striptags = require('striptags');
 
 const sendInBlue = require('sib-api-v3-sdk');
-var defaultClient = sendInBlue.ApiClient.instance;
+const defaultClient = sendInBlue.ApiClient.instance;
 
-var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+const apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = process.env.SENDINBLUE_APIKEY_PUBLIC;
 
-var apiInstance = new sendInBlue.SMTPApi();
+const apiInstance = new sendInBlue.SMTPApi();
 
 function sendAsBot(options) {
   const augmentedOptions = {
