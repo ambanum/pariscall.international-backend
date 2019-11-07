@@ -14,7 +14,7 @@ module.exports = {
     },
     bot: {
       name: 'Paris Call Bot',
-      email: 'pariscall-tech.dgp-asd-asc@diplomatie.gouv.fr',
+      email: 'npg.dupont@gmail.com',
     },
   },
   frontend: {
