@@ -16,14 +16,12 @@ const supporterFileTemplate = pug.compileFile(path.resolve(__dirname, './file-te
 const notifyEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/event.pug'));
 const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/event.pug'));
 
-const categoryNameToType = {
-  "Entreprise ou autre acteur privé": "private_sector",
-  "État-nation": "state",
-  "Organisation de la société civile": "civil_society",
-  "Company or other private actor": "private_sector",
-  "Nation state": "state",
-  "Civil society organization": "civil_society",
+const CATEGORY_MATCHERS = {
+  civil_society: /civil/,
+  private_sector: /(privé|private)/,
+  state: /(État|State)/,
 }
+
 
 router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
   let data;
@@ -46,7 +44,9 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     }
   } = data;
 
-  const filename = `${repository.sanitizeName(name.value)}-${repository.sanitizeName(categoryNameToType[category.value])}-${repository.sanitizeName(state.value)}.md`;
+  const categoryName = Object.keys(CATEGORY_MATCHERS).find(categoryName => CATEGORY_MATCHERS[categoryName].match(category.value));
+
+  const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${repository.sanitizeName(state.value)}.md`;
 
   for (const folder of config.repository.supporterDestinationFolders) {
     const path = `${folder}/${filename}`;
@@ -57,7 +57,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
         commitMessage: `Add ${name.value} supporter`,
         content: supporterFileTemplate({
           name: name.value,
-          category: categoryNameToType[category.value],
+          category: categoryName,
           nationality: state.value,
           date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
         })
