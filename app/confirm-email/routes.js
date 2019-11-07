@@ -38,8 +38,13 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
   }
 });
 
-function handleConfirmEmail(req, res, next, options) {
-  const data = encoder.decode(req.query.token);
+async function handleConfirmEmail(req, res, next, options) {
+  let data;
+  try {
+    data = encoder.decode(req.query.token);
+  } catch (error) {
+    return res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}/error`);
+  }
 
   const now = new Date();
   const oneWeekAgo = now.setDate(now.getDate() - config.mailer.nbDaysBeforeTokenExpiration);
@@ -51,18 +56,25 @@ function handleConfirmEmail(req, res, next, options) {
   const reEncodedData = encoder.encode(data);
   const linkUrl = `${options.linkUrl}?lang=${req.getLocale()}&token=${reEncodedData}`;
 
-  mailer.sendAsBot({
-    to: {
-      email: config.mailer.approver.email,
-      name: config.mailer.approver.name,
-    },
-    subject: options.mailSubject,
-    content: options.mailTemplate({ linkUrl, data }),
-  }).then(() => {
+  try {
+    const {
+      messageId
+    } = await mailer.sendAsBot({
+      to: {
+        email: config.mailer.approver.email,
+        name: config.mailer.approver.name,
+      },
+      subject: options.mailSubject,
+      content: options.mailTemplate({ linkUrl, data }),
+    });
+
+    const message = `Approval email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`;
+    console.log(message);
     res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}`);
-  }).catch(() => {
+  } catch (error) {
+    console.error(error);
     res.redirect(`${config.frontend.website}/${req.getLocale()}/confirm/${options.entity}/error`);
-  });
+  }
 }
 
 module.exports = router;

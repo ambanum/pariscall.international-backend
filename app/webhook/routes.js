@@ -30,7 +30,7 @@ router.post('/event', async (req, res, next) => {
   });
 });
 
-function handleWebhook(req, res, next, options) {
+async function handleWebhook(req, res, next, options) {
   const typeformSignature = req.headers['typeform-signature'];
 
   if (!typeformSignature || !typeform.isValidSignature(typeformSignature, req.body)) {
@@ -58,18 +58,25 @@ function handleWebhook(req, res, next, options) {
     detailsUrl: `${config.frontend.website}/${req.getLocale()}/supporters`,
   });
 
-  mailer.sendAsAdministrator({
-    to: {
-      email: data.formResponse.confirm_email.value,
-      name: data.formResponse.name.value
-    },
-    subject: options.mailSubject,
-    content: mailContent,
-  }).then(() => {
-    res.sendStatus(200);
-  }).catch((error) => {
-    res.sendStatus(500);
-  });
+  try {
+    const {
+      messageId
+    } = await mailer.sendAsAdministrator({
+      to: {
+        email: data.formResponse.confirm_email.value,
+        name: data.formResponse.name.value
+      },
+      subject: options.mailSubject,
+      content: mailContent,
+    });
+
+    const message = `Confirmation email sent. See details by logging into SendInBlue logs and search for message id: "${messageId}"`;
+    console.log(message);
+    res.send(message);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.response.body);
+  }
 }
 
 module.exports = router;
