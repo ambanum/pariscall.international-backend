@@ -18,7 +18,7 @@ const validSupporterData = {
   formResponse: {
     category: {
       title: 'Quel est le type de votre organisation ?',
-      value: 'État-nation'
+      value: 'État'
     },
     name: {
       title: 'Quel est le nom de votre organisation ?',
