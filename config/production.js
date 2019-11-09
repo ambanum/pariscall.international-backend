@@ -6,15 +6,15 @@ module.exports = {
   mailer: {
     approver: {
       name: 'Paris Call Approver',
-      email: 'paris.call@diplomatie.gouv.fr',
+      email: 'matti.schneider@diplomatie.gouv.fr',
     },
     administrator: {
-      name: 'Paris Call',
-      email: 'paris.call@diplomatie.gouv.fr',
+      name: 'Paris Call Team',
+      email: 'contact@pariscall.international',
     },
     bot: {
       name: 'Paris Call Bot',
-      email: 'npg.dupont@gmail.com',
+      email: 'bot@pariscall.international',
     },
   },
   frontend: {
