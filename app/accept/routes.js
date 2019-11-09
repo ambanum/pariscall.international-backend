@@ -193,7 +193,6 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       content: notifyEventEmailTemplate({
         name: name.value,
         __: res.__,
-        introUrl: `${config.frontend.website}/${req.getLocale()}/#events`,
       })
     });
 
