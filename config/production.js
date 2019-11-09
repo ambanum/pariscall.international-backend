@@ -18,7 +18,7 @@ module.exports = {
     },
   },
   frontend: {
-    website: 'https://pariscall.diplomatie.fr',
-    api: 'https://pariscall.diplomatie.fr/api',
+    website: 'https://pariscall.international',
+    api: 'https://pariscall.international/api',
   },
 };
