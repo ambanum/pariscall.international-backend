@@ -22,7 +22,7 @@ const validSupporterData = {
     },
     name: {
       title: 'Quel est le nom de votre organisation ?',
-      value: 'Lorem ipsum dolor'
+      value: 'Lorem ipsum " dolor'
     },
     nationality: {
       title: 'Dans quel État votre organisation est-elle établie ?',
@@ -107,7 +107,7 @@ describe('GET /accept/supporter', function () {
     it('creates the right file content', function () {
       const args = repositoryStub.getCall(0).args[0];
       expect(args.content).to.equal(`---
-name: Lorem ipsum dolor
+name: "Lorem ipsum \\" dolor"
 category: state
 nature:
 nationality: FRA
