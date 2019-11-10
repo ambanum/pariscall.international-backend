@@ -37,6 +37,9 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       nationality,
       confirm_email,
       introduction,
+      website,
+      twitter,
+      linkedin,
     }
   } = data;
 
@@ -55,6 +58,9 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
         category: categoryName,
         nationality: nationalityCode,
         introduction: introduction.value,
+        website: website.value,
+        twitter: twitter.value,
+        linkedin: linkedin.value,
         date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
       }),
     });

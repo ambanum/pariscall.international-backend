@@ -30,7 +30,15 @@ const validSupporterData = {
     },
     website: {
       title: 'Quel est le site web de votre organisation ?',
-      value: 'http://example-url.com'
+      value: 'http://example-url.com?userId=20&test'
+    },
+    linkedin: {
+      title: 'La page LinkedIn de votre organisation',
+      value: 'http://linkedin.com/kjh123?userId=20&test'
+    },
+    twitter: {
+      title: 'Le compte Twitter de votre organisation',
+      value: '@cybersec'
     },
     confirm_email: {
       title: 'Quelle est l’adresse email d’une personne dirigeante de votre organisation auprès de laquelle confirmer la signature ?',
@@ -111,6 +119,9 @@ name: "Lorem ipsum \\" dolor"
 category: state
 nature:
 nationality: FRA
+website: "http://example-url.com?userId=20&test"
+twitter: "@cybersec"
+linkedin: "http://linkedin.com/kjh123?userId=20&test"
 date_signed: 2019-10-22
 ---
 Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.
