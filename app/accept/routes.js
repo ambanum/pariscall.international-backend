@@ -34,13 +34,13 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     formResponse: {
       name,
       category,
-      state,
+      nationality,
       confirm_email
     }
   } = data;
 
   const categoryName = transform.normalizeCategory(category.value);
-  const nationalityCode = transform.normalizeNationality(state.value, req.getLocale());
+  const nationalityCode = transform.normalizeNationality(nationality.value, req.getLocale());
 
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${nationalityCode}.md`;
 
