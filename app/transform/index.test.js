@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 
+const config = require('config');
 const transform = require('./index');
 
 
@@ -19,6 +20,35 @@ describe('Transformation of form data', () => {
     Object.keys(ANSWERS_TO_CATEGORIES).forEach(answer => {
       it(`gives the proper category for "${answer}"`, () => {
         expect(transform.normalizeCategory(answer)).to.equal(ANSWERS_TO_CATEGORIES[answer]);
+      });
+    });
+  });
+
+  describe('#normalizeNationality', () => {
+    const COUNTRIES_TO_CODES = {
+      fr: {
+        'France': 'FRA',
+        'Congo': 'COG',
+        'République démocratique du Congo': 'COD',
+        'Saint-Siège': 'VAT',
+        'Territoires palestiniens': '',
+        'This country does not exist': void 0,
+      },
+      en: {
+        'France': 'FRA',
+        'Congo': 'COG',
+        'Vatican': 'VAT',
+        'This country does not exist': void 0,
+      }
+    };
+
+    config.supportedLanguages.forEach(lang => {
+      context(`For lang ${lang}`, () => {
+        Object.keys(COUNTRIES_TO_CODES[lang]).forEach(country => {
+          it(`gives the proper ISO code for "${country}"`, () => {
+            expect(transform.normalizeNationality(country, lang)).to.equal(COUNTRIES_TO_CODES[lang][country]);
+          });
+        });
       });
     });
   });

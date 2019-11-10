@@ -1,6 +1,7 @@
 const supportedLanguages = ['en', 'fr'];
 
 module.exports = {
+  supportedLanguages,
   repository: {
     // folder in the destination repository in which events files will be created
     eventDestinationFolder: '_events',

@@ -1,0 +1,1388 @@
+[
+  {
+    "ISO-3166-1-alpha-3": "AFG",
+    "official-fr": "République islamique d'Afghanistan",
+    "usual-fr": "Afghanistan",
+    "usual-en": "Afghanistan",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "AGO",
+    "official-fr": "République d'Angola",
+    "usual-fr": "Angola",
+    "usual-en": "Angola",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ALB",
+    "official-fr": "République d'Albanie",
+    "usual-fr": "Albanie",
+    "usual-en": "Albania",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "AND",
+    "official-fr": "Principauté d'Andorre",
+    "usual-fr": "Andorre",
+    "usual-en": "Andorra",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "ARE",
+    "official-fr": "Émirats Arabes Unis",
+    "usual-fr": "Émirats Arabes Unis",
+    "usual-en": "United Arab Emirates",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ARG",
+    "official-fr": "République argentine",
+    "usual-fr": "Argentine",
+    "usual-en": "Argentina",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ARM",
+    "official-fr": "République d'Arménie",
+    "usual-fr": "Arménie",
+    "usual-en": "Armenia",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ATG",
+    "official-fr": "Antigua-et-Barbuda",
+    "usual-fr": "Antigua et Barbuda",
+    "usual-en": "Antigua and Barbuda",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "AUS",
+    "official-fr": "Commonwealth d'Australie",
+    "usual-fr": "Australie",
+    "usual-en": "Australia",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "AUT",
+    "official-fr": "République d'Autriche",
+    "usual-fr": "Autriche",
+    "usual-en": "Austria",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "AZE",
+    "official-fr": "République d'Azerbaïdjan",
+    "usual-fr": "Azerbaïdjan",
+    "usual-en": "Azerbaijan",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BDI",
+    "official-fr": "République du Burundi",
+    "usual-fr": "Burundi",
+    "usual-en": "Burundi",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BEL",
+    "official-fr": "Royaume de Belgique",
+    "usual-fr": "Belgique",
+    "usual-en": "Belgium",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BEN",
+    "official-fr": "République du Bénin",
+    "usual-fr": "Bénin",
+    "usual-en": "Benin",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BFA",
+    "official-fr": "Burkina Faso",
+    "usual-fr": "Burkina",
+    "usual-en": "Burkina-Faso",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BGD",
+    "official-fr": "République populaire du Bangladesh",
+    "usual-fr": "Bangladesh",
+    "usual-en": "Bangladesh",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BGR",
+    "official-fr": "République de Bulgarie",
+    "usual-fr": "Bulgarie",
+    "usual-en": "Bulgaria",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BHR",
+    "official-fr": "Royaume de Bahrein",
+    "usual-fr": "Bahrein",
+    "usual-en": "Bahrain",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BHS",
+    "official-fr": "Commonwealth des Bahamas",
+    "usual-fr": "Bahamas",
+    "usual-en": "Bahamas",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BIH",
+    "official-fr": "République de Bosnie-Herzégovine",
+    "usual-fr": "Bosnie-Herzégovine",
+    "usual-en": "Bosnia-Herzegovina",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BLR",
+    "official-fr": "République de Biélorussie",
+    "usual-fr": "Biélorussie",
+    "usual-en": "Belarus",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BLZ",
+    "official-fr": "Belize",
+    "usual-fr": "Belize",
+    "usual-en": "Belize",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BOL",
+    "official-fr": "République de Bolivie",
+    "usual-fr": "Bolivie",
+    "usual-en": "Bolivia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BRA",
+    "official-fr": "République fédérative du Brésil",
+    "usual-fr": "Brésil",
+    "usual-en": "Brazil",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BRB",
+    "official-fr": "La Barbade",
+    "usual-fr": "Barbade",
+    "usual-en": "Barbados",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BRN",
+    "official-fr": "Negara Brunei Darussalam",
+    "usual-fr": "Brunei",
+    "usual-en": "Brunei",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BTN",
+    "official-fr": "Royaume du Bhoutan",
+    "usual-fr": "Bhoutan",
+    "usual-en": "Cyprus",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BUR",
+    "official-fr": "Union de Birmanie",
+    "usual-fr": "Birmanie",
+    "usual-en": "Myanmar",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "BWA",
+    "official-fr": "République du Botswana",
+    "usual-fr": "Botswana",
+    "usual-en": "Botswana",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CAF",
+    "official-fr": "République centrafricaine",
+    "usual-fr": "République centrafricaine",
+    "usual-en": "Central African Republic",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CAN",
+    "official-fr": "Canada",
+    "usual-fr": "Canada",
+    "usual-en": "Canada",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CHE",
+    "official-fr": "Confédération suisse",
+    "usual-fr": "Suisse",
+    "usual-en": "Switzerland",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CHL",
+    "official-fr": "République du Chili",
+    "usual-fr": "Chili",
+    "usual-en": "Chile",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CHN",
+    "official-fr": "République populaire de Chine",
+    "usual-fr": "Chine",
+    "usual-en": "China",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CIV",
+    "official-fr": "République de Côte d'Ivoire",
+    "usual-fr": "Côte d'Ivoire",
+    "usual-en": "Côte d’Ivoire",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CMR",
+    "official-fr": "République du Cameroun",
+    "usual-fr": "Cameroun",
+    "usual-en": "Cameroon",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "COD",
+    "official-fr": "République démocratique du Congo",
+    "usual-fr": "République démocratique du Congo",
+    "usual-en": "Democratic Republic of the Congo",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "COG",
+    "official-fr": "République du Congo",
+    "usual-fr": "Congo",
+    "usual-en": "Congo",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "COK",
+    "official-fr": "Iles Cook",
+    "usual-fr": "Iles Cook",
+    "usual-en": "Cook Islands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "COL",
+    "official-fr": "République de Colombie",
+    "usual-fr": "Colombie",
+    "usual-en": "Colombia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "COM",
+    "official-fr": "Union des Comores",
+    "usual-fr": "Comores",
+    "usual-en": "Comoros Islands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CPV",
+    "official-fr": "République du Cap-Vert",
+    "usual-fr": "Cap-Vert",
+    "usual-en": "Cabo Verde",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CRI",
+    "official-fr": "République du Costa-Rica",
+    "usual-fr": "Costa Rica",
+    "usual-en": "Costa Rica",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "CUB",
+    "official-fr": "République de Cuba",
+    "usual-fr": "Cuba",
+    "usual-en": "Cuba",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "CYP",
+    "official-fr": "République de Chypre",
+    "usual-fr": "Chypre",
+    "usual-en": "Cyprus",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "CZE",
+    "official-fr": "République tchèque",
+    "usual-fr": "République tchèque",
+    "usual-en": "Czech Republic",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "DEU",
+    "official-fr": "République fédérale d'Allemagne",
+    "usual-fr": "Allemagne",
+    "usual-en": "Germany",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "DJI",
+    "official-fr": "République de Djibouti",
+    "usual-fr": "Djibouti",
+    "usual-en": "Djibouti",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "DMA",
+    "official-fr": "Commonwealth de Dominique",
+    "usual-fr": "Dominique",
+    "usual-en": "Dominica",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "DNK",
+    "official-fr": "Royaume du Danemark",
+    "usual-fr": "Danemark",
+    "usual-en": "Denmark",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "DOM",
+    "official-fr": "République dominicaine",
+    "usual-fr": "République dominicaine",
+    "usual-en": "Dominican Republic",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "DZA",
+    "official-fr": "République algérienne démocratique et populaire",
+    "usual-fr": "Algérie",
+    "usual-en": "Algeria",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ECU",
+    "official-fr": "République d'Equateur",
+    "usual-fr": "Equateur",
+    "usual-en": "Ecuador",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "EGY",
+    "official-fr": "République arabe d'Egypte",
+    "usual-fr": "Egypte",
+    "usual-en": "Egypt",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ERI",
+    "official-fr": "État d'Erythrée",
+    "usual-fr": "Erythrée",
+    "usual-en": "Eritrea",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ESP",
+    "official-fr": "Royaume d'Espagne",
+    "usual-fr": "Espagne",
+    "usual-en": "Spain",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "EST",
+    "official-fr": "République d'Estonie",
+    "usual-fr": "Estonie",
+    "usual-en": "Estonia",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ETH",
+    "official-fr": "République démocratique fédérale d'Ethiopie",
+    "usual-fr": "Ethiopie",
+    "usual-en": "Ethiopia",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "FIN",
+    "official-fr": "République de Finlande",
+    "usual-fr": "Finlande",
+    "usual-en": "Finland",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "FJI",
+    "official-fr": "République des Fidji",
+    "usual-fr": "Fidji",
+    "usual-en": "Fiji Islands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "FRA",
+    "official-fr": "République française",
+    "usual-fr": "France",
+    "usual-en": "France",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "FSM",
+    "official-fr": "États fédérés de Micronésie",
+    "usual-fr": "Micronésie",
+    "usual-en": "Federated States of Micronesia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GAB",
+    "official-fr": "République gabonaise",
+    "usual-fr": "Gabon",
+    "usual-en": "Gabon",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GBR",
+    "official-fr": "Royaume-Uni de Grande Bretagne et d' Irlande du Nord",
+    "usual-fr": "Royaume-Uni",
+    "usual-en": "United Kingdom",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GEO",
+    "official-fr": "Géorgie",
+    "usual-fr": "Géorgie",
+    "usual-en": "Georgia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GHA",
+    "official-fr": "République du Ghana",
+    "usual-fr": "Ghana",
+    "usual-en": "Ghana",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GIN",
+    "official-fr": "République de Guinée",
+    "usual-fr": "Guinée",
+    "usual-en": "Guinea",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GMB",
+    "official-fr": "République de Gambie",
+    "usual-fr": "Gambie",
+    "usual-en": "Gambia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GNB",
+    "official-fr": "République de Guinée-Bissao",
+    "usual-fr": "Guinée-Bissao",
+    "usual-en": "Guinea-Bissau",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GNQ",
+    "official-fr": "République de Guinée équatoriale",
+    "usual-fr": "Guinée équatoriale",
+    "usual-en": "Equatorial Guinea",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GRC",
+    "official-fr": "République hellénique",
+    "usual-fr": "Grèce",
+    "usual-en": "Greece",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GRD",
+    "official-fr": "Grenade",
+    "usual-fr": "Grenade",
+    "usual-en": "Grenada",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GTM",
+    "official-fr": "République du Guatemala",
+    "usual-fr": "Guatemala",
+    "usual-en": "Guatemala",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "GUY",
+    "official-fr": "République coopérative du Guyana",
+    "usual-fr": "Guyana",
+    "usual-en": "Guyana",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "HKG",
+    "official-fr": "Hong Kong",
+    "usual-fr": "Hong Kong",
+    "usual-en": "Hong Kong",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "HND",
+    "official-fr": "République du Honduras",
+    "usual-fr": "Honduras",
+    "usual-en": "Honduras",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "HRV",
+    "official-fr": "République de Croatie",
+    "usual-fr": "Croatie",
+    "usual-en": "Croatia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "HTI",
+    "official-fr": "République d'Haïti",
+    "usual-fr": "Haïti",
+    "usual-en": "Haiti",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "HUN",
+    "official-fr": "République de Hongrie",
+    "usual-fr": "Hongrie",
+    "usual-en": "Hungary",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "IDN",
+    "official-fr": "République d'Indonésie",
+    "usual-fr": "Indonésie",
+    "usual-en": "Indonesia",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "IND",
+    "official-fr": "République de l'Inde",
+    "usual-fr": "Inde",
+    "usual-en": "India",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "IRL",
+    "official-fr": "Irlande",
+    "usual-fr": "Irlande",
+    "usual-en": "Ireland",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "IRN",
+    "official-fr": "République islamique d'Iran",
+    "usual-fr": "Iran",
+    "usual-en": "Iran",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "IRQ",
+    "official-fr": "République d'Irak",
+    "usual-fr": "Irak",
+    "usual-en": "Iraq",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ISL",
+    "official-fr": "République d'Islande",
+    "usual-fr": "Islande",
+    "usual-en": "Iceland",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ISR",
+    "official-fr": "État d'Israël",
+    "usual-fr": "Israël",
+    "usual-en": "Israel",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "ITA",
+    "official-fr": "République italienne",
+    "usual-fr": "Italie",
+    "usual-en": "Italy",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "JAM",
+    "official-fr": "Jamaïque",
+    "usual-fr": "Jamaïque",
+    "usual-en": "Jamaica",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "JOR",
+    "official-fr": "Royaume hachémite de Jordanie",
+    "usual-fr": "Jordanie",
+    "usual-en": "Jordan",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "JPN",
+    "official-fr": "Japon",
+    "usual-fr": "Japon",
+    "usual-en": "Japan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KAZ",
+    "official-fr": "République du Kazakhstan",
+    "usual-fr": "Kazakhstan",
+    "usual-en": "Kazakhstan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KEN",
+    "official-fr": "République du Kenya",
+    "usual-fr": "Kenya",
+    "usual-en": "Kenya",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KGZ",
+    "official-fr": "République kirghize",
+    "usual-fr": "Kirghizstan",
+    "usual-en": "Kyrgyzstan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KHM",
+    "official-fr": "Royaume du Cambodge",
+    "usual-fr": "Cambodge",
+    "usual-en": "Cambodia",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KIR",
+    "official-fr": "République de Kiribati",
+    "usual-fr": "Kiribati",
+    "usual-en": "Kiribati Islands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KNA",
+    "official-fr": "Fédération de Saint-Christophe-et-Niévès",
+    "usual-fr": "Saint-Christophe-et-Niévès",
+    "usual-en": "Saint Kitts and Nevis",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "KOR",
+    "official-fr": "République de Corée",
+    "usual-fr": "Corée du Sud",
+    "usual-en": "South Korea",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "KWT",
+    "official-fr": "État du Koweït",
+    "usual-fr": "Koweït",
+    "usual-en": "Kuwait",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LAO",
+    "official-fr": "République démocratique populaire lao",
+    "usual-fr": "Laos",
+    "usual-en": "Laos",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LBN",
+    "official-fr": "République libanaise",
+    "usual-fr": "Liban",
+    "usual-en": "Lebanon",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LBR",
+    "official-fr": "République du Liberia",
+    "usual-fr": "Liberia",
+    "usual-en": "Liberia",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LBY",
+    "official-fr": "Grande Jamahiriya Arabe Libyenne Populaire Socialiste",
+    "usual-fr": "Libye",
+    "usual-en": "Libya",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LCA",
+    "official-fr": "Sainte-Lucie",
+    "usual-fr": "Sainte-Lucie",
+    "usual-en": "Saint Lucia",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "LIE",
+    "official-fr": "Principauté du Liechtenstein",
+    "usual-fr": "Liechtenstein",
+    "usual-en": "Liechtenstein",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LKA",
+    "official-fr": "République démocratique socialiste de Sri Lanka",
+    "usual-fr": "Sri Lanka",
+    "usual-en": "Sri Lanka",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LSO",
+    "official-fr": "Royaume du Lesotho",
+    "usual-fr": "Lesotho",
+    "usual-en": "Lesotho",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LTU",
+    "official-fr": "République de Lituanie",
+    "usual-fr": "Lituanie",
+    "usual-en": "Lithuania",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LUX",
+    "official-fr": "Grand Duché du Luxembourg",
+    "usual-fr": "Luxembourg",
+    "usual-en": "Luxembourg",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "LVA",
+    "official-fr": "République de Lettonie",
+    "usual-fr": "Lettonie",
+    "usual-en": "Latvia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MAR",
+    "official-fr": "Royaume du Maroc",
+    "usual-fr": "Maroc",
+    "usual-en": "Morocco",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MCO",
+    "official-fr": "Principauté de Monaco",
+    "usual-fr": "Monaco",
+    "usual-en": "Monaco",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "MDA",
+    "official-fr": "République de Moldavie",
+    "usual-fr": "Moldavie",
+    "usual-en": "Moldova",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MDG",
+    "official-fr": "République de Madagascar",
+    "usual-fr": "Madagascar",
+    "usual-en": "Madagascar",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "MDV",
+    "official-fr": "République des Maldives",
+    "usual-fr": "Maldives",
+    "usual-en": "Maldives",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MEX",
+    "official-fr": "États-Unis mexicains",
+    "usual-fr": "Mexique",
+    "usual-en": "Mexico",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MHL",
+    "official-fr": "République des Iles Marshall",
+    "usual-fr": "Marshall",
+    "usual-en": "Marshall Islands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MKD",
+    "official-fr": "République de Macédoine du Nord",
+    "usual-fr": "Macédoine du Nord",
+    "usual-en": "North Macedonia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MLI",
+    "official-fr": "République du Mali",
+    "usual-fr": "Mali",
+    "usual-en": "Mali",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MLT",
+    "official-fr": "République de Malte",
+    "usual-fr": "Malte",
+    "usual-en": "Malta Republic",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "MNG",
+    "official-fr": "Mongolie",
+    "usual-fr": "Mongolie",
+    "usual-en": "Mongolia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MOZ",
+    "official-fr": "République du Mozambique",
+    "usual-fr": "Mozambique",
+    "usual-en": "Mozambique",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MRT",
+    "official-fr": "République islamique de Mauritanie",
+    "usual-fr": "Mauritanie",
+    "usual-en": "Mauritania",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MTG",
+    "official-fr": "République du Monténégro",
+    "usual-fr": "Monténégro",
+    "usual-en": "Montenegro",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MUS",
+    "official-fr": "République de Maurice",
+    "usual-fr": "Maurice",
+    "usual-en": "Mauritius",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "MWI",
+    "official-fr": "République du Malawi",
+    "usual-fr": "Malawi",
+    "usual-en": "Malawi",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "MYS",
+    "official-fr": "Malaisie",
+    "usual-fr": "Malaisie",
+    "usual-en": "Malaysia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NAM",
+    "official-fr": "République de Namibie",
+    "usual-fr": "Namibie",
+    "usual-en": "Namibia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NER",
+    "official-fr": "République du Niger",
+    "usual-fr": "Niger",
+    "usual-en": "Niger",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NGA",
+    "official-fr": "République fédérale du Nigeria",
+    "usual-fr": "Nigeria",
+    "usual-en": "Nigeria",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NIC",
+    "official-fr": "République du Nicaragua",
+    "usual-fr": "Nicaragua",
+    "usual-en": "Nicaragua",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NIU",
+    "official-fr": "Niue",
+    "usual-fr": "Niue",
+    "usual-en": "Niue",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "NLD",
+    "official-fr": "Royaume des Pays-Bas",
+    "usual-fr": "Pays-Bas",
+    "usual-en": "Netherlands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NOR",
+    "official-fr": "Royaume de Norvège",
+    "usual-fr": "Norvège",
+    "usual-en": "Norway",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NPL",
+    "official-fr": "Népal",
+    "usual-fr": "Népal",
+    "usual-en": "Nepal",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "NRU",
+    "official-fr": "République de Nauru",
+    "usual-fr": "Nauru",
+    "usual-en": "Nauru",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "NZL",
+    "official-fr": "Nouvelle-Zélande",
+    "usual-fr": "Nouvelle-Zélande",
+    "usual-en": "New Zealand",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "OMN",
+    "official-fr": "Sultanat d'Oman",
+    "usual-fr": "Oman",
+    "usual-en": "Oman",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "PAK",
+    "official-fr": "République islamique du Pakistan",
+    "usual-fr": "Pakistan",
+    "usual-en": "Pakistan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PAN",
+    "official-fr": "République de Panama",
+    "usual-fr": "Panama",
+    "usual-en": "Panama",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PER",
+    "official-fr": "République du Pérou",
+    "usual-fr": "Pérou",
+    "usual-en": "Peru",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PHL",
+    "official-fr": "République des Philippines",
+    "usual-fr": "Philippines",
+    "usual-en": "Philippines",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PLW",
+    "official-fr": "République de Palau",
+    "usual-fr": "Palau",
+    "usual-en": "Palau",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "PNG",
+    "official-fr": "Papouasie-Nouvelle Guinée",
+    "usual-fr": "Papouasie-Nouvelle Guinée",
+    "usual-en": "Papua New Guinea",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "POL",
+    "official-fr": "République de Pologne",
+    "usual-fr": "Pologne",
+    "usual-en": "Poland",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PRK",
+    "official-fr": "Corée du Nord",
+    "usual-fr": "Corée du Nord",
+    "usual-en": "North Korea",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PRT",
+    "official-fr": "PRT POR République portugaise",
+    "usual-fr": "Portugal",
+    "usual-en": "Portugal",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "PRY",
+    "official-fr": "République du Paraguay",
+    "usual-fr": "Paraguay",
+    "usual-en": "Paraguay",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "QAT",
+    "official-fr": "État du Qatar",
+    "usual-fr": "Qatar",
+    "usual-en": "Qatar",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ROM",
+    "official-fr": "République de Roumanie",
+    "usual-fr": "Roumanie",
+    "usual-en": "Romania",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "RUS",
+    "official-fr": "Fédération de Russie",
+    "usual-fr": "Russie",
+    "usual-en": "Russia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "RWA",
+    "official-fr": "République rwandaise",
+    "usual-fr": "Rwanda",
+    "usual-en": "Rwanda",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SAU",
+    "official-fr": "Royaume d'Arabie saoudite",
+    "usual-fr": "Arabie saoudite",
+    "usual-en": "Saudi Arabia",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SCG",
+    "official-fr": "République de Serbie",
+    "usual-fr": "Serbie",
+    "usual-en": "Serbia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SDN",
+    "official-fr": "République du Soudan",
+    "usual-fr": "Soudan",
+    "usual-en": "Sudan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SEN",
+    "official-fr": "République du Sénégal",
+    "usual-fr": "Sénégal",
+    "usual-en": "Senegal",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SGP",
+    "official-fr": "République de Singapour",
+    "usual-fr": "Singapour",
+    "usual-en": "Singapore",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "SLB",
+    "official-fr": "Iles Salomon",
+    "usual-fr": "Salomon",
+    "usual-en": "Solomon Islands",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SLE",
+    "official-fr": "République de Sierra Leone",
+    "usual-fr": "Sierra Leone",
+    "usual-en": "Sierra Leone",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SLV",
+    "official-fr": "République du Salvador",
+    "usual-fr": "Salvador",
+    "usual-en": "El Salvador",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SMR",
+    "official-fr": "République de Saint-Marin",
+    "usual-fr": "Saint-Marin",
+    "usual-en": "San Marino",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "SOM",
+    "official-fr": "République de Somalie",
+    "usual-fr": "Somalie",
+    "usual-en": "Somalia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "STP",
+    "official-fr": "République démocratique de Sao Tomé-et-Principe",
+    "usual-fr": "Sao-Tomé-et-Principe",
+    "usual-en": "São Tomé and Príncipe",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "SUR",
+    "official-fr": "République du Suriname",
+    "usual-fr": "Suriname",
+    "usual-en": "Suriname",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SVK",
+    "official-fr": "République slovaque",
+    "usual-fr": "Slovaquie",
+    "usual-en": "Slovakia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SVN",
+    "official-fr": "République de Slovénie",
+    "usual-fr": "Slovénie",
+    "usual-en": "Slovenia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SWE",
+    "official-fr": "Royaume de Suède",
+    "usual-fr": "Suède",
+    "usual-en": "Sweden",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SWZ",
+    "official-fr": "Royaume du Swaziland",
+    "usual-fr": "Swaziland",
+    "usual-en": "Swaziland",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SYC",
+    "official-fr": "République des Seychelles",
+    "usual-fr": "Seychelles",
+    "usual-en": "Seychelles",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "SYR",
+    "official-fr": "République arabe syrienne",
+    "usual-fr": "Syrie",
+    "usual-en": "Syria",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TCD",
+    "official-fr": "République du Tchad",
+    "usual-fr": "Tchad",
+    "usual-en": "Chad",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TGO",
+    "official-fr": "République togolaise",
+    "usual-fr": "Togo",
+    "usual-en": "Togo",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "THA",
+    "official-fr": "Royaume de Thaïlande",
+    "usual-fr": "Thaïlande",
+    "usual-en": "Thailand",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TJK",
+    "official-fr": "République du Tadjikistan",
+    "usual-fr": "Tadjikistan",
+    "usual-en": "Tajikistan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TKM",
+    "official-fr": "Turkménistan",
+    "usual-fr": "Turkménistan",
+    "usual-en": "Turkmenistan",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TLS",
+    "official-fr": "République démocratique du Timor oriental",
+    "usual-fr": "Timor-Oriental",
+    "usual-en": "East Timor",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TON",
+    "official-fr": "Royaume des Tonga",
+    "usual-fr": "Tonga",
+    "usual-en": "Tonga",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TTO",
+    "official-fr": "République de Trinité et Tobago",
+    "usual-fr": "Trinité et Tobago",
+    "usual-en": "Trinidad and Tobago",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "TUN",
+    "official-fr": "République tunisienne",
+    "usual-fr": "Tunisie",
+    "usual-en": "Tunisia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TUR",
+    "official-fr": "République de Turquie",
+    "usual-fr": "Turquie",
+    "usual-en": "Turkey",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TUV",
+    "official-fr": "Tuvalu",
+    "usual-fr": "Tuvalu",
+    "usual-en": "Tuvalu",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "TWN",
+    "official-fr": "Taïwan",
+    "usual-fr": "Taïwan",
+    "usual-en": "Taiwan",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "TZA",
+    "official-fr": "République unie de Tanzanie",
+    "usual-fr": "Tanzanie",
+    "usual-en": "Tanzania",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "UGA",
+    "official-fr": "République d'Ouganda",
+    "usual-fr": "Ouganda",
+    "usual-en": "Uganda",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "UKR",
+    "official-fr": "Ukraine",
+    "usual-fr": "Ukraine",
+    "usual-en": "Ukraine",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "URY",
+    "official-fr": "République orientale d'Uruguay",
+    "usual-fr": "Uruguay",
+    "usual-en": "Uruguay",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "USA",
+    "official-fr": "États-Unis d'Amérique",
+    "usual-fr": "États-Unis",
+    "usual-en": "United States",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "UZB",
+    "official-fr": "République d'Ouzbékistan",
+    "usual-fr": "Ouzbékistan",
+    "usual-en": "Uzbekistan",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "VAT",
+    "official-fr": "État de la Cité du Vatican",
+    "usual-fr": "Saint-Siège",
+    "usual-en": "Vatican",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "VCT",
+    "official-fr": "Saint-Vincent-et-les-Grenadines",
+    "usual-fr": "Saint-Vincent-et-les-Grenadines",
+    "usual-en": "Saint Vincent and the Grenadines",
+    "article-fr": ""
+  },
+  {
+    "ISO-3166-1-alpha-3": "VEN",
+    "official-fr": "République bolivarienne du Vénézuela",
+    "usual-fr": "Vénézuela",
+    "usual-en": "Venezuela",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "VNM",
+    "official-fr": "République socialiste du Viêt Nam",
+    "usual-fr": "Vietnam",
+    "usual-en": "Vietnam",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "VUT",
+    "official-fr": "République du Vanuatu",
+    "usual-fr": "Vanuatu",
+    "usual-en": "Vanuatu",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "WSM",
+    "official-fr": "État indépendant des Samoa",
+    "usual-fr": "Samoa",
+    "usual-en": "Samoa",
+    "article-fr": "Les"
+  },
+  {
+    "ISO-3166-1-alpha-3": "YEM",
+    "official-fr": "République du Yémen",
+    "usual-fr": "Yémen",
+    "usual-en": "Yemen",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ZAF",
+    "official-fr": "République d'Afrique du Sud",
+    "usual-fr": "Afrique du Sud",
+    "usual-en": "South Africa",
+    "article-fr": "L'"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ZMB",
+    "official-fr": "République de Zambie",
+    "usual-fr": "Zambie",
+    "usual-en": "Zambia",
+    "article-fr": "La"
+  },
+  {
+    "ISO-3166-1-alpha-3": "ZWE",
+    "official-fr": "République du Zimbabwe",
+    "usual-fr": "Zimbabwe",
+    "usual-en": "Zimbabwe",
+    "article-fr": "Le"
+  },
+  {
+    "ISO-3166-1-alpha-3": "",
+    "official-fr": "Territoires palestiniens",
+    "usual-fr": "Territoires palestiniens",
+    "usual-en": "Palestinian Territories",
+    "article-fr": "Les"
+  }
+]
