@@ -40,6 +40,8 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
   } = data;
 
   const categoryName = transform.normalizeCategory(category.value);
+  const nationalityCode = transform.normalizeNationality(state.value, req.getLocale());
+
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${repository.sanitizeName(state.value)}.md`;
 
   try {
@@ -51,7 +53,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
           content: supporterFileTemplate({
             name: name.value,
             category: categoryName,
-            nationality: state.value,
+            nationality: nationalityCode,
             date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
           })
         });

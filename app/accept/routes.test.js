@@ -26,7 +26,7 @@ const validSupporterData = {
     },
     state: {
       title: 'Dans quel État votre organisation est-elle établie ?',
-      value: 'Lorem ipsum dolor'
+      value: 'France'
     },
     website: {
       title: 'Quel est le site web de votre organisation ?',
@@ -109,7 +109,7 @@ describe('GET /accept/supporter', function () {
 name: Lorem ipsum dolor
 category: state
 nature:
-nationality: Lorem ipsum dolor
+nationality: FRA
 alliance:
 date_signed: '2019-10-22'
 ---
