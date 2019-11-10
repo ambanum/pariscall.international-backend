@@ -111,7 +111,6 @@ name: Lorem ipsum dolor
 category: state
 nature:
 nationality: FRA
-alliance:
 date_signed: '2019-10-22'
 ---
 Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.
