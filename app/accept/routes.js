@@ -17,9 +17,10 @@ const notifyEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail
 const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/event.pug'));
 
 const CATEGORY_MATCHERS = {
-  'civil-society' : /civil/i,
-  'private-sector': /(privé|private)/i,
-  'state'         : /([éÉE]tat|State)/i,
+  'civil-society'   : /civil/i,
+  'private-sector'  : /(privé|private)/i,
+  'public-authority': /publi/i,
+  'state'           : /([éÉE]tat|State)/i,
 }
 
 
