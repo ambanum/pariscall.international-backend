@@ -42,7 +42,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
   const categoryName = transform.normalizeCategory(category.value);
   const nationalityCode = transform.normalizeNationality(state.value, req.getLocale());
 
-  const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${repository.sanitizeName(state.value)}.md`;
+  const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${nationalityCode}.md`;
 
   try {
     for (const folder of config.repository.supporterDestinationFolders) {

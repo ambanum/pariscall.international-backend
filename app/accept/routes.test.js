@@ -98,7 +98,7 @@ describe('GET /accept/supporter', function () {
     it('creates files on the right path', function () {
       config.repository.supporterDestinationFolders.forEach((folder, index) => {
         const args = repositoryStub.getCall(index).args[0];
-        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-state-lorem_ipsum_dolor.md`);
+        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-state-FRA.md`);
       });
     });
 
