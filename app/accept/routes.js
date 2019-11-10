@@ -9,19 +9,13 @@ const mailer = require('../mailer');
 const encoder = require('../encoder');
 const repository = require('../repository');
 const middlewares = require('../middlewares');
+const transform = require('../transform');
 
 const router = express.Router();
 const notifySupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/supporter.pug'));
 const supporterFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/supporter.pug'));
 const notifyEventEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/event.pug'));
 const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templates/event.pug'));
-
-const CATEGORY_MATCHERS = {
-  'civil-society'   : /civil/i,
-  'private-sector'  : /priv/i,
-  'public-authority': /publi/i,
-  'state'           : /([éÉE]tat|State)/i,
-}
 
 
 router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => {
@@ -45,7 +39,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     }
   } = data;
 
-  const categoryName = Object.keys(CATEGORY_MATCHERS).find(categoryName => CATEGORY_MATCHERS[categoryName].exec(category.value));
+  const categoryName = transform.normalizeCategory(category.value);
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${repository.sanitizeName(state.value)}.md`;
 
   try {
