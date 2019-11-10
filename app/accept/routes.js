@@ -18,7 +18,7 @@ const eventFileTemplate = pug.compileFile(path.resolve(__dirname, './file-templa
 
 const CATEGORY_MATCHERS = {
   'civil-society'   : /civil/i,
-  'private-sector'  : /(privé|private)/i,
+  'private-sector'  : /priv/i,
   'public-authority': /publi/i,
   'state'           : /([éÉE]tat|State)/i,
 }
