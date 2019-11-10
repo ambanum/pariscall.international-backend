@@ -2,7 +2,7 @@ const organizationName = 'Rosemann Junk e.V.';
 const requesterEmail = 'dehmelhans-josef@zahn.org';
 const typeformRequest = {
   headers: {
-    'Typeform-Signature': 'sha256=K4ImEDhJ/pY3wlLkvwgBz8zt2px4q5UihvtsdOaia7Q=',
+    'Typeform-Signature': 'sha256=0XKY1IDc0cDTC51V1q17SKsENOMyxxS/QAGp7QV9Rn8=',
     'Content-Type': 'application/json'
   },
   payload: {
@@ -49,7 +49,7 @@ const typeformRequest = {
             "id": "R0GFkhGlktel",
             "title": "Dans quel État votre organisation est-elle établie ?",
             "type": "short_text",
-            "ref": "state",
+            "ref": "nationality",
             "properties": {}
           },
           {
@@ -98,11 +98,11 @@ const typeformRequest = {
         },
         {
           "type": "text",
-          "text": "Lorem ipsum dolor",
+          "text": "France",
           "field": {
             "id": "R0GFkhGlktel",
             "type": "short_text",
-            "ref": "state"
+            "ref": "nationality"
           }
         },
         {

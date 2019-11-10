@@ -20,7 +20,7 @@ const validData = {
       title: 'Quel est le nom de votre organisation ?',
       value: 'Lorem ipsum dolor'
     },
-    state: {
+    nationality: {
       title: 'Dans quel État votre organisation est-elle établie ?',
       value: 'Lorem ipsum dolor'
     },

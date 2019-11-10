@@ -20,7 +20,7 @@ const dataWithAlphabet = {
       title: 'Quel est le nom de votre organisation ?',
       value: 'Гуманитарная ассоциация'
     },
-    state: {
+    nationality: {
       title: 'Dans quel État votre organisation est-elle établie ?',
       value: '中國'
     },
@@ -50,7 +50,7 @@ const data = {
       title: 'Quel est le nom de votre organisation ?',
       value: 'Lorem ipsum dolor'
     },
-    state: {
+    nationality: {
       title: 'Dans quel État votre organisation est-elle établie ?',
       value: 'Lorem ipsum dolor'
     },
@@ -80,7 +80,7 @@ const longData = {
       title: 'Quel est le nom de votre organisation ?',
       value: 'Non proin eu vestibulum blandit quis consequat magnis sit pretium per velit porttitor lacinia ipsum cursus auctor fermentum imperdiet viverra'
     },
-    state: {
+    nationality: {
       title: 'Dans quel État votre organisation est-elle établie ?',
       value: 'Non proin eu vestibulum blandit quis consequat magnis sit pretium per velit porttitor lacinia ipsum cursus auctor fermentum imperdiet viverra'
     },
