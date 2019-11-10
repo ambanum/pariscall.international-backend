@@ -1,17 +1,12 @@
-const supportedLanguages = ['en', 'fr'];
-
 module.exports = {
-  supportedLanguages,
+  supportedLanguages: ['en', 'fr'],
   repository: {
     // folder in the destination repository in which events files will be created
     eventDestinationFolder: '_events',
     // folder in the destination repository in which supporter files will be created
-    supporterDestinationFolders: supportedLanguages.map((lang) => `_supporters_${lang}`),
+    supporterDestinationFolder: '_supporters',
   },
   mailer: {
     nbDaysBeforeTokenExpiration: 7
-  },
-  frontend: {
-    supportedLanguages,
   },
 };

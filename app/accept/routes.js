@@ -45,20 +45,18 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${nationalityCode}.md`;
 
   try {
-    for (const folder of config.repository.supporterDestinationFolders) {
-      const path = `${folder}/${filename}`;
-        const response = await repository.createFile({
-          path: path,
-          commitMessage: `Add ${name.value} supporter`,
-          content: supporterFileTemplate({
-            name: name.value,
-            category: categoryName,
-            nationality: nationalityCode,
-            date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
-          })
-        });
-        console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
-    }
+    const path = `${config.repository.supporterDestinationFolder}/${filename}`;
+    const response = await repository.createFile({
+      path: path,
+      commitMessage: `Add ${name.value} supporter`,
+      content: supporterFileTemplate({
+        name: name.value,
+        category: categoryName,
+        nationality: nationalityCode,
+        date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
+      }),
+    });
+    console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
   } catch (error) {
     let title = 'Une erreur est survenue';
     let message;

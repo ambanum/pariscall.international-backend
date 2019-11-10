@@ -92,20 +92,17 @@ describe('GET /accept/supporter', function () {
     });
 
     it('creates the file on repository', function () {
-      expect(repositoryStub.calledTwice).to.be.true;
+      expect(repositoryStub.calledOnce).to.be.true;
     });
 
     it('creates files on the right path', function () {
-      config.repository.supporterDestinationFolders.forEach((folder, index) => {
-        const args = repositoryStub.getCall(index).args[0];
-        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-state-FRA.md`);
-      });
+      const args = repositoryStub.getCall(0).args[0];
+      expect(args.path).to.equal(`${config.repository.supporterDestinationFolder}/lorem_ipsum_dolor-state-FRA.md`);
     });
 
-    it('creates the right files content', function () {
-      config.repository.supporterDestinationFolders.forEach((_, index) => {
-        const args = repositoryStub.getCall(index).args[0];
-        expect(args.content).to.equal(`---
+    it('creates the right file content', function () {
+      const args = repositoryStub.getCall(0).args[0];
+      expect(args.content).to.equal(`---
 name: Lorem ipsum dolor
 category: state
 nature:
@@ -114,7 +111,6 @@ alliance:
 date_signed: '2019-10-22'
 ---
 `);
-      });
     });
 
     context('mail', function () {
