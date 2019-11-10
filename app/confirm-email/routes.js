@@ -17,7 +17,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     handleConfirmEmail(req, res, next, {
       mailTemplate: acceptSupporterEmailTemplate,
       linkUrl: `${config.frontend.api}/accept/supporter`,
-      mailSubject: 'ParisCall : nouveau signataire',
+      mailSubject: 'ParisCall : nouveau soutien',
       entity: 'supporter',
     });
   } catch (error) {
