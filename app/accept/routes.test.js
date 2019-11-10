@@ -39,6 +39,10 @@ const validSupporterData = {
     contact_email: {
       title: 'Quelle adresse email pouvons-nous utiliser pour tenir votre organisation informée des nouveautés liées à l’Appel de Paris ?',
       value: 'an_account@example.com'
+    },
+    introduction: {
+      title: "En un tweet (280 caractères), pourquoi avez-vous décidé de soutenir l'Appel de Paris ?",
+      value: 'Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.'
     }
   },
   date_signed: '2019-10-22T08:04:35.611Z'
@@ -110,6 +114,7 @@ nationality: FRA
 alliance:
 date_signed: '2019-10-22'
 ---
+Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.
 `);
     });
 

@@ -35,7 +35,8 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       name,
       category,
       nationality,
-      confirm_email
+      confirm_email,
+      introduction,
     }
   } = data;
 
@@ -53,6 +54,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
         name: name.value,
         category: categoryName,
         nationality: nationalityCode,
+        introduction: introduction.value,
         date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
       }),
     });
