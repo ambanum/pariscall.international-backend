@@ -35,7 +35,11 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       name,
       category,
       nationality,
-      confirm_email
+      confirm_email,
+      introduction,
+      website,
+      twitter,
+      linkedin,
     }
   } = data;
 
@@ -45,26 +49,28 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${nationalityCode}.md`;
 
   try {
-    for (const folder of config.repository.supporterDestinationFolders) {
-      const path = `${folder}/${filename}`;
-        const response = await repository.createFile({
-          path: path,
-          commitMessage: `Add ${name.value} supporter`,
-          content: supporterFileTemplate({
-            name: name.value,
-            category: categoryName,
-            nationality: nationalityCode,
-            date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
-          })
-        });
-        console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
-    }
+    const path = `${config.repository.supporterDestinationFolder}/${filename}`;
+    const response = await repository.createFile({
+      path: path,
+      commitMessage: `Add ${name.value} supporter`,
+      content: supporterFileTemplate({
+        name: name.value,
+        category: categoryName,
+        nationality: nationalityCode,
+        introduction: introduction.value,
+        website: website.value,
+        twitter: twitter.value,
+        linkedin: linkedin.value,
+        date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
+      }),
+    });
+    console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
   } catch (error) {
     let title = 'Une erreur est survenue';
     let message;
 
     if (error.status === 422 && error.message.includes('sha')) {
-      title = "Une erreur est survenue lors de l'ajout du signataire";
+      title = "Une erreur est survenue lors de l'ajout du soutien";
       message = `Il semblerait que "${name.value}" existe déjà.`;
     }
 
@@ -95,7 +101,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     console.log(`Notification email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`);
 
     res.render('index', {
-      title: `${name.value} correctement ajouté à la liste des signataires`
+      title: `${name.value} correctement ajouté à la liste des soutiens`
     });
   } catch (error) {
     console.error(error);

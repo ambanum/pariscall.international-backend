@@ -22,7 +22,7 @@ const validSupporterData = {
     },
     name: {
       title: 'Quel est le nom de votre organisation ?',
-      value: 'Lorem ipsum dolor'
+      value: 'Lorem ipsum " dolor'
     },
     nationality: {
       title: 'Dans quel État votre organisation est-elle établie ?',
@@ -30,7 +30,15 @@ const validSupporterData = {
     },
     website: {
       title: 'Quel est le site web de votre organisation ?',
-      value: 'http://example-url.com'
+      value: 'http://example-url.com?userId=20&test'
+    },
+    linkedin: {
+      title: 'La page LinkedIn de votre organisation',
+      value: 'http://linkedin.com/kjh123?userId=20&test'
+    },
+    twitter: {
+      title: 'Le compte Twitter de votre organisation',
+      value: '@cybersec'
     },
     confirm_email: {
       title: 'Quelle est l’adresse email d’une personne dirigeante de votre organisation auprès de laquelle confirmer la signature ?',
@@ -39,6 +47,10 @@ const validSupporterData = {
     contact_email: {
       title: 'Quelle adresse email pouvons-nous utiliser pour tenir votre organisation informée des nouveautés liées à l’Appel de Paris ?',
       value: 'an_account@example.com'
+    },
+    introduction: {
+      title: "En un tweet (280 caractères), pourquoi avez-vous décidé de soutenir l'Appel de Paris ?",
+      value: 'Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.'
     }
   },
   date_signed: '2019-10-22T08:04:35.611Z'
@@ -92,29 +104,28 @@ describe('GET /accept/supporter', function () {
     });
 
     it('creates the file on repository', function () {
-      expect(repositoryStub.calledTwice).to.be.true;
+      expect(repositoryStub.calledOnce).to.be.true;
     });
 
     it('creates files on the right path', function () {
-      config.repository.supporterDestinationFolders.forEach((folder, index) => {
-        const args = repositoryStub.getCall(index).args[0];
-        expect(args.path).to.equal(`${folder}/lorem_ipsum_dolor-state-FRA.md`);
-      });
+      const args = repositoryStub.getCall(0).args[0];
+      expect(args.path).to.equal(`${config.repository.supporterDestinationFolder}/lorem_ipsum_dolor-state-FRA.md`);
     });
 
-    it('creates the right files content', function () {
-      config.repository.supporterDestinationFolders.forEach((_, index) => {
-        const args = repositoryStub.getCall(index).args[0];
-        expect(args.content).to.equal(`---
-name: Lorem ipsum dolor
+    it('creates the right file content', function () {
+      const args = repositoryStub.getCall(0).args[0];
+      expect(args.content).to.equal(`---
+name: "Lorem ipsum \\" dolor"
 category: state
 nature:
 nationality: FRA
-alliance:
-date_signed: '2019-10-22'
+website: "http://example-url.com?userId=20&test"
+twitter: "@cybersec"
+linkedin: "http://linkedin.com/kjh123?userId=20&test"
+date_signed: 2019-10-22
 ---
+Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.
 `);
-      });
     });
 
     context('mail', function () {
