@@ -7,6 +7,15 @@ const CATEGORY_MATCHERS = {
   'state'           : /([éÉE]tat|State|national gov)/i,
 }
 
+const OPENNESS_LEVELS = {
+  BY_INVITATION_ONLY: 'by-invitation-only',
+  PUBLIC: 'public',
+}
+const OPENNESS_LEVEL_MATCHERS = {
+  [OPENNESS_LEVELS.BY_INVITATION_ONLY]: /invitation/i,
+  [OPENNESS_LEVELS.PUBLIC]            : /public/i,
+}
+
 function normalizeCategory(answer) {
   return Object.keys(CATEGORY_MATCHERS).find(categoryName => CATEGORY_MATCHERS[categoryName].exec(answer));
 }
@@ -17,7 +26,14 @@ function normalizeNationality(usualCountryName, lang) {
   return resultingEntry && resultingEntry['ISO-3166-1-alpha-3'];
 }
 
+function normalizeOpennessLevel(answer) {
+  const result = Object.keys(OPENNESS_LEVEL_MATCHERS).find(levelName => OPENNESS_LEVEL_MATCHERS[levelName].exec(answer));
+
+  return result || OPENNESS_LEVELS.PUBLIC;
+}
+
 module.exports = {
   normalizeCategory,
   normalizeNationality,
+  normalizeOpennessLevel,
 }

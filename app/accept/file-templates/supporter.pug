@@ -3,9 +3,9 @@
 | category: #{category}
 | nature:
 | nationality: #{nationality}
-| website: "!{website}"
+| website: "!{website.replace('"', '\\"')}"
 | twitter: "#{twitter}"
-| linkedin: "!{linkedin}"
+| linkedin: "!{linkedin.replace('"', '\\"')}"
 | date_signed: #{date_signed}
 | ---
 | #{introduction}

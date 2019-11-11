@@ -52,4 +52,25 @@ describe('Transformation of form data', () => {
       });
     });
   });
+
+  describe('#normalizeOpennessLevel', () => {
+    const ANSWERS_TO_OPENNESS_LEVEL = {
+      'sur invitation seulement': 'by-invitation-only',
+      'by invitation only': 'by-invitation-only',
+      'ouvert au public': 'public',
+      'open to the public': 'public',
+    };
+
+    Object.keys(ANSWERS_TO_OPENNESS_LEVEL).forEach(answer => {
+      it(`gives the proper openness level for "${answer}"`, () => {
+        expect(transform.normalizeOpennessLevel(answer)).to.equal(ANSWERS_TO_OPENNESS_LEVEL[answer]);
+      });
+    });
+
+    context('with unkonwn answer', () => {
+      it('defaults to public openness level', () => {
+        expect(transform.normalizeOpennessLevel('this answer does not exists')).to.equal('public');
+      });
+    });
+  });
 });

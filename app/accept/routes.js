@@ -60,9 +60,9 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
         category: categoryName,
         nationality: nationalityCode,
         introduction: introduction.value,
-        website: website.value,
+        website: website.value || '',
         twitter: twitter.value,
-        linkedin: linkedin.value,
+        linkedin: linkedin.value || '',
         date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
       }),
     });
@@ -149,7 +149,9 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       start_date,
       end_date,
       description,
-      confirm_email
+      confirm_email,
+      hashtag,
+      openness_level,
     }
   } = data;
 
@@ -178,12 +180,14 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       commitMessage: `Add ${name.value} event`,
       content: eventFileTemplate({
         name: name.value,
-        address: address && address.value,
-        link: link && link.value,
+        address: address && address.value || '',
+        link: link && link.value || '',
         link_title: linkTitle,
         start_date: start_date.value,
         end_date: end_date ? end_date.value : start_date.value,
         description: description && description.value,
+        hashtag: hashtag && hashtag.value,
+        openness_level: openness_level && transform.normalizeOpennessLevel(openness_level.value),
       }),
     });
     console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
