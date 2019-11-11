@@ -10,6 +10,7 @@ const encoder = require('../encoder');
 const repository = require('../repository');
 const middlewares = require('../middlewares');
 const transform = require('../transform');
+const crm = require('../crm');
 
 const router = express.Router();
 const notifySupporterEmailTemplate = pug.compileFile(path.resolve(__dirname, './mail-templates/supporter.pug'));
@@ -40,11 +41,12 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       website,
       twitter,
       linkedin,
-    }
+    },
+    lang
   } = data;
 
   const categoryName = transform.normalizeCategory(category.value);
-  const nationalityCode = transform.normalizeNationality(nationality.value, req.getLocale());
+  const nationalityCode = transform.normalizeNationality(nationality.value, lang);
 
   const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${nationalityCode}.md`;
 
@@ -82,6 +84,24 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
     });
   }
 
+  crm.createOrUpdateExecutiveContact(confirm_email.value, {
+    approved: true,
+  }).catch(error => {
+    console.error(error);
+    mailer.sendAsBot({
+      to: {
+        email: config.mailer.approver.email,
+        name: config.mailer.approver.name,
+      },
+      subject: "Erreur de mise à jour du contact",
+      content: `Le contact ${confirm_email.value} n'a pas pu être mis à jour dans la base de contacts de SendInBlue.
+
+Cette erreur est indépendante de l'approbation du soutien qui à bien été effectuée.
+La raison la plus probable est une indisponibilité temporaire de l'API de SendInBlue. Afin de maintenir une base de données à jour, il faudra modifier la visibilité du soutien dans la base de données en changeant la valeur de 'PUBLIQUEMENT_VISIBLE' à 'Yes'.
+`,
+    });
+  });
+
   try {
     const {
       messageId
@@ -94,7 +114,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
       content: notifySupporterEmailTemplate({
         data,
         __: res.__,
-        introUrl: `${config.frontend.website}/${req.getLocale()}/supporters`
+        introUrl: `${config.frontend.website}/${lang}/supporters`
       })
     });
 
