@@ -279,7 +279,7 @@ describe('GET /accept/event', function () {
     it('creates files on the right path', function () {
       const folder = config.repository.eventDestinationFolder;
       const args = repositoryStub.getCall(0).args[0];
-      expect(args.path).to.equal(`${folder}/2019-11-20-cyber_pets_gathering-52af4cc.md`);
+      expect(args.path).to.equal(`${folder}/cyber_pets_gathering-2019-11-20-52af4cc.md`);
     });
 
     it('creates the right files content', function () {
