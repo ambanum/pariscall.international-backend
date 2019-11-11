@@ -196,7 +196,7 @@ const validEventData = {
       title: 'Date de début',
       value: '2019-11-20'
     },
-    type: {
+    openness_level: {
       title: "L'évènement est :",
       value: 'ouvert au public'
     },
@@ -285,15 +285,14 @@ describe('GET /accept/event', function () {
     it('creates the right files content', function () {
       const args = repositoryStub.getCall(0).args[0];
       expect(args.content).to.equal(`---
-name: Cyber Pets Gathering
-address: Grande Halle de la Villette, Paris
-city:
-country:
-link: https://cyberpets.gathering
-link_title: https://cyberpets.gathering
-start_date: '2019-11-20'
-end_date: '2019-11-20'
-time:
+name: "Cyber Pets Gathering"
+address: "Grande Halle de la Villette, Paris"
+link: "https://cyberpets.gathering"
+link_title: "https://cyberpets.gathering"
+start_date: 2019-11-20
+end_date: 2019-11-20
+hashtag: "#CyberPets"
+openness_level: public
 ---
 Why do we always focus on humans? All species are impacted by cybersecurity. This gathering aims at helping them all!
 `);

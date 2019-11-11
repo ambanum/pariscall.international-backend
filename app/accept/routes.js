@@ -149,7 +149,9 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
       start_date,
       end_date,
       description,
-      confirm_email
+      confirm_email,
+      hashtag,
+      openness_level,
     }
   } = data;
 
@@ -184,6 +186,8 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
         start_date: start_date.value,
         end_date: end_date ? end_date.value : start_date.value,
         description: description && description.value,
+        hashtag: hashtag && hashtag.value,
+        openness_level: openness_level && transform.normalizeOpennessLevel(openness_level.value),
       }),
     });
     console.log(`File ${path} properly created: ${response.data && response.data.content.html_url}`);
