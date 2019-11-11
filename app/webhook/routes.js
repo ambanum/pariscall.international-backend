@@ -66,7 +66,7 @@ async function handleWebhook(req, res, next, options) {
     } = await mailer.sendAsAdministrator({
       to: {
         email: data.formResponse.confirm_email.value,
-        name: (data.formResponse.name || data.formResponse.nationality).value,
+        name: res.__('parisCallSupporter'),
       },
       subject: options.mailSubject,
       content: mailContent,

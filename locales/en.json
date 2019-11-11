@@ -33,5 +33,6 @@
   "clickOnLink": "If everything is correct, confirm your request by clicking the link below within seven days:",
   "linkDoesNotWork": "If the link does not work, copy the following address into your browser address bar: <code>%s</code>",
   "mailSignature": "The Paris Call team",
-  "cancel": "If this request does not come from you, you don’t have anything to do. This data will not be stored if you don’t confirm the request. If you want to correct some pieces of information, please create a <a href=\"%s\">new request</a>."
+  "cancel": "If this request does not come from you, you don’t have anything to do. This data will not be stored if you don’t confirm the request. If you want to correct some pieces of information, please create a <a href=\"%s\">new request</a>.",
+  "parisCallSupporter": "Paris Call supporter"
 }

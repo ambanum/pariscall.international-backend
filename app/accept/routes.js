@@ -109,7 +109,7 @@ La raison la plus probable est une indisponibilité temporaire de l'API de SendI
     } = await mailer.sendAsAdministrator({
       to: {
         email: confirm_email.value,
-        name: organisationName,
+        name: res.__('parisCallSupporter'),
       },
       subject: res.__('supporter.notifyEmail.subject'),
       content: notifySupporterEmailTemplate({
@@ -217,7 +217,7 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
     } = await mailer.sendAsAdministrator({
       to: {
         email: confirm_email.value,
-        name: name.value,
+        name: res.__('parisCallSupporter'),
       },
       subject: res.__('event.notifyEmail.subject', name.value),
       content: notifyEventEmailTemplate({
