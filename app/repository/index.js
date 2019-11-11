@@ -5,7 +5,7 @@ const changeCase = require('change-case');
 const diacritics = require('diacritics');
 
 const octokit = require("@octokit/rest")({
-  auth: process.env.GITHUB_USER_KEY,
+  auth: process.env.GITHUB_TOKEN,
 });
 
 function createFile({ path, commitMessage, content }) {
