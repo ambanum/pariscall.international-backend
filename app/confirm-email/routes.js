@@ -111,7 +111,7 @@ function saveSupporterContact(data) {
 
   const contactData = {
     category: config.crm.categoriesIds[categoryName],
-    name: name.value,
+    name: name && name.value,
     twitter: twitter && twitter.value,
     linkedin: linkedin && linkedin.value,
     website: website && website.value,
@@ -139,7 +139,7 @@ La raison la plus probable est une indisponibilité temporaire de l'API de SendI
     });
   });
 
-  if (contact_email.value) {
+  if (contact_email && contact_email.value) {
     crm.createOrUpdateNewsletterContact(contact_email.value, contactData).catch(error => {
       console.error(error);
       mailer.sendAsBot({

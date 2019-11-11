@@ -48,22 +48,22 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
 
   const categoryName = transform.normalizeCategory(category.value);
   const nationalityCode = transform.normalizeNationality(nationality.value, lang);
-
-  const filename = `${repository.sanitizeName(name.value)}-${categoryName}-${nationalityCode}.md`;
+  const organisationName = (name || nationality).value;
+  const filename = `${repository.sanitizeName(organisationName)}-${categoryName}-${nationalityCode}.md`;
 
   try {
     const path = `${config.repository.supporterDestinationFolder}/${filename}`;
     const response = await repository.createFile({
       path: path,
-      commitMessage: `Add ${name.value} supporter`,
+      commitMessage: `Add ${organisationName} supporter`,
       content: supporterFileTemplate({
-        name: name.value,
+        name: organisationName,
         category: categoryName,
         nationality: nationalityCode,
-        introduction: introduction.value,
-        website: website.value || '',
-        twitter: twitter.value,
-        linkedin: linkedin.value || '',
+        introduction: introduction && introduction.value,
+        website: website && website.value || '',
+        twitter: twitter && twitter.value,
+        linkedin: linkedin && linkedin.value || '',
         date_signed: new Date(data.date_signed).toISOString().slice(0, 10),
       }),
     });
@@ -74,7 +74,7 @@ router.get('/supporter', middlewares.tokenValidation, async (req, res, next) => 
 
     if (error.status === 422 && error.message.includes('sha')) {
       title = "Une erreur est survenue lors de l'ajout du soutien";
-      message = `Il semblerait que "${name.value}" existe déjà.`;
+      message = `Il semblerait que "${organisationName}" existe déjà.`;
     }
 
     console.error(error);
@@ -109,7 +109,7 @@ La raison la plus probable est une indisponibilité temporaire de l'API de SendI
     } = await mailer.sendAsAdministrator({
       to: {
         email: confirm_email.value,
-        name: name.value,
+        name: organisationName,
       },
       subject: res.__('supporter.notifyEmail.subject'),
       content: notifySupporterEmailTemplate({
@@ -122,7 +122,7 @@ La raison la plus probable est une indisponibilité temporaire de l'API de SendI
     console.log(`Notification email sent. See details by logging into SendInBlue logs and searching for message id: "${messageId}"`);
 
     res.render('index', {
-      title: `${name.value} correctement ajouté à la liste des soutiens`
+      title: `${organisationName} correctement ajouté à la liste des soutiens`
     });
   } catch (error) {
     console.error(error);
