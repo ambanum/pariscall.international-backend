@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const pug = require('pug');
 const parseDomain = require('parse-domain');
+const crypto = require('crypto');
 
 const mailer = require('../mailer');
 const encoder = require('../encoder');
@@ -155,7 +156,9 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
     }
   } = data;
 
-  const filename = `${repository.sanitizeName(name.value)}.md`;
+  const date = new Date (start_date.value).toISOString().slice(0, 10);
+  const addressChecksum = crypto.createHash('sha256').update(address.value).digest("hex").slice(0, 7);
+  const filename = `${date}-${repository.sanitizeName(name.value)}-${addressChecksum}.md`;
   const path = `${config.repository.eventDestinationFolder}/${filename}`;
 
   let linkTitle = link && link.value;
