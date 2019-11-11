@@ -6,7 +6,7 @@ module.exports = {
   mailer: {
     approver: {
       name: 'Paris Call Approver',
-      email: 'matti.schneider@diplomatie.gouv.fr',
+      email: 'paris.call@diplomatie.gouv.fr',
     },
     administrator: {
       name: 'Paris Call Team',
