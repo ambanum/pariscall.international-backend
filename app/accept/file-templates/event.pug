@@ -1,7 +1,7 @@
 | ---
-| name: "#{name}"
-| address: "!{address}"
-| link: "!{link}"
+| name: "!{name.replace('"', '\\"')}"
+| address: "!{address.replace('"', '\\"')}"
+| link: "!{link.replace('"', '\\"')}"
 | link_title: "#{link_title}"
 | start_date: #{start_date}
 | end_date: #{end_date}
