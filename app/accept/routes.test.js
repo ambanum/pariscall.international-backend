@@ -53,6 +53,7 @@ const validSupporterData = {
       value: 'Dictumst fusce etiam natoque primis maecenas conubia sit interdum dignissim velit, consectetur malesuada torquent integer non accumsan augue porta vehicula, ipsum id lectus a volutpat feugiat aliquam habitant bibendum massa, proin mattis sem tortor diam lacinia pretium platea.'
     }
   },
+  lang: 'fr',
   date_signed: '2019-10-22T08:04:35.611Z'
 };
 
