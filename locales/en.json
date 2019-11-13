@@ -25,7 +25,7 @@
     "notifyEmail": {
       "subject": "[Paris Call] Your support is public",
       "title": "Your support is publicly visible",
-      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support will be <a href=\"https://pariscall.international/en/supporters\">publicly visible</a> in few minutes.",
+      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support will be <a href=\"https://pariscall.international/en/supporters\">publicly visible</a> in a few minutes.",
       "followup": "We will send only information specifically related to your support to this address. Updates on the Paris Call will be sent regularly to the contact address you specified when you stated your support."
     }
   },
