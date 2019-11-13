@@ -1,39 +1,39 @@
 {
-	"event": {
-		"confirmEmail": {
-			"subject": "[Appel de Paris] Confirmer votre événement",
-			"title": "Vous avez suggéré un événement pour l’Appel de Paris",
-			"intro": "Avant tout, merci de votre intérêt pour la cybersécurité.<br/>Une personne, certainement vous ou une personne de votre équipe, a rempli notre formulaire de <a href=\"%s\">proposition d’événement</a> pour le site de l'Appel de Paris pour la confiance et la sécurité dans le cyberespace. Avant d’envoyer cette suggestion, nous voulons nous assurer qu’elle provient bien de votre organisation.",
-			"verifyButton": "Proposer cet événement",
-			"details": "Une fois confirmé, votre événement sera examiné avant d’être rendu public. Vous recevrez une notification dès que votre événement sera rendu <a href=\"%s\">public</a>."
-		},
-		"notifyEmail": {
-			"subject": "[Appel de Paris] Votre événement est public",
-			"title": "Votre événement est publiquement visible",
-			"intro": "Vous avez récemment suggéré l’événement « %s » pour le site de l’Appel de Paris pour la confiance et la sécurité dans le cyberespace. Nous avons le plaisir de vous informer que votre événement est désormais <a href=\"%s\">publiquement visible</a>. Merci de votre contribution !",
-			"followup": "Si vous devez le modifier, merci de répondre à ce courriel."
-		}
-	},
-	"supporter": {
-		"confirmEmail": {
-			"subject": "[Appel de Paris] Confirmer votre soutien",
-			"title": "Vous avez exprimé un soutien à l'Appel de Paris",
-			"intro": "Avant tout, merci de votre intérêt pour la cybersécurité.<br/>Une personne, certainement vous ou une personne de votre équipe, a rempli notre <a href=\"%s\">formulaire de soutien</a> à l'Appel de Paris pour la confiance et la sécurité dans le cyberespace. Avant d’envoyer cette demande, nous voulons nous assurer qu’elle provient bien de votre organisation.",
-			"verifyButton": "Confirmer votre soutien",
-			"details": "Une fois confirmé, votre soutien est effectif. Vous n’avez rien d’autre à faire. Il sera examiné avant d’être rendu public. Vous recevrez une notification dès que votre soutien sera <a href=\"%s\">publiquement visible</a>."
-		},
-		"notifyEmail": {
-			"subject": "[Appel de Paris] Votre soutien est public",
-			"title": "Votre soutien est publiquement visible",
-			"intro": "Vous avez récemment exprimé votre soutien à l’Appel de Paris pour la confiance et la sécurité dans le cyberespace. Nous avons le plaisir de vous informer que votre soutien est désormais <a href=\"%s\">publiquement visible</a>.",
-			"followup": "Nous n’enverrons que des informations liées spécifiquement à votre soutien à cette adresse. Les actualités de l’Appel de Paris seront envoyées régulièrement à l’adresse de contact que vous avez spécifiée lors de votre déclaration de soutien."
-		}
-	},
-	"review": "Veuillez relire attentivement les informations ci-dessous :",
-	"clickOnLink": "Si tout est correct, confirmez votre demande en cliquant sur le lien ci-dessous dans les sept jours :",
-	"linkDoesNotWork": "Si le lien ne fonctionne pas, copiez le lien suivant dans la barre d'adresse de votre navigateur : <code>%s</code>",
-	"mailSignature": "L'équipe de l'Appel de Paris",
-	"cancel": "Si vous n’êtes pas à l'origine de cette demande, vous n’avez rien à faire. Ces données ne seront pas enregistrées si vous ne confirmez pas la demande. Si vous souhaitez modifier des éléments, effectuez une <a href=\"%s\">nouvelle demande</a>.",
-	"parisCallSupporter": "Soutien de l'Appel de Paris",
-	"parisCallSupportersubject": "parisCallSupportersubject"
+  "event": {
+    "confirmEmail": {
+      "subject": "[Appel de Paris] Confirmer votre événement",
+      "title": "Vous avez suggéré un événement pour l’Appel de Paris",
+      "intro": "Avant tout, merci de votre intérêt pour la cybersécurité.<br/>Une personne, certainement vous ou une personne de votre équipe, a rempli notre formulaire de <a href=\"https://pariscall.international/fr/#events\">proposition d’événement</a> pour le site de l'Appel de Paris pour la confiance et la sécurité dans le cyberespace. Avant d’envoyer cette suggestion, nous voulons nous assurer qu’elle provient bien de votre organisation.",
+      "verifyButton": "Proposer cet événement",
+      "details": "Une fois confirmé, votre événement sera examiné avant d’être rendu public. Vous recevrez une notification dès que votre événement sera rendu public sur <a href=\"https://pariscall.international/\">pariscall.international</a>."
+    },
+    "notifyEmail": {
+      "subject": "[Appel de Paris] Votre événement est public",
+      "title": "Votre événement est publiquement visible",
+      "intro": "Vous avez récemment suggéré l’événement « %s » pour le site de l’Appel de Paris pour la confiance et la sécurité dans le cyberespace. Nous avons le plaisir de vous informer que votre événement sera publiquement visible dans quelques minutes sur <a href=\"https://pariscall.international/\">pariscall.international</a>. Merci de votre contribution !",
+      "followup": "Si vous devez le modifier, merci de répondre à ce courriel."
+    }
+  },
+  "supporter": {
+    "confirmEmail": {
+      "subject": "[Appel de Paris] Confirmer votre soutien",
+      "title": "Vous avez exprimé un soutien à l'Appel de Paris",
+      "intro": "Avant tout, merci de votre intérêt pour la cybersécurité.<br/>Une personne, certainement vous ou une personne de votre équipe, a rempli notre <a href=\"https://pariscall.international/fr/support\">formulaire de soutien</a> à l'Appel de Paris pour la confiance et la sécurité dans le cyberespace. Avant d’envoyer cette demande, nous voulons nous assurer qu’elle provient bien de votre organisation.",
+      "verifyButton": "Confirmer votre soutien",
+      "details": "Une fois confirmé, votre soutien est effectif. Vous n’avez rien d’autre à faire. Il sera examiné avant d’être rendu public. Vous recevrez une notification dès que votre soutien sera <a href=\"https://pariscall.international/fr/supporters\">publiquement visible</a>."
+    },
+    "notifyEmail": {
+      "subject": "[Appel de Paris] Votre soutien est public",
+      "title": "Votre soutien est publiquement visible",
+      "intro": "Vous avez récemment exprimé votre soutien à l’Appel de Paris pour la confiance et la sécurité dans le cyberespace. Nous avons le plaisir de vous informer que votre soutien sera <a href=\"https://pariscall.international/fr/supporters\">publiquement visible</a> dans quelques minutes.",
+      "followup": "Nous n’enverrons que des informations liées spécifiquement à votre soutien à cette adresse. Les actualités de l’Appel de Paris seront envoyées régulièrement à l’adresse de contact que vous avez spécifiée lors de votre déclaration de soutien."
+    }
+  },
+  "review": "Veuillez relire attentivement les informations ci-dessous :",
+  "clickOnLink": "Si tout est correct, confirmez votre demande en cliquant sur le lien ci-dessous dans les sept jours :",
+  "linkDoesNotWork": "Si le lien ne fonctionne pas, copiez le lien suivant dans la barre d'adresse de votre navigateur : <code>%s</code>",
+  "mailSignature": "L'équipe de l'Appel de Paris",
+  "cancel": "Si vous n’êtes pas à l'origine de cette demande, vous n’avez rien à faire. Ces données ne seront pas enregistrées si vous ne confirmez pas la demande. Si vous souhaitez modifier des éléments, effectuez une <a href=\"%s\">nouvelle demande</a>.",
+  "parisCallSupporter": "Soutien de l'Appel de Paris",
+  "parisCallSupportersubject": "parisCallSupportersubject"
 }

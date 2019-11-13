@@ -115,7 +115,6 @@ La raison la plus probable est une indisponibilité temporaire de l'API de SendI
       content: notifySupporterEmailTemplate({
         data,
         __: res.__,
-        introUrl: `${config.frontend.website}/${lang}/supporters`
       })
     });
 

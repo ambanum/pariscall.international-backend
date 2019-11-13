@@ -55,9 +55,7 @@ async function handleWebhook(req, res, next, options) {
     linkUrl,
     data,
     __: res.__,
-    introUrl: `${config.frontend.website}/${req.getLocale()}/${options.urlSuffix}`,
     cancelUrl: `${config.frontend.website}/${req.getLocale()}/${options.urlSuffix}`,
-    detailsUrl: `${config.frontend.website}/${req.getLocale()}/supporters`,
   });
 
   try {
