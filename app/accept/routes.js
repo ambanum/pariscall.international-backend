@@ -158,7 +158,7 @@ router.get('/event', middlewares.tokenValidation, async (req, res, next) => {
 
   const date = new Date (start_date.value).toISOString().slice(0, 10);
   const addressChecksum = crypto.createHash('sha256').update(address.value).digest("hex").slice(0, 7);
-  const filename = `${repository.sanitizeName(name.value)}-${date}-${addressChecksum}.md`;
+  const filename = `${repository.sanitizeName(name.value).slice(0, 70)}-${date}-${addressChecksum}.md`;
   const path = `${config.repository.eventDestinationFolder}/${filename}`;
 
   let linkTitle = link && link.value;

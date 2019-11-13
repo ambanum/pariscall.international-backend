@@ -190,7 +190,7 @@ const validEventData = {
   formResponse: {
     name: {
       title: "Nom de l'événement",
-      value: 'Cyber Pets Gathering'
+      value: 'Cybersecurity, Human Rights, and the Prospects for Cyber Peace - A Joint Research & Policy Workshop'
     },
     start_date: {
       title: 'Date de début',
@@ -279,13 +279,13 @@ describe('GET /accept/event', function () {
     it('creates files on the right path', function () {
       const folder = config.repository.eventDestinationFolder;
       const args = repositoryStub.getCall(0).args[0];
-      expect(args.path).to.equal(`${folder}/cyber_pets_gathering-2019-11-20-52af4cc.md`);
+      expect(args.path).to.equal(`${folder}/cybersecurity_human_rights_and_the_prospects_for_cyber_peace_a_joint_r-2019-11-20-52af4cc.md`);
     });
 
     it('creates the right files content', function () {
       const args = repositoryStub.getCall(0).args[0];
       expect(args.content).to.equal(`---
-name: "Cyber Pets Gathering"
+name: "Cybersecurity, Human Rights, and the Prospects for Cyber Peace - A Joint Research & Policy Workshop"
 address: "Grande Halle de la Villette, Paris"
 link: "https://cyberpets.gathering"
 link_title: "https://cyberpets.gathering"
