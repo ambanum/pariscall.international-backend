@@ -9,7 +9,7 @@
 		},
 		"notifyEmail": {
 			"subject": "[Appel de Paris] Votre événement est public",
-			"title": "Votre événement sera très bientôt publiquement visible",
+			"title": "Votre événement est publiquement visible",
 			"intro": "Vous avez récemment suggéré l’événement « %s » pour le site de l’Appel de Paris pour la confiance et la sécurité dans le cyberespace. Nous avons le plaisir de vous informer que votre événement sera publiquement visible dans quelques minutes sur <a href=\"https://pariscall.international/\">pariscall.international</a>. Merci de votre contribution !",
 			"followup": "Si vous devez le modifier, merci de répondre à ce courriel."
 		}
@@ -24,7 +24,7 @@
 		},
 		"notifyEmail": {
 			"subject": "[Appel de Paris] Votre soutien est public",
-			"title": "Votre soutien sera très bientôt publiquement visible",
+			"title": "Votre soutien est publiquement visible",
 			"intro": "Vous avez récemment exprimé votre soutien à l’Appel de Paris pour la confiance et la sécurité dans le cyberespace. Nous avons le plaisir de vous informer que votre soutien sera <a href=\"%s\">publiquement visible</a> dans quelques minutes.",
 			"followup": "Nous n’enverrons que des informations liées spécifiquement à votre soutien à cette adresse. Les actualités de l’Appel de Paris seront envoyées régulièrement à l’adresse de contact que vous avez spécifiée lors de votre déclaration de soutien."
 		}
