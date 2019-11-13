@@ -1,7 +1,7 @@
 module.exports = {
   repository: {
     owner: 'AmbaNum',
-    name: 'ParisCall',
+    name: 'pariscall.international',
   },
   mailer: {
     approver: {
