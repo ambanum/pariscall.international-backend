@@ -5,12 +5,12 @@
       "title": "You suggested an event to the Paris Call",
       "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"%s\">event suggestion form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
       "verifyButton": "Suggest this event",
-      "details": "Once confirmed, your event will be reviewed before being made public. You will be notified once your event is <a href=\"%s\">publicly visible</a>."
+      "details": "Once confirmed, your event will be reviewed before being made public. You will be notified once your event is publicly visible on <a href=\"https://pariscall.international/\">pariscall.international</a>."
     },
     "notifyEmail": {
       "subject": "[Paris Call] Your event is public",
-      "title": "Your event is publicly visible",
-      "intro": "You recently suggested the event “%s” to the Paris Call for trust and security in cyberspace. We are happy to inform you that this event is now <a href=\"%s\">publicly visible</a>.  Thank you for your contribution!",
+      "title": "Your event will be publicly visible very soon",
+      "intro": "You recently suggested the event “%s” to the Paris Call for trust and security in cyberspace. We are happy to inform you that this event will be publicly visible in few minutes on <a href=\"https://pariscall.international/\">pariscall.international</a>. Thank you for your contribution!",
       "followup": "If you need to edit this event, please reply to this email."
     }
   },
@@ -24,8 +24,8 @@
     },
     "notifyEmail": {
       "subject": "[Paris Call] Your support is public",
-      "title": "Your support is publicly visible",
-      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support is now <a href=\"%s\">publicly visible</a>.",
+      "title": "Your support will be publicly visible very soon",
+      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support will be <a href=\"%s\">publicly visible</a> in few minutes.",
       "followup": "We will send only information specifically related to your support to this address. Updates on the Paris Call will be sent regularly to the contact address you specified when you stated your support."
     }
   },
