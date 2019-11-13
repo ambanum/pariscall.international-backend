@@ -3,7 +3,7 @@
     "confirmEmail": {
       "subject": "[Paris Call] Confirm your event",
       "title": "You suggested an event to the Paris Call",
-      "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"%s\">event suggestion form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
+      "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"https://pariscall.international/en/#events\">event suggestion form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
       "verifyButton": "Suggest this event",
       "details": "Once confirmed, your event will be reviewed before being made public. You will be notified once your event is publicly visible on <a href=\"https://pariscall.international/en/#events\">pariscall.international</a>."
     },
@@ -18,14 +18,14 @@
     "confirmEmail": {
       "subject": "[Paris Call] Confirm your support",
       "title": "You expressed support to the Paris Call",
-      "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"%s\">support form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
+      "intro": "First of all, thank you for your interest in cybersecurity.<br/>Somebody, probably you or someone from your team, has filled the <a href=\"https://pariscall.international/en/support\">support form</a> to the Paris Call for trust and security in cyberspace. Before sending this request, we want to make sure it does come from your organisation.",
       "verifyButton": "Confirm your support",
-      "details": "Once confirmed, your support is effective. There is nothing more to do. It will be reviewed before being made public. You will be notified once your support is <a href=\"%s\">publicly visible</a>."
+      "details": "Once confirmed, your support is effective. There is nothing more to do. It will be reviewed before being made public. You will be notified once your support is <a href=\"https://pariscall.international/en/supporters\">publicly visible</a>."
     },
     "notifyEmail": {
       "subject": "[Paris Call] Your support is public",
       "title": "Your support is publicly visible",
-      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support will be <a href=\"%s\">publicly visible</a> in few minutes.",
+      "intro": "You recently expressed your support to the Paris Call for trust and security in cyberspace. We are happy to inform you that your support will be <a href=\"https://pariscall.international/en/supporters\">publicly visible</a> in few minutes.",
       "followup": "We will send only information specifically related to your support to this address. Updates on the Paris Call will be sent regularly to the contact address you specified when you stated your support."
     }
   },
