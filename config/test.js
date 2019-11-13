@@ -1,17 +1,17 @@
 module.exports = {
   repository: {
-    owner: 'Ndpnt',
+    owner: 'AmbaNum',
     name: 'test',
   },
   mailer: {
     approver: {
-      email: 'npg.dupont@gmail.com'
+      email: 'an_account@example.com'
     },
     administrator: {
-      email: 'npg.dupont@gmail.com',
+      email: 'an_account@example.com',
     },
     bot: {
-      email: 'npg.dupont@gmail.com',
+      email: 'an_account@example.com',
     },
   },
   frontend: {
