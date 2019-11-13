@@ -9,16 +9,13 @@ module.exports = {
     // recipient for approbation emails
     approver: {
       email: 'npg.dupont@gmail.com',
-      name: 'Paris Call Approver',
     },
     // sender email for confirmation emails
     administrator: {
-      name: 'Paris Call',
       email: 'npg.dupont@gmail.com',
     },
     // sender email for approbation emails
     bot: {
-      name: 'Paris Call Bot',
       email: 'npg.dupont@gmail.com',
     },
   },

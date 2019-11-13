@@ -8,11 +8,9 @@ module.exports = {
       email: 'npg.dupont@gmail.com'
     },
     administrator: {
-      name: 'Paris Call',
       email: 'npg.dupont@gmail.com',
     },
     bot: {
-      name: 'Paris Call Bot',
       email: 'npg.dupont@gmail.com',
     },
   },

@@ -7,7 +7,16 @@ module.exports = {
     supporterDestinationFolder: '_supporters',
   },
   mailer: {
-    nbDaysBeforeTokenExpiration: 7
+    nbDaysBeforeTokenExpiration: 7,
+    approver: {
+      name: 'Paris Call Approver',
+    },
+    administrator: {
+      name: 'Paris Call Team',
+    },
+    bot: {
+      name: 'Paris Call Bot',
+    },
   },
   crm: {
     // Id taken from SendInBlue contact list (see https://my.sendinblue.com/users/list)
