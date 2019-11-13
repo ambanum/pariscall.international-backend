@@ -10,7 +10,7 @@
     "notifyEmail": {
       "subject": "[Paris Call] Your event is public",
       "title": "Your event will be publicly visible very soon",
-      "intro": "You recently suggested the event “%s” to the Paris Call for trust and security in cyberspace. We are happy to inform you that this event will be publicly visible in few minutes on <a href=\"https://pariscall.international/\">pariscall.international</a>. Thank you for your contribution!",
+      "intro": "You recently suggested the event “%s” to the Paris Call for trust and security in cyberspace. We are happy to inform you that we have reviewed and approved this event, and that it will be publicly visible in a couple minutes on <a href=\"https://pariscall.international/en/#events\">pariscall.international</a>. Thank you for your contribution!",
       "followup": "If you need to edit this event, please reply to this email."
     }
   },
