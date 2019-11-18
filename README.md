@@ -42,7 +42,7 @@ We suggest to use a production process manager for Node.js like [pm2](https://gi
 
 - - -
 
-## How to add a language?
+## How to add a language
 
 1. In the `config/default.js` add the new language identifier in the array `supportedLanguages`:
 
@@ -56,6 +56,8 @@ module.exports = {
 2. Create a JSON translations file for the new language in the folder `locales`, copy the content of the `locales/en.json` file and translates the content.
 
 3. In the file `app/transform/index.js` ensure the RegExps for _categories_ (in the variable `CATEGORY_MATCHERS`) and _openness levels_ (in the variable `OPENNESS_LEVEL_MATCHERS`) properly matches the possible text contents of the corresponding questions in TypeForm.
+
+See [ambanum/pariscall.international](https://github.com/ambanum/pariscall.international) readme for adding new language support also on the frontend side.
 
 - - -
 
