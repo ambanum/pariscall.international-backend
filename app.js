@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const config = require('config');
 
 const webhookRouter = require('./app/webhook/routes');
 const confirmEmailRouter = require('./app/confirm-email/routes');
@@ -13,7 +14,7 @@ const app = express();
 
 i18n.configure({
   objectNotation: true,
-  locales:['en', 'fr'],
+  locales: config.supportedLanguages,
   defaultLocale: 'en',
   directory: __dirname + '/locales',
   queryParameter: 'lang'

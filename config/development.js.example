@@ -1,25 +1,23 @@
 module.exports = {
   repository: {
     // GitHub user of the destination repository
-    owner: 'Ndpnt',
+    owner: '<GITHUB_USER>',
     // destination repository name
-    name: 'test',
+    name: '<REPOSITORY_NAME>',
   },
   mailer: {
     // recipient for approbation emails
     approver: {
-      email: 'npg.dupont@gmail.com',
-      name: 'Paris Call Approver',
+      email: '<APPROVER_EMAIL>',
+
     },
     // sender email for confirmation emails
     administrator: {
-      name: 'Paris Call',
-      email: 'npg.dupont@gmail.com',
+      email: '<ADMINISTRATOR_EMAIL>',
     },
     // sender email for approbation emails
     bot: {
-      name: 'Paris Call Bot',
-      email: 'npg.dupont@gmail.com',
+      email: '<BOT_EMAIL>',
     },
   },
   frontend: {
